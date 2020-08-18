@@ -4,20 +4,12 @@ interface Props {}
 
 function Body(props: Props) {
   return (
-    <div className=" leading-loose tracking-tight">
-      <div className="container w-full md:max-w-3xl mx-auto pt-12 bg-gray-100">
+      <div className="container w-full md:max-w-3xl mx-auto pt-10 bg-gray-100">
         <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal" style={{ fontFamily: 'Georgia,serif' }}>
           <div className="font-sans">
-            <span className="text-base md:text-sm text-teal-500 font-bold">
-              &lt;
-              <span>
-                <a href="#" className="text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">
-                  BACK TO BLOG
-                </a>
-                <p />
+            <span className="text-base md:text-sm text-teal-500 font-bold"> 
                 <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">Welcome to Minimal Blog</h1>
                 <p className="text-sm md:text-base font-normal text-gray-600">Published 19 February 2019</p>
-              </span>
             </span>
           </div>
           <p className="py-6">
@@ -92,23 +84,7 @@ function Body(props: Props) {
             Link
           </a>
         </div>
-        <hr className="border-b-2 border-gray-400 mb-8 mx-4" />
-        <div className="container px-4">
-          <div className="font-sans bg-white rounded-lg shadow-md p-4 text-center">
-            <h2 className="font-bold break-normal text-xl md:text-3xl">Subscribe to my Newsletter</h2>
-            <h3 className="font-bold break-normal font-normal text-gray-600 text-sm md:text-base">Get the latest posts delivered right to your inbox</h3>
-            <div className="w-full text-center pt-4">
-              <form action="#">
-                <div className="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
-                  <input type="email" placeholder="youremail@example.com" className="flex-1 mt-4 appearance-none border border-gray-400 rounded shadow-md p-3 text-gray-600 mr-2 focus:outline-none" />
-                  <button type="submit" className="flex-1 mt-4 block md:inline-block appearance-none bg-teal-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-teal-400">
-                    Subscribe
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+       
         <div className="flex w-full items-center font-sans px-4 py-12">
           <img className="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author" />
           <div className="flex-1 px-2">
@@ -124,29 +100,8 @@ function Body(props: Props) {
             <button className="bg-transparent border border-gray-500 hover:border-teal-500 text-xs text-gray-500 hover:text-teal-500 font-bold py-2 px-4 rounded-full">Read More</button>
           </div>
         </div>
-        <hr className="border-b-2 border-gray-400 mb-8 mx-4" />
-        <div className="font-sans flex justify-between content-center px-4 pb-12">
-          <div className="text-left">
-            <span className="text-xs md:text-sm font-normal text-gray-600">&lt; Previous Post</span>
-            <br />
-            <p>
-              <a href="#" className="break-normal text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">
-                Blog title
-              </a>
-            </p>
-          </div>
-          <div className="text-right">
-            <span className="text-xs md:text-sm font-normal text-gray-600">Next Post &gt;</span>
-            <br />
-            <p>
-              <a href="#" className="break-normal text-base md:text-sm text-teal-500 font-bold no-underline hover:underline">
-                Blog title
-              </a>
-            </p>
-          </div>
-        </div>
+    
       </div>
-    </div>
   )
 }
 

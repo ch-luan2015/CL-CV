@@ -1,21 +1,19 @@
 import React from 'react'
 import Body from '../../components/Body'
-import LeftBar from '../../components/LeftBar'
+import SideBar from '../../components/SideBar'
 
 interface Props {}
 
 function MainPage1(props: Props) {
   return (
-    <div className="w-full flex flex-row flex-wrap">
-      <div className="w-1/4">
-       <LeftBar />
-      </div>
-       <div className="w-2/4">
-       <Body />
+    <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
+    
+       <div className="w-3/4">
+        <Body />
        </div>
         
       <div className="w-1/4 ">
-        <p>column 3</p>
+          <SideBar/>
       </div>
     </div>
   )
