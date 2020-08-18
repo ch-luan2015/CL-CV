@@ -3,7 +3,7 @@ import database from "firebase/database";
 
 
 
-const firebaseConfig = {
+const config = {
     apiKey: "AIzaSyAchFAZua_n64MblMmppie1hRFeC7UsL7M",
     authDomain: "clblog123-a057e.firebaseapp.com",
     databaseURL: "https://clblog123-a057e.firebaseio.com",
@@ -18,10 +18,12 @@ const firebaseConfig = {
 
   export const getFirebase = () => {
     if (firebaseCache) {
+
       return firebaseCache;
     }
   
     firebase.initializeApp(config);
     firebaseCache = firebase;
+    console.log('firebaseCache',firebaseCache)
     return firebase;
   };

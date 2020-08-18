@@ -2,8 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 
-
-const Post = ({ match }) => {
+const Post = ({ match }:any) => {
   const slug = match.params.slug;
   const postSlugs = ["my-first-blog-post", "my-second-blog-post"];
 

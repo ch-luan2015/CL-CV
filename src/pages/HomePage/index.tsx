@@ -5,6 +5,24 @@ interface Props {
     
 }
 
+export interface blogPost{
+      content ?: any,
+      coverImage ?: any,
+      coverImageAlt ?: any,
+      dateFormatted ?:any,
+      datePretty ?: any,
+      slug ?: any,
+      title ?: any
+
+}
+//Mo phong mot array object
+interface blogPosts extends Array<blogPost>{}
+
+interface Props{
+  blogPost ?: blogPost;
+  blogPosts?: blogPosts;
+}
+
 function HomePage(props:Props){
     const [loading, setLoading] = useState(true);
     const [blogPosts, setBlogPosts] = useState([]);
@@ -15,14 +33,14 @@ function HomePage(props:Props){
           .ref("/posts")
           .orderByChild("dateFormatted")
           .once("value")
-          .then(snapshot => {
+          .then((snapshot:any) => {
             let posts = [];
             const snapshotVal = snapshot.val();
             for (let slug in snapshotVal) {
               posts.push(snapshotVal[slug]);
             }
       
-            const newestFirst = posts.reverse();
+            const newestFirst:any = posts.reverse();
             setBlogPosts(newestFirst);
             setLoading(false);
           });
@@ -31,13 +49,12 @@ function HomePage(props:Props){
       if (loading) {
         return <h1>Loading...</h1>;
       }
+
+
     return (
         <>
-        <h1>Blog posts</h1>
-        <p>
-          Welcome to the starter code! We're showing hard-coded data right now.
-        </p>
-        {blogPosts.map(blogPost => (
+        <h1>Blog posts</h1>     
+        {blogPosts.map((blogPost:any) => (
           <section key={blogPost.slug} className="card">
             <img src={blogPost.coverImage} alt={blogPost.coverImageAlt} />
             <div className="card-content">
@@ -54,6 +71,7 @@ function HomePage(props:Props){
             </div>
           </section>
         ))}
+        {console.log('blogpost',blogPosts)}
       </>
     )
 }

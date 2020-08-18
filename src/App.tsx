@@ -7,23 +7,19 @@ import MainPage1 from './pages/MainPage1'
 import HomePage from './pages/HomePage'
 import Post from './components/Post'
 import NoMatch from './components/NoMatch'
+import CreatePost from './components/CreatePost'
 
 function App() {
   return (
     <Layout>
       <Router>
-        <nav>
-          <Link to="/">
-            <h2>My React + Firebase Blog</h2>
-          </Link>
-        </nav>
-        <main>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/create" component={CreatePost} />
+
             <Route path="/404" component={NoMatch} />
             <Route path="/:slug" component={Post} />
           </Switch>
-        </main>
       </Router>
       {/* <MainPage1 /> */}
     </Layout>
