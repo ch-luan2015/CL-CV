@@ -8,9 +8,9 @@ interface Props {
 
 function Layout(props: Props) {
   return (
-    <div className="bg-gray-100 font-sans flex flex-wrap flex-col">
+    <div className="bg-gray-100 font-sans">
         <Header />
-        <div className="w-full mt-2">
+        <div className="w-full mt-18 pt-16">
             {props.children}
         </div>
             

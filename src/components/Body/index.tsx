@@ -4,7 +4,7 @@ interface Props {}
 
 function Body(props: Props) {
   return (
-    <div className="w-2/4 leading-loose tracking-tight">
+    <div className=" leading-loose tracking-tight">
       <div className="container w-full md:max-w-3xl mx-auto pt-12 bg-gray-100">
         <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal" style={{ fontFamily: 'Georgia,serif' }}>
           <div className="font-sans">

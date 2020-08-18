@@ -6,10 +6,15 @@ interface Props {}
 
 function MainPage1(props: Props) {
   return (
-    <div className="w-full">
-        <LeftBar />
-        <Body />
-      <div className="w-1/4 h-12">
+    <div className="w-full flex flex-row flex-wrap">
+      <div className="w-1/4">
+       <LeftBar />
+      </div>
+       <div className="w-2/4">
+       <Body />
+       </div>
+        
+      <div className="w-1/4 ">
         <p>column 3</p>
       </div>
     </div>
