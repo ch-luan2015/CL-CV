@@ -1,12 +1,11 @@
 import React from 'react'
-import Body from '../Body'
 
 interface Props {}
 
 function LeftBar(props: Props) {
   return (
-    <>
-        <div className="w-full md:w-1/2 md:pr-32 order-3 md:order-1">
+    <div className="w-1/4 h-12">
+        <div className="w-full md:w-1/2 md:pr-32 md:order-1">
           <div className="max-w-md md:float-right md:text-right leading-loose tracking-tight md:sticky md:top-0 ">
             <p className="font-bold my-4 md:my-12">Previous Posts</p>
             <ul className="flex flex-wrap justify-between flex-col">
@@ -74,12 +73,13 @@ function LeftBar(props: Props) {
           </div>
         </div>
      
+</div>
+      
 
-      <div className="absolute top-0 right-0 h-12 w-18 p-4">
-        <button className="js-change-theme focus:outline-none">🌙</button>
-      </div>
-    </>
   )
 }
 
 export default LeftBar
+// {/* <div className="absolute top-0 right-0 h-12 w-18 p-4">
+//         <button className="js-change-theme focus:outline-none"/>🌙
+//       </div> */}
