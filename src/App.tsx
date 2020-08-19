@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Layout from './layout'
 import MainPage1 from './pages/MainPage1'
