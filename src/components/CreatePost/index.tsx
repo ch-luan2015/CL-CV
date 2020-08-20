@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-import { getFirebase } from '../../firebase';
-import {useHistory} from "react-router-dom";
-
-
-
-
+import React, { useState } from 'react'
+import { getFirebase } from '../../firebase'
+import { useHistory } from 'react-router-dom'
 
 interface Props {}
 
@@ -28,11 +24,11 @@ function CreatePost(props: Props) {
   const [slug, setSlug] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [coverImageAlt, setCoverImageAlt] = useState('')
-  const [content, setContent] = useState('') 
-  const history = useHistory();
+  const [content, setContent] = useState('')
+  const history = useHistory()
 
   const createPost = () => {
-    var date = generateDate();
+    var date = generateDate()
     const newPost = {
       title,
       dateFormatted: date.formatted,
@@ -40,37 +36,36 @@ function CreatePost(props: Props) {
       slug,
       coverImage,
       coverImageAlt,
-      content
-    };
+      content,
+    }
 
     getFirebase()
       .database()
       .ref()
       .child(`posts/${slug}`)
       .set(newPost)
-      .then(()=> history.push('/'));
-    
+      .then(() => history.push('/'))
   }
 
   const generateDate = () => {
-    const now:any = new Date();
+    const now: any = new Date()
     const options = { month: 'long', day: 'numeric', year: 'numeric' }
-    const year = now.getFullYear();
-    let month = now.getMonth() + 1;
+    const year = now.getFullYear()
+    let month = now.getMonth() + 1
     if (month < 10) {
       month = `0${month}` // prepend with a 0
     }
 
-    var day:any = now.getDate();
+    var day: any = now.getDate()
     if (day < 10) {
-      day = `0${day}`; // prepend with a 0
-    };
+      day = `0${day}` // prepend with a 0
+    }
 
     return {
-      formatted: `${year}-${month}-${day}`,             // used for sorting
-      pretty: now.toLocaleDateString("en-US", options)  // used for displaying
-    };
-  };
+      formatted: `${year}-${month}-${day}`, // used for sorting
+      pretty: now.toLocaleDateString('en-US', options), // used for displaying
+    }
+  }
   return (
     <>
       <h1>Create a new post</h1>

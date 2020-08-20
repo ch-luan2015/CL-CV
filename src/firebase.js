@@ -24,6 +24,5 @@ const config = {
   
     firebase.initializeApp(config);
     firebaseCache = firebase;
-    console.log('firebaseCache',firebaseCache)
     return firebase;
   };

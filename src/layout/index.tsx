@@ -14,7 +14,7 @@ function Layout(props: Props) {
             {props.children}
         </div>
             
-        <Footer />
+        {/* <Footer /> */}
     </div>
   )
 }
