@@ -2,20 +2,6 @@ import React, { Children } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import CreatePost from '../../../components/CreatePost'
 
-const routes = [
-  {
-    path: '/admin/post',
-    sidebar: () => <CreatePost />,
-  },
-  {
-    path: '/postlist',
-    sidebar: () => <h2>postlist</h2>,
-  },
-  {
-    path: '/category',
-    sidebar: () => <h2>category</h2>,
-  },
-]
 
 function AdSidebar() {
   return (
@@ -70,11 +56,6 @@ function AdSidebar() {
         </ul>
       </aside>
 
-      <Switch>
-        {routes.map((route, index) => (
-          <Route key={index} path={route.path} children={route.sidebar} />
-        ))}
-      </Switch>
     </>
   )
 }

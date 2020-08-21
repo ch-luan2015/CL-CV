@@ -3,12 +3,10 @@ import './App.scss'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Layout from './layout'
-// import MainPage1 from './pages/MainPage1'
-import HomePage from './pages/HomePage'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import AdminPage from './pages/AdminPage'
-import MainPage1 from './pages/MainPage1'
+import HomePage from './pages/HomePage'
 
 function App() {
   return (
@@ -16,7 +14,17 @@ function App() {
       <Switch>
         {/* <Route path="/login" component={Login}/> */}
 
-        <Route>
+
+        <Route path="/admin/:path?" exact>
+        <AdminPage>
+          <Switch>
+            <Route path='/admin/post' exact component={CreatePost} />
+            {/* <Route path='/admin/postlist' exact component={''} /> */}
+          </Switch>
+        </AdminPage>
+      </Route>
+
+      <Route>
         <Layout>
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -26,15 +34,7 @@ function App() {
       </Route>
 
       
-      <Route path="/admin/:path?" exact>
-        <AdminPage>
-          <Switch>
-            <Route path='/admin' exact component={CreatePost} />
-            {/* <Route path='/admin/postlist' exact component={''} /> */}
-          </Switch>
-        </AdminPage>
-      </Route>
-
+     
       
        
 
