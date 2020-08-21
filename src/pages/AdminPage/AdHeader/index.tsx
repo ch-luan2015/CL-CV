@@ -1,20 +1,19 @@
-import React from 'react'
+import React from "react";
+import {} from "react-router-dom";
+
 
 function AdHeader() {
   return (
-    <header className="bg-nav">
+    <header className="bg-gray-600">
       <div className="flex justify-between">
         <div className="p-1 mx-3 inline-flex items-center">
           <i className="fas fa-bars pr-2 text-white"  />
           <h1 className="text-white p-2">Logo</h1>
         </div>
         <div className="p-1 flex flex-row items-center">
-          <a href="https://github.com/tailwindadmin/admin" className="text-white p-2 mr-2 no-underline hidden md:block lg:block">
-            Github
-          </a>
-          <img  className="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="new" />
+          <img  className="inline-block h-8 w-8 " src={require("../../../assets/images/Pale-King.png" )} alt="new" />
           <a href="#"  className="text-white p-2 no-underline hidden md:block lg:block">
-            Adam Wathan
+            Pale King
           </a>
           <div id="ProfileDropDown" className="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
             <ul className="list-reset">

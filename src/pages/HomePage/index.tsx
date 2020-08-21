@@ -26,7 +26,6 @@ interface Props{
 function HomePage(props:Props){
     const [loading, setLoading] = useState(true);
     const [blogPosts, setBlogPosts] = useState([]);
-    console.log('firebase',getFirebase().database().ref("/posts").orderByChild("dateFormatted").once("value"))
 
     if (loading && !blogPosts.length) {
         getFirebase()

@@ -8,21 +8,26 @@ import HomePage from './pages/HomePage'
 import Post from './components/Post'
 import CreatePost from './components/CreatePost'
 import AdminPage from './pages/AdminPage'
+import MainPage1 from './pages/MainPage1'
 
 function App() {
   return (
     <Router>
       <Switch>
 
-        <Route exact path="/" component={AdminPage} />
-        <Layout>
-          <Route exact path="/home" component={HomePage} />
-          <Route exact path="/create" component={CreatePost} />
-
+      <AdminPage>
+          <Route path="/admin/create" component={CreatePost} />
+        </AdminPage>
+       
+      <Layout>
+          <Route exact path="/" component={HomePage} />
           <Route path="/:slug" component={Post} />
-
-          {/* <MainPage1 /> */}
         </Layout>
+
+        <Route exact path="/admin" component={AdminPage} />
+
+       
+
       </Switch>
     </Router>
   )
