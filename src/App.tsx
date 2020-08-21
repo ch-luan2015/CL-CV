@@ -14,19 +14,30 @@ function App() {
   return (
     <Router>
       <Switch>
+        {/* <Route path="/login" component={Login}/> */}
 
-      <AdminPage>
-          <Route path="/admin/create" component={CreatePost} />
-        </AdminPage>
-       
-      <Layout>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/:slug" component={Post} />
+        <Route>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/:slug" component={Post} />
+          </Switch>
         </Layout>
+      </Route>
 
-        <Route exact path="/admin" component={AdminPage} />
+      
+      <Route path="/admin/:path?" exact>
+        <AdminPage>
+          <Switch>
+            <Route path='/admin' exact component={CreatePost} />
+            {/* <Route path='/admin/postlist' exact component={''} /> */}
+          </Switch>
+        </AdminPage>
+      </Route>
 
+      
        
+
 
       </Switch>
     </Router>
