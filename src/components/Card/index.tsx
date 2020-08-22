@@ -12,6 +12,8 @@ interface Props {
 
 const Card: React.FC<Props> = (props) => {
   console.log('props card', props.title)
+
+  let subtitle = (props.content)?(props.content.substr(0,150)):('')
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-64 rounded-lg">
       <img className="h-full w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src={props.coverImage} alt={props.coverImageAlt} />
@@ -19,7 +21,7 @@ const Card: React.FC<Props> = (props) => {
         <div className="flex items-center">
           <div className="text-black font-bold text-xl mb-2">{props.title}</div>
         </div>
-        <p className="text-sm text-gray-700 mt-4">{props.content}</p>
+        <p className="text-sm text-gray-700 mt-4">{subtitle+"..."}</p>
 
         <div className="flex items-center justify-end mt-4 top-auto">
           <div className="flex justify-center items-center">

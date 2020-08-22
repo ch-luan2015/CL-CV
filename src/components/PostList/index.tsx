@@ -56,6 +56,7 @@ function PostList(props:Props){
         {blogPosts.map((blogPost:any) => ( 
         
            <section key={blogPost.slug}>
+             <Link to={`/${blogPost.slug}`}>
              <Card
                title={blogPost.title}
                content={blogPost.content}
@@ -65,6 +66,8 @@ function PostList(props:Props){
                author="NCL"
                date={blogPost.datePretty}
              />
+             </Link>
+            
           </section>
         
         ))}
