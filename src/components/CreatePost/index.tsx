@@ -1,24 +1,40 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react';
-import { getFirebase } from "../../firebase";
-import { useHistory } from "react-router-dom";
-import { RichTextViewer } from "../Editors/Editor";
-
+import React, { useCallback, useMemo, useState, useEffect } from 'react'
+import { getFirebase } from '../../firebase'
+import { useHistory } from 'react-router-dom'
+import RichTextEditor from '../Editors/Editor'
 
 // Import the Slate components and React plugin.
 
-
-interface Props{
-
+interface PostContentEditorProps {
+  content: string;
+  subject: string;
+  onChange: () => void;
 }
 
 
-function CreatePost(props: Props) {
-  const [title, setTitle] = useState(" ")
-  const [slug, setSlug] = useState(" ")
-  const [coverImage, setCoverImage] = useState(" ")
-  const [coverImageAlt, setCoverImageAlt] = useState(" ")
-  const [content, setContent] = useState(" ")
+
+
+function CreatePost(props: PostContentEditorProps) {
+  const [title, setTitle] = useState(' ')
+  const [slug, setSlug] = useState(' ')
+  const [coverImage, setCoverImage] = useState(' ')
+  const [coverImageAlt, setCoverImageAlt] = useState(' ')
+  // const [content, setContent] = useState(' ')
   const history = useHistory()
+
+  const [content, setContent] = useState(props.content);
+  const [subject, setSubject] = useState(props.subject);
+  const handleContentChange = (content: string) => {
+    setContent(content);
+    props.onChange({ content, subject });
+  };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const subject = event.target.value;
+    setSubject(subject);
+    props.onChange({ content, subject });
+  };
+
+
 
   const createPost = () => {
     var date = generateDate()
@@ -37,12 +53,12 @@ function CreatePost(props: Props) {
       .ref()
       .child(`posts/${slug}`)
       .set(newPost)
-      .then(() => history.push("/"))
+      .then(() => history.push('/'))
   }
 
   const generateDate = () => {
     const now: any = new Date()
-    const options = { month: "long", day: "numeric", year: "numeric" }
+    const options = { month: 'long', day: 'numeric', year: 'numeric' }
     const year = now.getFullYear()
     let month = now.getMonth() + 1
     if (month < 10) {
@@ -56,20 +72,17 @@ function CreatePost(props: Props) {
 
     return {
       formatted: `${year}-${month}-${day}`, // used for sorting
-      pretty: now.toLocaleDateString("en-US", options), // used for displaying
+      pretty: now.toLocaleDateString('en-US', options), // used for displaying
     }
   }
 
-  return (
-    <RichTextViewer  />
-   
-  )
+  return <RichTextEditor onChange={handleContentChange} initialValue={content} />
 }
 
 export default CreatePost
 
-
-{/* <>
+{
+  /* <>
 <h1>Create a new post</h1>
 <section style={{ margin: "2rem 0" }}>
   <label style={labelStyles} htmlFor="title-field">
@@ -150,4 +163,5 @@ export default CreatePost
       Create
     </button>
   </div>
-</section> */}
+</section> */
+}
