@@ -52,7 +52,7 @@ function PostList(props:Props){
       }
 
     return (
-      <div className="w-full md:max-w-3xl px-4 text-normal text-gray-800 leading-normal" style={{ fontFamily: 'Georgia,serif' }}> 
+      <>
         {blogPosts.map((blogPost:any) => ( 
         
            <section key={blogPost.slug}>
@@ -72,24 +72,10 @@ function PostList(props:Props){
         
         ))}
 
-      
-      </div>
+      </>
     )
 }
 
 
 export default  PostList;
- 
-{/* <img src={blogPost.coverImage} alt={blogPost.coverImageAlt} />
-<div className="card-content">
-  <h2>
-    {blogPost.title} &mdash;
-    <span style={{ color: "#5e5e5e" }}>{blogPost.datePretty}</span>
-  </h2>
-  <p
-    dangerouslySetInnerHTML={{
-      __html: `${blogPost.content.substring(0, 200)}...`
-    }}
-  ></p>
-  <Link to={`/${blogPost.slug}`}>Continue reading...</Link>
-</div> */}
+
