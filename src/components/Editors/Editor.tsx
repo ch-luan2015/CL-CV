@@ -4,8 +4,12 @@ import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
 import { Editor, Transforms, createEditor, Node } from 'slate'
 import { withHistory } from 'slate-history'
+import {  AiOutlineBold, AiOutlineItalic,AiOutlineUnderline, AiFillCode, AiOutlineBlock,AiOutlineOrderedList,AiOutlineUnorderedList } from 'react-icons/ai';
+import {  FaHeading } from 'react-icons/fa';
+import {  BiHeading } from 'react-icons/bi';
 
-import { Button, Icon, Toolbar } from './components'
+
+import { Button,  Toolbar } from './components'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -14,9 +18,24 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      { text: 'This is editable ' },
+      { text: 'rich', bold: true },
+      { text: ' text, ' },
+      { text: 'much', italic: true },
+      { text: ' better than a ' },
+      { text: '<textarea>', code: true },
+      { text: '!' },
+    ],
+  }
+]
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
-const RichTextEditor = () => {
+
+const RichTextExample = () => {
   const [value, setValue] = useState<Node[]>(initialValue)
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
@@ -24,18 +43,18 @@ const RichTextEditor = () => {
 
   return (
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
-      
       <Toolbar>
-        <MarkButton format="bold" icon="format_bold" />
-        <MarkButton format="italic" icon="format_italic" />
-        <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="looks_one" />
-        <BlockButton format="heading-two" icon="looks_two" />
-        <BlockButton format="block-quote" icon="format_quote" />
-        <BlockButton format="numbered-list" icon="format_list_numbered" />
-        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+        <MarkButton format="bold" icon={<AiOutlineBold size={25} />} />
+        <MarkButton format="italic" icon={<AiOutlineItalic size={25} />} />
+        <MarkButton format="underline" icon={<AiOutlineUnderline size={25} />} />
+        <MarkButton format="code" icon={<AiFillCode size={25} />} />
+        <BlockButton format="heading-one" icon={<FaHeading size={25} />} />
+        <BlockButton format="heading-two" icon={<BiHeading size={25} />} />
+        <BlockButton format="block-quote" icon={<AiOutlineBlock size={25} />} />
+        <BlockButton format="numbered-list" icon={<AiOutlineOrderedList size={25} />} />
+        <BlockButton format="bulleted-list" icon={<AiOutlineUnorderedList size={25} />} />
       </Toolbar>
+
 
       <Editable
         renderElement={renderElement}
@@ -56,6 +75,9 @@ const RichTextEditor = () => {
     </Slate>
   )
 }
+
+
+
 
 const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format)
@@ -148,7 +170,7 @@ const BlockButton = ({ format, icon }) => {
         toggleBlock(editor, format)
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   )
 }
@@ -163,47 +185,10 @@ const MarkButton = ({ format, icon }) => {
         toggleMark(editor, format)
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   )
 }
 
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [
-      { text: 'This is editable ' },
-      { text: 'rich', bold: true },
-      { text: ' text, ' },
-      { text: 'much', italic: true },
-      { text: ' better than a ' },
-      { text: '<textarea>', code: true },
-      { text: '!' },
-    ],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text ",
-      },
-      { text: 'bold', bold: true },
-      {
-        text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
-      },
-    ],
-  },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }],
-  },
-  {
-    type: 'paragraph',
-    children: [{ text: 'Try it out for yourself!' }],
-  },
-]
 
-export default RichTextEditor
-
+export default RichTextExample

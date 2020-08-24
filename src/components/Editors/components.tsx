@@ -185,7 +185,6 @@ export const Toolbar = React.forwardRef(
           margin: 0 -20px;
           border-bottom: 2px solid #eee;
           margin-bottom: 20px;
-          background-color: #718096;
         `
       )}
     />

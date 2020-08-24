@@ -3,7 +3,7 @@ import { getFirebase } from '../../firebase'
 import { useHistory } from 'react-router-dom'
 import { createEditor, Editor, Transforms } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
-import RichTextEditor from '../Editors/Editor'
+import RichTextExample from '../Editors/Editor'
 
 
 interface PostContentEditorProps {
@@ -71,8 +71,12 @@ function CreatePost(props: PostContentEditorProps) {
 
 
   return (
-    <RichTextEditor />
+    <div className="mt-20">
+
+<RichTextExample/>
     
+    </div>
+   
   )
 }
 
