@@ -1,3 +1,4 @@
+
 import React, { useCallback, useMemo, useState } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
@@ -10,7 +11,7 @@ const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
   'mod+u': 'underline',
-  'mod+`': 'code',  
+  'mod+`': 'code',
 }
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
@@ -23,6 +24,7 @@ const RichTextEditor = () => {
 
   return (
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
+      
       <Toolbar>
         <MarkButton format="bold" icon="format_bold" />
         <MarkButton format="italic" icon="format_italic" />
@@ -34,6 +36,7 @@ const RichTextEditor = () => {
         <BlockButton format="numbered-list" icon="format_list_numbered" />
         <BlockButton format="bulleted-list" icon="format_list_bulleted" />
       </Toolbar>
+
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
@@ -203,3 +206,4 @@ const initialValue = [
 ]
 
 export default RichTextEditor
+

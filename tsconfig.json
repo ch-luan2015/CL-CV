@@ -5,26 +5,25 @@
       "dom",
       "dom.iterable",
       "esnext",
-      "es6",
+      "es6"
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-
-
-
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src"
-  ],
-
+    "src",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

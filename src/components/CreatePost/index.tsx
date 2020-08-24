@@ -69,10 +69,9 @@ function CreatePost(props: PostContentEditorProps) {
 
 
 
-  
 
   return (
-    <RichTextEditor/>
+    <RichTextEditor />
     
   )
 }
