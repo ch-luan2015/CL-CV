@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
 import { getFirebase } from '../../firebase'
 import { useHistory } from 'react-router-dom'
+import { createEditor, Editor, Transforms } from 'slate'
+import { Slate, Editable, withReact } from 'slate-react'
 import RichTextEditor from '../Editors/Editor'
 
-// Import the Slate components and React plugin.
 
 interface PostContentEditorProps {
   content: string;
@@ -12,6 +13,7 @@ interface PostContentEditorProps {
 }
 
 
+// Define a React component renderer for our code blocks.
 
 
 function CreatePost(props: PostContentEditorProps) {
@@ -19,21 +21,10 @@ function CreatePost(props: PostContentEditorProps) {
   const [slug, setSlug] = useState(' ')
   const [coverImage, setCoverImage] = useState(' ')
   const [coverImageAlt, setCoverImageAlt] = useState(' ')
-  // const [content, setContent] = useState(' ')
   const history = useHistory()
-
-  const [content, setContent] = useState(props.content);
-  const [subject, setSubject] = useState(props.subject);
-  const handleContentChange = (content: string) => {
-    setContent(content);
-    props.onChange({ content, subject });
-  };
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const subject = event.target.value;
-    setSubject(subject);
-    props.onChange({ content, subject });
-  };
-
+  const [content, setContent] = useState('');
+  const editor = useMemo(() => withReact(createEditor()), [])
+  const [value, setValue] = useState("")
 
 
   const createPost = () => {
@@ -76,10 +67,20 @@ function CreatePost(props: PostContentEditorProps) {
     }
   }
 
-  return <RichTextEditor onChange={handleContentChange} initialValue={content} />
+
+
+  
+
+  return (
+    <RichTextEditor/>
+    
+  )
 }
 
 export default CreatePost
+
+
+
 
 {
   /* <>

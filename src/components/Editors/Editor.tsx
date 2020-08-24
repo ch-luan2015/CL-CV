@@ -1,72 +1,48 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react'
-import { Editable, withReact, useSlate, Slate, ReactEditor, RenderLeafProps, RenderElementProps } from 'slate-react'
+import React, { useCallback, useMemo, useState } from 'react'
+import isHotkey from 'is-hotkey'
+import { Editable, withReact, useSlate, Slate } from 'slate-react'
 import { Editor, Transforms, createEditor, Node } from 'slate'
 import { withHistory } from 'slate-history'
-import { Button, Toolbar } from './components'
-import isHotkey from 'is-hotkey'
 
-const HOTKEYS: { [id: string]: string } = {
+import { Button, Icon, Toolbar } from './components'
+
+const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
   'mod+u': 'underline',
-  'mod+`': 'code',
+  'mod+`': 'code',  
 }
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
-interface RichTextViewerProps {
-  initialValue: string
-}
 
-interface RichTextEditor {
-  initialValue: string
-  onChange: (value: string) => void
-  clear?: () => string
-}
-
-interface ToolbarButtonProps {
-    format: string;
-    icon?: string;
-  }
-
-const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
-  const [value, setValue] = useState<Node[]>(JSON.parse(initialValue))
-  const renderElement = useCallback((props) => <Element {...props} />, [])
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, [])
+const RichTextEditor = () => {
+  const [value, setValue] = useState<Node[]>(initialValue)
+  const renderElement = useCallback(props => <Element {...props} />, [])
+  const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
-  const handleChange = (value: Node[]) => {
-    setValue(value)
-    if (value == null) return '[]'
-    onChange(JSON.stringify(value))
-  }
-
-  useEffect(() => {
-    clear && setValue(JSON.parse(clear()))
-  }, [clear])
 
   return (
-    <Slate editor={editor} value={value} onChange={handleChange}>
+    <Slate editor={editor} value={value} onChange={value => setValue(value)}>
       <Toolbar>
-        <MarkButton format="bold" icon="bold" />
-        <MarkButton format="italic" icon="italic" />
-        <MarkButton format="underline" icon="underline" />
+        <MarkButton format="bold" icon="format_bold" />
+        <MarkButton format="italic" icon="format_italic" />
+        <MarkButton format="underline" icon="format_underlined" />
         <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="header-one" />
-        <BlockButton format="heading-two" icon="header-two" />
-        <BlockButton format="block-quote" icon="code-block" />
-        <BlockButton format="numbered-list" icon="numbered-list" />
-        <BlockButton format="bulleted-list" icon="properties" />
+        <BlockButton format="heading-one" icon="looks_one" />
+        <BlockButton format="heading-two" icon="looks_two" />
+        <BlockButton format="block-quote" icon="format_quote" />
+        <BlockButton format="numbered-list" icon="format_list_numbered" />
+        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
       </Toolbar>
-
       <Editable
-        className="richtext-editor"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder="Enter some rich text…"
         spellCheck
         autoFocus
-        onKeyDown={(event) => {
+        onKeyDown={event => {
           for (const hotkey in HOTKEYS) {
-            if (isHotkey(hotkey, event.nativeEvent)) {
+            if (isHotkey(hotkey, event as any)) {
               event.preventDefault()
               const mark = HOTKEYS[hotkey]
               toggleMark(editor, mark)
@@ -78,39 +54,26 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
   )
 }
 
+const toggleBlock = (editor, format) => {
+  const isActive = isBlockActive(editor, format)
+  const isList = LIST_TYPES.includes(format)
 
+  Transforms.unwrapNodes(editor, {
+    match: n => LIST_TYPES.includes(n.type as string),
+    split: true,
+  })
 
-export const RichTextViewer = ({ initialValue }: RichTextViewerProps) => {
-    const [value, setValue] = useState<Node[]>([]);
-    const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-    const renderElement = useCallback((props) => <Element {...props} />, []);
-    const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
-    useEffect(() => {
-      if (initialValue == null) {
-        return;
-      }
-      try {
-        const nodes: Node[] = JSON.parse(initialValue);
-        setValue(nodes);
-      } catch {
-        setValue([]);
-      }
-    }, [initialValue]);
-    if (value == null) {
-      return <div>Loading...</div>;
-    }
-    return (
-      <Slate editor={editor} value={value} onChange={() => {}}>
-        <Editable
-          readOnly
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-        />
-      </Slate>
-    );
-  };
+  Transforms.setNodes(editor, {
+    type: isActive ? 'paragraph' : isList ? 'list-item' : format,
+  })
 
-const toggleMark = (editor: ReactEditor, format: string) => {
+  if (!isActive && isList) {
+    const block = { type: format, children: [] }
+    Transforms.wrapNodes(editor, block)
+  }
+}
+
+const toggleMark = (editor, format) => {
   const isActive = isMarkActive(editor, format)
 
   if (isActive) {
@@ -120,21 +83,20 @@ const toggleMark = (editor: ReactEditor, format: string) => {
   }
 }
 
-const isBlockActive = (editor: ReactEditor, format: string) => {
-  const iter = Editor.nodes(editor, {
-    match: (n) => n.type === format,
+const isBlockActive = (editor, format) => {
+  const [match] = Editor.nodes(editor, {
+    match: n => n.type === format,
   })
-  const [match] = Array.from(iter)
 
   return !!match
 }
 
-const isMarkActive = (editor: ReactEditor, format: string) => {
+const isMarkActive = (editor, format) => {
   const marks = Editor.marks(editor)
   return marks ? marks[format] === true : false
 }
 
-const Element = ({ attributes, children, element }: RenderElementProps) => {
+const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>
@@ -153,7 +115,7 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
   }
 }
 
-const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
+const Leaf = ({ attributes, children, leaf }) => {
   if (leaf.bold) {
     children = <strong>{children}</strong>
   }
@@ -173,54 +135,71 @@ const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
   return <span {...attributes}>{children}</span>
 }
 
-const BlockButton = ({ format, icon }: ToolbarButtonProps) => {
+const BlockButton = ({ format, icon }) => {
   const editor = useSlate()
   return (
     <Button
       active={isBlockActive(editor, format)}
-      onMouseDown={(event) => {
+      onMouseDown={event => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
     >
-      {/* <Icon icon={icon} /> */}
+      <Icon>{icon}</Icon>
     </Button>
   )
 }
 
-const MarkButton = ({ format, icon }: ToolbarButtonProps) => {
+const MarkButton = ({ format, icon }) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
-      onMouseDown={(event) => {
+      onMouseDown={event => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
     >
-      {/* <Icon icon={icon} /> */}
+      <Icon>{icon}</Icon>
     </Button>
   )
 }
 
-  const toggleBlock = (editor: ReactEditor, format: string) => {
-    const isActive = isBlockActive(editor, format);
-    const isList = LIST_TYPES.includes(format);
-  
-    Transforms.unwrapNodes(editor, {
-      match: (n) => LIST_TYPES.includes(n.type as string),
-      split: true,
-    });
-  
-    Transforms.setNodes(editor, {
-      type: isActive ? "paragraph" : isList ? "list-item" : format,
-    });
-  
-    if (!isActive && isList) {
-      const block = { type: format, children: [] };
-      Transforms.wrapNodes(editor, block);
-    }
-  };
-  
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      { text: 'This is editable ' },
+      { text: 'rich', bold: true },
+      { text: ' text, ' },
+      { text: 'much', italic: true },
+      { text: ' better than a ' },
+      { text: '<textarea>', code: true },
+      { text: '!' },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text:
+          "Since it's rich text, you can do things like turn a selection of text ",
+      },
+      { text: 'bold', bold: true },
+      {
+        text:
+          ', or add a semantically rendered block quote in the middle of the page, like this:',
+      },
+    ],
+  },
+  {
+    type: 'block-quote',
+    children: [{ text: 'A wise quote.' }],
+  },
+  {
+    type: 'paragraph',
+    children: [{ text: 'Try it out for yourself!' }],
+  },
+]
 
-  export default RichTextEditor;
+export default RichTextEditor
