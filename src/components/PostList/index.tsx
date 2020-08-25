@@ -25,47 +25,49 @@ function PostList(props: Props) {
   const [loading, setLoading] = useState(true)
   const [blogPosts, setBlogPosts] = useState([])
 
-  db.collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        var dbColl = doc.data();
-        console.log('dvCol', dbColl.id)
+  // db.collection('users')
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       var dbColl = doc.data()
+  //       console.log('dvCol', dbColl.id)
 
-        console.log(`${doc.id} => ${doc.data()}`);
+  //       console.log(`${doc.id} => ${doc.data()}`)
+  //     })
+  //   })
 
+  if (loading && !blogPosts.length) {
+    db.collection('post')
+      .get()
+      .then((snapshot: any) => {
+        snapshot.forEach((doc)=>{
+          let posts = []
+
+          var eachDoc = doc.data()
+          console.log('eachDoc',eachDoc)
+
+
+          for (let slug in eachDoc) {
+            posts.push(eachDoc[slug])
+          }
+          console.log('posts',posts)
+          const newestFirst: any = posts.reverse()
+          setBlogPosts(newestFirst)
+          setLoading(false)
+        }) 
       })
-    })
+  }
 
-  // if (loading && !blogPosts.length) {
-  //     db()
-  //       .database()
-  //       .ref("/posts")
-  //       .orderByChild("dateFormatted")
-  //       .once("value")
-  //       .then((snapshot:any) => {
-  //         let posts = [];
-  //         const snapshotVal = snapshot.val();
-  //         for (let slug in snapshotVal) {
-  //           posts.push(snapshotVal[slug]);
-  //         }
-
-  //         const newestFirst:any = posts.reverse();
-  //         setBlogPosts(newestFirst);
-  //         setLoading(false);
-  //       });
-  //   }
-
-  //   if (loading) {
-  //     return <h1>Loading...</h1>;
-  //   }
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <>
       {blogPosts.map((blogPost: any) => (
         <section key={blogPost.slug}>
           <Link to={`/${blogPost.slug}`}>
-            <Card title={blogPost.title} content={blogPost.content} coverImage={blogPost.coverImage} coverImageAlt={blogPost.coverImageAlt} tag="React" author="NCL" date={blogPost.datePretty} />
+            <Card title={blogPost.title} content={blogPost.title} coverImage={blogPost.cover_image}  tag="React" author="NCL" date={blogPost.readable_publish_date} />
           </Link>
         </section>
       ))}
