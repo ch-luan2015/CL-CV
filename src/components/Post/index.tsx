@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getFirebase } from '../../firebase'
+import db from '../../firebase'
 import SideBar from '../SideBar'
 
 export interface currentPost {
@@ -18,21 +18,21 @@ const Post = ({ match }: any) => {
 
   const slug = match.params.slug
 
-  useEffect(() => {
-    if (loading) {
-      getFirebase()
-        .database()
-        .ref()
-        .child(`/posts/${slug}`)
-        .once('value')
-        .then((snapshot: any) => {
-          if (snapshot.val()) {
-            setCurrentPost(snapshot.val())
-          }
-          setLoading(false)
-        })
-    }
-  })
+  // useEffect(() => {
+  //   if (loading) {
+  //     db()
+  //       .database()
+  //       .ref()
+  //       .child(`/posts/${slug}`)
+  //       .once('value')
+  //       .then((snapshot: any) => {
+  //         if (snapshot.val()) {
+  //           setCurrentPost(snapshot.val())
+  //         }
+  //         setLoading(false)
+  //       })
+  //   }
+  // })
 
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">

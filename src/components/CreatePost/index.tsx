@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
-import { getFirebase } from '../../firebase'
+import db from '../../firebase'
 import { useHistory } from 'react-router-dom'
 import { createEditor, Editor, Transforms } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
@@ -40,12 +40,12 @@ function CreatePost(props: PostContentEditorProps) {
       content,
     }
 
-    getFirebase()
-      .database()
-      .ref()
-      .child(`posts/${slug}`)
-      .set(newPost)
-      .then(() => history.push('/'))
+    // db()
+    //   .database()
+    //   .ref()
+    //   .child(`posts/${slug}`)
+    //   .set(newPost)
+    //   .then(() => history.push('/'))
   }
 
   const generateDate = () => {
