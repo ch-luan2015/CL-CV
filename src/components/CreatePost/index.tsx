@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { createEditor, Editor, Transforms } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import RichTextExample from '../Editors/Editor'
+import DEditor from '../Editors/DEditor'
 
 
 interface PostContentEditorProps {
@@ -71,9 +72,11 @@ function CreatePost(props: PostContentEditorProps) {
 
 
   return (
-    <div className="mt-20">
+    <div className="w-full bg-gray-300">
 
-<RichTextExample/>
+{/* <RichTextExample/> */}
+
+        <DEditor/>
     
     </div>
    
