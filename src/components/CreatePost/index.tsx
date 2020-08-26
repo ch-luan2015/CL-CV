@@ -40,15 +40,26 @@ import { PostProps } from '../../resources/models/PostProps'
 //   );
 // };
 
+const defaultPost:PostProps={
+  collection_id:null,
+  id:null,
+  cover_image:'',
+  tag_list:'',
+  title:'',
+  content:'',
+  created_at:null,
+  slug:''
+}
+
 function CreatePost(props: PostProps) {
-  const [title, setTitle] = useState(' ')
-  const [collection_id, setCollection_id] = useState(null)
-  const [id, setId] = useState(null)
-  const [slug, setSlug] = useState('')
-  const [cover_image, setCover_image] = useState('')
-  const [description, setDescription] = useState('')
-  const [content, setContent] = useState('')
-  const [tag_list, setTag_list] = useState(' ')
+  // const [title, setTitle] = useState(' ')
+  // const [collection_id, setCollection_id] = useState(null)
+  // const [id, setId] = useState(null)
+  // const [slug, setSlug] = useState('')
+  // const [cover_image, setCover_image] = useState('')
+  // const [content, setContent] = useState('')
+  // const [tag_list, setTag_list] = useState(' ')
+  const [post,setPost]=useState<PostProps>(defaultPost)
   const [newPost, setNewPost]=useState<PostProps>({});
 
   const generateDate = () => {
@@ -77,24 +88,23 @@ function CreatePost(props: PostProps) {
     //Du lieu dau vao lay tu form
     var date = generateDate()
  
-    var newPost: PostProps = {
-      collection_id,
-      id,
-      description,
-      cover_image,
-      tag_list,
-      title,
-      content,
-      created_at: date.pretty,
-      published_at: date.pretty,
-      slug,
-    }
+    // var newPost: PostProps = {
+    //   collection_id,
+    //   id,
+    //   cover_image,
+    //   tag_list,
+    //   title,
+    //   content,
+    //   created_at: date.pretty,
+    //   published_at: date.pretty,
+    //   slug,
+    // }
 
     //Ham ket noi ghi du lieu len db
 
     // Add a new document with a generated id.
     db.collection('post')
-      .add(newPost)
+      .add(post)
       .then(function (docRef) {
         console.log('Document written with ID: ', docRef.id)
       })
@@ -103,36 +113,76 @@ function CreatePost(props: PostProps) {
       })
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      event.preventDefault();
-      const newValue = event.currentTarget.value;
-        console.log('newValue',newValue)
-        // setNewPost({subject});
-    //     props.onChange({ content, subject });
-    //   };
+  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     event.preventDefault();
+  //     const newValue = event.currentTarget.value;
+  //       console.log('newValue',newValue)
+  //       setNewPost({subject});
+  //       props.onChange({ content, subject });
+  //     };
     
 
-  }
+  // }
 
+
+  
+  // let output = identity<string>("myString");
+  
+  //handel InputChange la 1 anonymous function : handleInputChange<T>
+
+  const handleInputChange = <P extends keyof PostProps> (prop:P, value:PostProps[P]):void => {
+    console.log(`prop : ${prop}  ; value ${value}`);
+
+          setPost({...post,[prop]:value})
+  }
 
   return (
     <div className="w-full bg-gray-300">
-      <h1>Create a new post</h1>
       <section style={{ margin: '2rem 0' }}>
         <label htmlFor="title-field">Title</label>
         <input
           name="title"
-          type="text"
-          value={title}
-          onChange={handleInputChange}
+          placeholder="title"
+          value={post.title}
+          onChange={e=>{
+            handleInputChange('title',e.target.value)
+          }}
         />
 
         <input
           name="id"
           placeholder="id"
-          type="number"
-          value={id}
-          onChange={handleInputChange}
+          value={post.id||''}
+          onChange={e=>{
+            handleInputChange('id',parseInt(e.target.value));
+          }}
+        />
+
+        <input
+          name="collection_id"
+          placeholder="collection_id"
+          value={post.collection_id||''}
+          onChange={e=>{
+            handleInputChange('collection_id',parseInt(e.target.value));
+          }}
+        />
+
+        <input
+          name="cover_image"
+          type="text"
+          value={post.cover_image}
+          onChange={e=>{
+            handleInputChange('cover_image',e.target.value)
+          }}
+        />
+
+        <input
+          id="content"
+          type="text"
+          value={post.content}
+          onChange={e=>{
+            handleInputChange('content',e.target.value)
+          }}
         />
 
         {/* <input
@@ -156,21 +206,7 @@ function CreatePost(props: PostProps) {
           }}
         /> */}
 
-        <label htmlFor="cover_image">Cover image</label>
-        <input
-          name="cover_image"
-          type="text"
-          value={cover_image}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="content-field">Content</label>
-        <input
-          id="content"
-          type="text"
-          value={content}
-          onChange={handleInputChange}
-        />
+       
 
         <div style={{ textAlign: 'right' }}>
           <button

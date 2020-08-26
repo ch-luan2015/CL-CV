@@ -2,7 +2,7 @@ import { UserProps } from './UserProps'
 
 export interface PostProps {
   type_of?: string,
-  id?: number,
+  id?: number|null,
   title?: string,
   content?:string,
   description?: string,
@@ -17,9 +17,9 @@ export interface PostProps {
   canonical_url?: string,
   comments_count?: number,
   positive_reactions_count?: number,
-  collection_id?: number,
+  collection_id?: number|null,
 
-  created_at?: number,
+  created_at?: number|null,
   edited_at?: number,
   published_at?: number,
   last_comment_at?: number,
