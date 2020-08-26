@@ -16,8 +16,6 @@ interface Props {
 function PostList(props: Props) {
   const [loading, setLoading] = useState(true)
   const [postList, setPostList] = useState([])
-
-
  
   if (loading && !postList.length) {
     db.collection('post')
@@ -37,9 +35,6 @@ function PostList(props: Props) {
   if (loading) {
     return <h1>Loading...</h1>
   }
-  
-
-
 
   return (
     <>

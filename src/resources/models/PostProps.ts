@@ -4,6 +4,7 @@ export interface PostProps {
   type_of?: string,
   id?: number,
   title?: string,
+  content?:string,
   description?: string,
   cover_image?: string,
   readable_publish_date?: string,
