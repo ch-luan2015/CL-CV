@@ -3,8 +3,8 @@ import './App.scss'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Layout from './layout'
-import Post from './components/Post'
 import CreatePost from './components/CreatePost'
+import PostPage from './pages/PostPage'
 import AdminPage from './pages/AdminPage'
 import HomePage from './pages/HomePage'
 
@@ -28,7 +28,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/:slug" component={Post} />
+            <Route path="/:slug" component={PostPage} />
           </Switch>
         </Layout>
       </Route>

@@ -1,30 +1,27 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
 import db from '../../firebase'
 import { useHistory } from 'react-router-dom'
-import { createEditor, Editor, Transforms } from 'slate'
-import { Slate, Editable, withReact } from 'slate-react'
-import RichTextExample from '../Editors/Editor'
 import DEditor from '../Editors/DEditor'
+import {PostProps} from '../../resources/models/PostProps'
 
-
-interface PostContentEditorProps {
-  content: string;
-  subject: string;
-  onChange: () => void;
-}
+// interface PostContentEditorProps {
+//   content: string;
+//   subject: string;
+//   onChange: () => void;
+// }
 
 
 // Define a React component renderer for our code blocks.
 
 
-function CreatePost(props: PostContentEditorProps) {
+function CreatePost(props: PostProps) {
   const [title, setTitle] = useState(' ')
   const [slug, setSlug] = useState(' ')
   const [coverImage, setCoverImage] = useState(' ')
   const [coverImageAlt, setCoverImageAlt] = useState(' ')
   const history = useHistory()
   const [content, setContent] = useState('');
-  const editor = useMemo(() => withReact(createEditor()), [])
+  // const editor = useMemo(() => withReact(createEditor()), [])
   const [value, setValue] = useState("")
 
 

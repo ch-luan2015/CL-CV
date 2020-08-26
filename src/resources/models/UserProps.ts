@@ -1,0 +1,10 @@
+export interface UserProps {
+  name?: string,
+  username?: string,
+  email?:string,
+  twitter_username?: string,
+  github_username?: string,
+  website_url?: string,
+  profile_image?: string,
+  profile_image_90?: string,
+}

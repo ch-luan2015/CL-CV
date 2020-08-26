@@ -1,22 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import {PostCardProps} from '../../resources/models/PostCardProps';
 
-interface Props {
-  title?: string
-  content?: any
-  coverImage?: any
-  coverImageAlt?: any
-  tag?: any
-  author?: any
-  date?: any
-}
 
-const Card: React.FC<Props> = (props) => {
+
+const Card: React.FC<PostCardProps> = (props) => {
 
   let subtitle = (props.content)?(props.content.substr(0,99)):(" ")
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-40 rounded-lg relative">
-      <img className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src={props.coverImage} alt={props.coverImageAlt} />
+      <img className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src={props.cover_image} alt={props.cover_imageAlt} />
       <div className="w-full md:w-2/3 px-4 py-4 bg-white rounded-lg">
         <div className="flex items-center">
           <div className="text-black font-bold text-xl mb-2">{props.title}</div>

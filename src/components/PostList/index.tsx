@@ -2,73 +2,59 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import db from '../../firebase'
 import Card from '../Card'
+import {PostProps} from '../../resources/models/PostProps'
 
-export interface blogPost {
-  content?: any
-  coverImage?: any
-  coverImageAlt?: any
-  dateFormatted?: any
-  datePretty?: any
-  slug?: any
-  title?: string
-}
 
 //Mo phong mot array object
-interface blogPosts extends Array<blogPost> {}
+interface PostListProps extends Array<PostProps> {}
 
 interface Props {
-  blogPost?: blogPost
-  blogPosts?: blogPosts
+  post?: PostProps,
+  postList?: PostListProps,
 }
 
 function PostList(props: Props) {
   const [loading, setLoading] = useState(true)
-  const [blogPosts, setBlogPosts] = useState([])
+  const [postList, setPostList] = useState([])
 
-  // db.collection('users')
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       var dbColl = doc.data()
-  //       console.log('dvCol', dbColl.id)
 
-  //       console.log(`${doc.id} => ${doc.data()}`)
-  //     })
-  //   })
-
-  if (loading && !blogPosts.length) {
+ 
+  if (loading && !postList.length) {
     db.collection('post')
       .get()
       .then((snapshot: any) => {
-        snapshot.forEach((doc)=>{
-          let posts = []
-
+        var posts = []
+        snapshot.forEach((doc:any)=>{
           var eachDoc = doc.data()
-          console.log('eachDoc',eachDoc)
-
-
-          for (let slug in eachDoc) {
-            posts.push(eachDoc[slug])
-          }
-          console.log('posts',posts)
-          const newestFirst: any = posts.reverse()
-          setBlogPosts(newestFirst)
-          setLoading(false)
+          posts.push(eachDoc);
         }) 
+        const newestFirst: any = posts.reverse()
+        setPostList(newestFirst)
+        setLoading(false)
       })
   }
 
   if (loading) {
     return <h1>Loading...</h1>
   }
+  
+
+
 
   return (
     <>
-      {blogPosts.map((blogPost: any) => (
-        <section key={blogPost.slug}>
-          <Link to={`/${blogPost.slug}`}>
-            <Card title={blogPost.title} content={blogPost.title} coverImage={blogPost.cover_image}  tag="React" author="NCL" date={blogPost.readable_publish_date} />
+      {postList.map((post) => (
+        <section key={post.id}>
+          <Link to={`/${post.slug}`}>
+            <Card 
+            title={post.title} 
+            content={post.title} 
+            cover_image={post.cover_image}  
+            tag={post.tag_list} 
+            author="NCL" 
+            date={post.readable_publish_date} />
           </Link>
+
         </section>
       ))}
     </>

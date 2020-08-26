@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import db from '../../firebase'
-import SideBar from '../SideBar'
+import SideBar from '../../components/SideBar'
 
 export interface currentPost {
   content?: any

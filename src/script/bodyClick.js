@@ -11,11 +11,11 @@
          body.classList.remove('bg-gray-100');
          body.classList.add('bg-gray-900');
      } else {
-         toggle.innerHTML = "🌙";
+         toggle.innerHTML = " ";
          body.classList.remove('text-gray-300');
          body.classList.add('text-gray-700');
          body.classList.remove('bg-gray-900');
          body.classList.add('bg-gray-100');
 
      }
- });
+ })
