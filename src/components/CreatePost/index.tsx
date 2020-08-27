@@ -40,15 +40,15 @@ import { PostProps } from '../../resources/models/PostProps'
 //   );
 // };
 
-const defaultPost:PostProps={
-  collection_id:null,
-  id:null,
-  cover_image:'',
-  tag_list:'',
-  title:'',
-  content:'',
-  created_at:null,
-  slug:''
+const defaultPost: PostProps = {
+  collection_id: null,
+  id: null,
+  cover_image: '',
+  tag_list: '',
+  title: '',
+  content: '',
+  created_at: null,
+  slug: '',
 }
 
 function CreatePost(props: PostProps) {
@@ -59,8 +59,8 @@ function CreatePost(props: PostProps) {
   // const [cover_image, setCover_image] = useState('')
   // const [content, setContent] = useState('')
   // const [tag_list, setTag_list] = useState(' ')
-  const [post,setPost]=useState<PostProps>(defaultPost)
-  const [newPost, setNewPost]=useState<PostProps>({});
+  const [post, setPost] = useState<PostProps>(defaultPost)
+  const [newPost, setNewPost] = useState<PostProps>({})
 
   const generateDate = () => {
     const now: any = new Date()
@@ -82,23 +82,9 @@ function CreatePost(props: PostProps) {
     }
   }
 
-
-  
   const createPost = () => {
     //Du lieu dau vao lay tu form
     var date = generateDate()
- 
-    // var newPost: PostProps = {
-    //   collection_id,
-    //   id,
-    //   cover_image,
-    //   tag_list,
-    //   title,
-    //   content,
-    //   created_at: date.pretty,
-    //   published_at: date.pretty,
-    //   slug,
-    // }
 
     //Ham ket noi ghi du lieu len db
 
@@ -113,206 +99,90 @@ function CreatePost(props: PostProps) {
       })
   }
 
-  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     event.preventDefault();
-  //     const newValue = event.currentTarget.value;
-  //       console.log('newValue',newValue)
-  //       setNewPost({subject});
-  //       props.onChange({ content, subject });
-  //     };
-    
-
-  // }
-
-
-  
   // let output = identity<string>("myString");
-  
+
   //handel InputChange la 1 anonymous function : handleInputChange<T>
 
-  const handleInputChange = <P extends keyof PostProps> (prop:P, value:PostProps[P]):void => {
-    console.log(`prop : ${prop}  ; value ${value}`);
-
-          setPost({...post,[prop]:value})
+  const handleInputChange = <P extends keyof PostProps>(name: P, value: PostProps[P],e: React.FormEvent<HTMLInputElement>): void => {
+    e.preventDefault();
+    setPost({ ...post, [name]: value })
   }
 
   return (
-    <div className="w-full bg-gray-300">
-      <section style={{ margin: '2rem 0' }}>
-        <label htmlFor="title-field">Title</label>
+    <div className="w-full  bg-gray-300">
+      <section className="flex flex-col justify-start flex-wrap ">
+
+      <div className="w-3/4 ">
+        <label htmlFor="title">Title</label>
         <input
           name="title"
           placeholder="title"
           value={post.title}
-          onChange={e=>{
-            handleInputChange('title',e.target.value)
+          onChange={(e) => {
+            handleInputChange('title', e.target.value,e)
           }}
         />
-
-        <input
-          name="id"
-          placeholder="id"
-          value={post.id||''}
-          onChange={e=>{
-            handleInputChange('id',parseInt(e.target.value));
-          }}
-        />
-
-        <input
-          name="collection_id"
-          placeholder="collection_id"
-          value={post.collection_id||''}
-          onChange={e=>{
-            handleInputChange('collection_id',parseInt(e.target.value));
-          }}
-        />
-
-        <input
-          name="cover_image"
-          type="text"
-          value={post.cover_image}
-          onChange={e=>{
-            handleInputChange('cover_image',e.target.value)
-          }}
-        />
-
-        <input
-          id="content"
-          type="text"
-          value={post.content}
-          onChange={e=>{
-            handleInputChange('content',e.target.value)
-          }}
-        />
-
-        {/* <input
-          name="collection_id"
-          placeholder="collection_id"
-          type="number"
-          value={collection_id}
-       
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setCollection_id(event.target.value)
-          }}
-        /> */}
-
-        {/* <label htmlFor="slug-field">Slug</label>
-        <input
-          id="slug-field"
-          type="text"
-          value={slug}
-          onChange={({ target: { value } }) => {
-            setSlug(value)
-          }}
-        /> */}
-
-       
-
-        <div style={{ textAlign: 'right' }}>
-          <button
-            style={{
-              border: 'none',
-              color: '#fff',
-              backgroundColor: '#039be5',
-              borderRadius: '4px',
-              padding: '8px 12px',
-              fontSize: '0.9rem',
-            }}
-            onClick={createPost}
-          >
-            Create
-          </button>
         </div>
+        
+
+        <div className="w-3/4 ">
+          <label htmlFor="content">Content</label>
+          <input
+            name="content"
+            placeholder="content"
+            type="text"
+            value={post.content}
+            onChange={(e) => {
+              handleInputChange('content', e.target.value,e)
+            }}
+          />
+        </div>
+
+
+        <div className="w-3/4 ">
+          <label htmlFor="content">Content</label>
+           <DEditor/>
+        </div>
+      
+
+        <button
+          style={{
+            border: 'none',
+            color: '#fff',
+            backgroundColor: '#039be5',
+            borderRadius: '4px',
+            padding: '8px 12px',
+            fontSize: '0.9rem',
+          }}
+          onClick={createPost}
+        >
+          Create
+        </button>
       </section>
 
-      {/* <DEditor/> */}
+      
     </div>
   )
 }
 
-
 export default CreatePost
 
 
-//   <>
-// <h1>Create a new post</h1>
-// <section style={{ margin: "2rem 0" }}>
-//   <label style={labelStyles} htmlFor="title-field">
-//     Title
-//   </label>
-//   <input
-//     style={inputStyles}
-//     id="title-field"
-//     type="text"
-//     value={title}
-//     onChange={({ target: { value } }) => {
-//       setTitle(value)
-//     }}
-//   />
+{/* 
+        <input
+          name="id"
+          placeholder="id"
+          value={post.id || ''}
+          onChange={(e) => {
+            handleInputChange('id', parseInt(e.target.value),e)
+          }}
+        /> */}
 
-//   <label style={labelStyles} htmlFor="slug-field">
-//     Slug
-//   </label>
-//   <input
-//     style={inputStyles}
-//     id="slug-field"
-//     type="text"
-//     value={slug}
-//     onChange={({ target: { value } }) => {
-//       setSlug(value)
-//     }}
-//   />
-
-//   <label style={labelStyles} htmlFor="cover-image-field">
-//     Cover image
-//   </label>
-//   <input
-//     style={inputStyles}
-//     id="cover-image-field"
-//     type="text"
-//     value={coverImage}
-//     onChange={({ target: { value } }) => {
-//       setCoverImage(value)
-//     }}
-//   />
-
-//   <label style={labelStyles} htmlFor="cover-image-alt-field">
-//     Cover image alt
-//   </label>
-//   <input
-//     style={inputStyles}
-//     id="cover-image-alt-field"
-//     type="text"
-//     value={coverImageAlt}
-//     onChange={({ target: { value } }) => {
-//       setCoverImageAlt(value)
-//     }}
-//   />
-
-//   <label style={labelStyles} htmlFor="content-field">
-//     Content
-//   </label>
-//   <textarea
-//     style={{ ...inputStyles, height: 200, verticalAlign: "top" }}
-//     id="content"
-//     value={content}
-//     onChange={({ target: { value } }) => {
-//       setContent(value)
-//     }}
-//   />
-//   <div style={{ textAlign: "right" }}>
-//     <button
-//       style={{
-//         border: "none",
-//         color: "#fff",
-//         backgroundColor: "#039be5",
-//         borderRadius: "4px",
-//         padding: "8px 12px",
-//         fontSize: "0.9rem",
-//       }}
-//       onClick={createPost}
-//     >
-//       Create
-//     </button>
-//   </div>
-//     </section> 
+        {/* <input
+          name="cover_image"
+          type="text"
+          value={post.cover_image}
+          onChange={(e) => {
+            handleInputChange('cover_image', e.target.value,e)
+          }}
+        /> */}
