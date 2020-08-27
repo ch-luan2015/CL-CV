@@ -1,44 +1,8 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
 import db from '../../firebase'
-import DEditor from '../Editors/DEditor'
+import RichTextEditor from '../Editors/Editor'
 import { PostProps } from '../../resources/models/PostProps'
 
-// interface PostContentEditorProps {
-//   content: string;
-//   subject: string;
-//   onChange: (p: PostContentRequest) => void;
-// }
-
-// export const PostContentEditor = (props: PostContentEditorProps) => {
-//   const [content, setContent] = useState(props.content);
-//   const [subject, setSubject] = useState(props.subject);
-//   const handleContentChange = (content: string) => {
-//     setContent(content);
-//     props.onChange({ content, subject });
-//   };
-//   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const subject = event.target.value;
-//     setSubject(subject);
-//     props.onChange({ content, subject });
-//   };
-//   return (
-//     <div className="card-content">
-//       <FormGroup label="Tiêu đề">
-//         <InputGroup
-//           style={{ width: "100%" }}
-//           large
-//           placeholder="Tiêu đề"
-//           value={subject}
-//           name="subject"
-//           onChange={handleInputChange}
-//         />
-//       </FormGroup>
-//       <FormGroup label="Nội dung">
-//         <RichTextEditor onChange={handleContentChange} initialValue={content} />
-//       </FormGroup>
-//     </div>
-//   );
-// };
 
 const defaultPost: PostProps = {
   collection_id: null,
@@ -50,8 +14,23 @@ const defaultPost: PostProps = {
   created_at: null,
   slug: '',
 }
+const initialValue = [
+  {
+    type: "paragraph",
+    children: [{ text: "" }],
+  },
+  {
+    type: "paragraph",
+    children: [{ text: "" }],
+  },
+  {
+    type: "paragraph",
+    children: [{ text: "" }],
+  },
+];
 
-function CreatePost(props: PostProps) {
+
+function CreatePost() {
   // const [title, setTitle] = useState(' ')
   // const [collection_id, setCollection_id] = useState(null)
   // const [id, setId] = useState(null)
@@ -59,8 +38,11 @@ function CreatePost(props: PostProps) {
   // const [cover_image, setCover_image] = useState('')
   // const [content, setContent] = useState('')
   // const [tag_list, setTag_list] = useState(' ')
+
+  const [content, setContent] = useState(JSON.stringify(initialValue));
   const [post, setPost] = useState<PostProps>(defaultPost)
   const [newPost, setNewPost] = useState<PostProps>({})
+
 
   const generateDate = () => {
     const now: any = new Date()
@@ -103,10 +85,17 @@ function CreatePost(props: PostProps) {
 
   //handel InputChange la 1 anonymous function : handleInputChange<T>
 
-  const handleInputChange = <P extends keyof PostProps>(name: P, value: PostProps[P],e: React.FormEvent<HTMLInputElement>): void => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
+    const {name,value}=e.target;
     setPost({ ...post, [name]: value })
   }
+
+
+  const handleContentChange = (content: string) => {
+    setContent(content);
+   
+  };
 
   return (
     <div className="w-full  bg-gray-300">
@@ -118,30 +107,13 @@ function CreatePost(props: PostProps) {
           name="title"
           placeholder="title"
           value={post.title}
-          onChange={(e) => {
-            handleInputChange('title', e.target.value,e)
-          }}
+          onChange={handleInputChange}
         />
         </div>
-        
-
+       
         <div className="w-3/4 ">
           <label htmlFor="content">Content</label>
-          <input
-            name="content"
-            placeholder="content"
-            type="text"
-            value={post.content}
-            onChange={(e) => {
-              handleInputChange('content', e.target.value,e)
-            }}
-          />
-        </div>
-
-
-        <div className="w-3/4 ">
-          <label htmlFor="content">Content</label>
-           <DEditor/>
+          <RichTextEditor onChange={handleContentChange} initialValue={content} />
         </div>
       
 
@@ -168,21 +140,4 @@ function CreatePost(props: PostProps) {
 export default CreatePost
 
 
-{/* 
-        <input
-          name="id"
-          placeholder="id"
-          value={post.id || ''}
-          onChange={(e) => {
-            handleInputChange('id', parseInt(e.target.value),e)
-          }}
-        /> */}
 
-        {/* <input
-          name="cover_image"
-          type="text"
-          value={post.cover_image}
-          onChange={(e) => {
-            handleInputChange('cover_image', e.target.value,e)
-          }}
-        /> */}
