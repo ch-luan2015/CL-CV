@@ -40,7 +40,7 @@ function PostList(props: Props) {
     <>
       {postList.map((post) => (
         <section key={post.id}>
-          <Link to={`/${post.slug}`}>
+          <Link to={`/${post.title}`}>
             <Card 
             title={post.title} 
             content={post.title} 

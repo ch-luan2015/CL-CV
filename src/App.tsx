@@ -28,7 +28,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/:slug" component={PostPage} />
+            <Route path="/:title" component={PostPage} />
           </Switch>
         </Layout>
       </Route>

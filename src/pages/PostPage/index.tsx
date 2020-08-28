@@ -1,38 +1,56 @@
 import React, { useState, useEffect } from 'react'
 import db from '../../firebase'
 import SideBar from '../../components/SideBar'
+import { Link } from 'react-router-dom'
+import {PostProps} from '../../resources/models/PostProps'
+import { Node } from 'slate'
 
-export interface currentPost {
-  content?: any
-  coverImage?: any
-  coverImageAlt?: any
-  dateFormatted?: any
-  datePretty?: any
-  slug?: any
-  title?: any
-}
+
 
 const Post = ({ match }: any) => {
   const [loading, setLoading] = useState(true)
-  const [currentPost, setCurrentPost] = useState<currentPost>({})
+  const [currentPost, setCurrentPost] = useState<PostProps>({})
 
-  const slug = match.params.slug
+  // var currentPostContent:any = JSON.parse(currentPost.content);
+  // console.log("currentPostContent",currentPostContent)
+  const title = match.params.title
+// Define a serializing function that takes a value and returns a string.
+const serialize = value => {
+  return (
+    value
+      // Return the string content of each paragraph in the value's children.
+      .map(n => Node.string(n))
+      // Join them all with line breaks denoting paragraphs.
+      .join('\n')
+  )
+}
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     db()
-  //       .database()
-  //       .ref()
-  //       .child(`/posts/${slug}`)
-  //       .once('value')
-  //       .then((snapshot: any) => {
-  //         if (snapshot.val()) {
-  //           setCurrentPost(snapshot.val())
-  //         }
-  //         setLoading(false)
-  //       })
-  //   }
-  // })
+// Define a deserializing function that takes a string and returns a value.
+const deserialize = string => {
+  // Return a value array of children derived by splitting the string.
+  return string.split('\n').map(line => {
+    return {
+      children: [{ text: line }],
+    }
+  })
+}
+  useEffect(() => {
+    if (loading) {
+    
+      db.collection('post')
+        .where('title', '==', `${title}`)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            setCurrentPost(doc.data())
+          })
+          setLoading(false)
+        })
+        .catch(function (error) {
+          console.log('Error getting documents: ', error)
+        })  
+    }
+  })
 
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
@@ -55,9 +73,9 @@ const Post = ({ match }: any) => {
             <p className="py-6">The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a few hardcoded style tags). If you are going to use this in your project, you will want to convert the classes into components.</p>
 
             <div className="py-6">
-              <img src={currentPost.coverImage} alt={currentPost.coverImageAlt} />
+              <img src={currentPost.cover_image} alt="new" />
               <h1>{currentPost.title}</h1>
-              <em>{currentPost.datePretty}</em>
+              {/* <em>{currentPost.datePretty}</em> */}
               <p dangerouslySetInnerHTML={{ __html: currentPost.content }}></p>
             </div>
             <ol>

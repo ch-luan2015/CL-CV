@@ -14,19 +14,14 @@ const defaultPost: PostProps = {
   created_at: null,
   slug: '',
 }
+
+
 const initialValue = [
   {
     type: "paragraph",
-    children: [{ text: "" }],
+    children: [{ text: '' }],
   },
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
+
 ];
 
 
@@ -39,10 +34,11 @@ function CreatePost() {
   // const [content, setContent] = useState('')
   // const [tag_list, setTag_list] = useState(' ')
 
-  const [content, setContent] = useState(JSON.stringify(initialValue));
-  const [post, setPost] = useState<PostProps>(defaultPost)
-  const [newPost, setNewPost] = useState<PostProps>({})
 
+  //Parse nhan Json => JS
+  //Stringify nhan Text => Json
+  const [post, setPost] = useState<PostProps>(defaultPost)
+  const [content, setContent] = useState(JSON.stringify(initialValue));//content gio la 1 string
 
   const generateDate = () => {
     const now: any = new Date()
@@ -65,10 +61,8 @@ function CreatePost() {
   }
 
   const createPost = () => {
-    //Du lieu dau vao lay tu form
     var date = generateDate()
 
-    //Ham ket noi ghi du lieu len db
 
     // Add a new document with a generated id.
     db.collection('post')
@@ -91,11 +85,12 @@ function CreatePost() {
     setPost({ ...post, [name]: value })
   }
 
-
   const handleContentChange = (content: string) => {
-    setContent(content);
-   
+    console.log('content handle', content[0])
+    setPost({ ...post, content })
   };
+  
+  // console.log('post content', post.content)
 
   return (
     <div className="w-full  bg-gray-300">

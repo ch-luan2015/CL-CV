@@ -26,20 +26,7 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [
-      { text: 'This is editable ' },
-      { text: 'rich', bold: true },
-      { text: ' text, ' },
-      { text: 'much', italic: true },
-      { text: ' better than a ' },
-      { text: '<textarea>', code: true },
-      { text: '!' },
-    ],
-  }
-]
+
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
 interface RichTextEditor {
@@ -54,6 +41,27 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
+
+// Define a serializing function that takes a value and returns a string.
+const serialize = value => {
+  return (
+    value
+      // Return the string content of each paragraph in the value's children.
+      .map(n => Node.string(n))
+      // Join them all with line breaks denoting paragraphs.
+      .join('\n')
+  )
+}
+
+// Define a deserializing function that takes a string and returns a value.
+const deserialize = string => {
+  // Return a value array of children derived by splitting the string.
+  return string.split('\n').map(line => {
+    return {
+      children: [{ text: line }],
+    }
+  })
+}
 
   const handleChange = (value: Node[]) => {
     setValue(value);
