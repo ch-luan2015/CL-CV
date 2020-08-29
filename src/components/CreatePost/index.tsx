@@ -86,7 +86,6 @@ function CreatePost() {
   }
 
   const handleContentChange = (content: string) => {
-    console.log('content handle', content[0])
     setPost({ ...post, content })
   };
   

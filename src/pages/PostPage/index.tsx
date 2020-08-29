@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import db from '../../firebase'
 import SideBar from '../../components/SideBar'
 import { Link } from 'react-router-dom'
-import {PostProps} from '../../resources/models/PostProps'
-import { Node } from 'slate'
+import { PostProps } from '../../resources/models/PostProps'
+import { RichTextViewer } from '../../components/Editors/Editor'
 
 
 
@@ -11,32 +11,10 @@ const Post = ({ match }: any) => {
   const [loading, setLoading] = useState(true)
   const [currentPost, setCurrentPost] = useState<PostProps>({})
 
-  // var currentPostContent:any = JSON.parse(currentPost.content);
-  // console.log("currentPostContent",currentPostContent)
   const title = match.params.title
-// Define a serializing function that takes a value and returns a string.
-const serialize = value => {
-  return (
-    value
-      // Return the string content of each paragraph in the value's children.
-      .map(n => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
-      .join('\n')
-  )
-}
 
-// Define a deserializing function that takes a string and returns a value.
-const deserialize = string => {
-  // Return a value array of children derived by splitting the string.
-  return string.split('\n').map(line => {
-    return {
-      children: [{ text: line }],
-    }
-  })
-}
   useEffect(() => {
     if (loading) {
-    
       db.collection('post')
         .where('title', '==', `${title}`)
         .get()
@@ -48,10 +26,14 @@ const deserialize = string => {
         })
         .catch(function (error) {
           console.log('Error getting documents: ', error)
-        })  
+        })
     }
   })
 
+
+function onChange(newValue) {
+  console.log("change", newValue);
+}
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
       <div className="w-3/4 flex flex-row flex-wrap justify-end align-center pr-5">
@@ -63,30 +45,25 @@ const deserialize = string => {
                 <p className="text-sm md:text-base font-normal text-gray-600">Published 19 February 2019</p>
               </span>
             </div>
-            <p className="py-6">
+            {/* <p className="py-6">
               👋 Welcome fellow
               <a className="text-teal-500 no-underline hover:underline" href="https://www.tailwindcss.com">
                 Tailwind CSS
               </a>
               and miminal monochrome blog fan. This starter template provides a starting point to create your own minimal monochrome blog using Tailwind CSS and vanilla Javascript.
             </p>
-            <p className="py-6">The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a few hardcoded style tags). If you are going to use this in your project, you will want to convert the classes into components.</p>
+            <p className="py-6">The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a few hardcoded style tags). If you are going to use this in your project, you will want to convert the classes into components.</p> */}
 
             <div className="py-6">
               <img src={currentPost.cover_image} alt="new" />
-              <h1>{currentPost.title}</h1>
+              {/* <h1>{currentPost.title}</h1> */}
               {/* <em>{currentPost.datePretty}</em> */}
-              <p dangerouslySetInnerHTML={{ __html: currentPost.content }}></p>
             </div>
             <ol>
               <li className="py-3">
-                Maecenas accumsan lacus sit amet elementum porta. Aliquam eu libero lectus. Fusce vehicula dictum mi. In non dolor at sem ullamcorper venenatis ut sed dui. Ut ut est quam. Suspendisse quam quam, commodo sit amet placerat in, interdum a ipsum. Morbi sit amet tellus scelerisque tortor
-                semper posuere.
+                <RichTextViewer initialValue={currentPost.content} />
               </li>
-              <li className="py-3">
-                Morbi varius posuere blandit. Praesent gravida bibendum neque eget commodo. Duis auctor ornare mauris, eu accumsan odio viverra in. Proin sagittis maximus pharetra. Nullam lorem mauris, faucibus ut odio tempus, ultrices aliquet ex. Nam id quam eget ipsum luctus hendrerit. Ut eros
-                magna, eleifend ac ornare vulputate, pretium nec felis.
-              </li>
+       
               <li className="py-3">
                 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc vitae pretium elit. Cras leo mauris, tristique in risus ac, tristique rutrum velit. Mauris accumsan tempor felis vitae gravida. Cras egestas convallis malesuada. Etiam ac ante id tortor
                 vulputate pretium. Maecenas vel sapien suscipit, elementum odio et, consequat tellus.
@@ -149,6 +126,7 @@ const deserialize = string => {
           </div>
         </div>
       </div>
+
       <div className="w-1/4 ">
         <SideBar />
       </div>
