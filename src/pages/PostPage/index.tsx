@@ -3,7 +3,7 @@ import db from '../../firebase'
 import SideBar from '../../components/SideBar'
 import { Link } from 'react-router-dom'
 import { PostProps } from '../../resources/models/PostProps'
-import { RichTextViewer } from '../../components/Editors/Editor'
+import { RichTextViewer } from '../../components/Editors/EditorView'
 
 
 
@@ -31,9 +31,7 @@ const Post = ({ match }: any) => {
   })
 
 
-function onChange(newValue) {
-  console.log("change", newValue);
-}
+
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
       <div className="w-3/4 flex flex-row flex-wrap justify-end align-center pr-5">
@@ -60,7 +58,7 @@ function onChange(newValue) {
               {/* <em>{currentPost.datePretty}</em> */}
             </div>
             <ol>
-              <li className="py-3">
+              <li className="py-2">
                 <RichTextViewer initialValue={currentPost.content} />
               </li>
        

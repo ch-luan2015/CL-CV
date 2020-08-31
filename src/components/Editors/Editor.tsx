@@ -14,7 +14,7 @@ import {
   useSelected,
   useFocused,
 } from 'slate-react'
-import { Editor, Transforms, createEditor, Node,Range,Text,Point } from 'slate'
+import { Editor, Transforms, createEditor, Node, Range, Text, Point } from 'slate'
 import { withHistory } from 'slate-history'
 import {
   AiOutlineBold,
@@ -24,7 +24,7 @@ import {
   AiOutlineBlock,
   AiOutlineOrderedList,
   AiOutlineUnorderedList,
-  AiOutlineLink
+  AiOutlineLink,
 } from 'react-icons/ai'
 import { FaHeading } from 'react-icons/fa'
 import { BiHeading } from 'react-icons/bi'
@@ -36,7 +36,6 @@ import { css } from 'emotion'
 
 // eslint-disable-next-line
 ;Prism.languages.markdown=Prism.languages.extend("markup",{}),Prism.languages.insertBefore("markdown","prolog",{blockquote:{pattern:/^>(?:[\t ]*>)*/m,alias:"punctuation"},code:[{pattern:/^(?: {4}|\t).+/m,alias:"keyword"},{pattern:/``.+?``|`[^`\n]+`/,alias:"keyword"}],title:[{pattern:/\w+.*(?:\r?\n|\r)(?:==+|--+)/,alias:"important",inside:{punctuation:/==+$|--+$/}},{pattern:/(^\s*)#+.+/m,lookbehind:!0,alias:"important",inside:{punctuation:/^#+|#+$/}}],hr:{pattern:/(^\s*)([*-])([\t ]*\2){2,}(?=\s*$)/m,lookbehind:!0,alias:"punctuation"},list:{pattern:/(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,lookbehind:!0,alias:"punctuation"},"url-reference":{pattern:/!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,inside:{variable:{pattern:/^(!?\[)[^\]]+/,lookbehind:!0},string:/(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,punctuation:/^[\[\]!:]|[<>]/},alias:"url"},bold:{pattern:/(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,lookbehind:!0,inside:{punctuation:/^\*\*|^__|\*\*$|__$/}},italic:{pattern:/(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,lookbehind:!0,inside:{punctuation:/^[*_]|[*_]$/}},url:{pattern:/!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,inside:{variable:{pattern:/(!?\[)[^\]]+(?=\]$)/,lookbehind:!0},string:{pattern:/"(?:\\.|[^"\\])*"(?=\)$)/}}}}),Prism.languages.markdown.bold.inside.url=Prism.util.clone(Prism.languages.markdown.url),Prism.languages.markdown.italic.inside.url=Prism.util.clone(Prism.languages.markdown.url),Prism.languages.markdown.bold.inside.italic=Prism.util.clone(Prism.languages.markdown.italic),Prism.languages.markdown.italic.inside.bold=Prism.util.clone(Prism.languages.markdown.bold); // prettier-ignore
-
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -71,7 +70,10 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
   const [value, setValue] = useState<Node[]>(JSON.parse(initialValue))
   const renderElement = useCallback((props) => <Element {...props} />, [])
   const renderLeaf = useCallback((props) => <Leaf {...props} />, [])
-  const editor = useMemo(() =>  withShortcuts(withLinks(withImages(withHistory(withReact(createEditor()))))), [])
+  const editor = useMemo(
+    () => withShortcuts(withLinks(withImages(withHistory(withReact(createEditor()))))),
+    []
+  )
 
   const decorate = useCallback(([node, path]) => {
     const ranges = []
@@ -80,7 +82,7 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
       return ranges
     }
 
-    const getLength = token => {
+    const getLength = (token) => {
       if (typeof token === 'string') {
         return token.length
       } else if (typeof token.content === 'string') {
@@ -135,7 +137,7 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
         <BlockButton format="bulleted-list" icon={<AiOutlineUnorderedList size={25} />} />
         <InsertImageButton icon={<BsImage size={25} />} />
 
-        <LinkButton icon={<AiOutlineLink size={25} />}/>
+        <LinkButton icon={<AiOutlineLink size={25} />} />
       </Toolbar>
 
       <Editable
@@ -159,43 +161,6 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
   )
 }
 //End editor input data
-
-
-//Editor for view data
-
-interface RichTextViewerProps {
-  initialValue: string
-}
-
-export const RichTextViewer = ({ initialValue }: RichTextViewerProps) => {
-  const [value, setValue] = useState<Node[]>([])
-  const renderElement = useCallback((props) => <Element {...props} />, [])
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, [])
-  const editor = useMemo(() =>  withShortcuts(withLinks(withImages(withHistory(withReact(createEditor()))))), [])
-
-  useEffect(() => {
-    if (initialValue == null) {
-      return
-    }
-    try {
-      const nodes: Node[] = JSON.parse(initialValue)
-      setValue(nodes)
-    } catch {
-      setValue([])
-    }
-  }, [initialValue])
-  if (value == null) {
-    return <div>Loading...</div>
-  }
-  return (
-    <Slate editor={editor} value={value} onChange={() => {}}>
-      <Editable readOnly renderElement={renderElement} renderLeaf={renderLeaf} />
-    </Slate>
-  )
-}
-
-//End editor view
-
 
 
 
@@ -291,10 +256,7 @@ const insertImage = (editor, url) => {
   Transforms.insertNodes(editor, image)
 }
 
-
-
 //End function for button toolbar
-
 
 //Element render after button click
 const Element = ({ attributes, children, element }: RenderElementProps) => {
@@ -304,7 +266,7 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
       return (
         <blockquote
           {...attributes}
-          className="border-l-4 border-teal-500 italic my-8 pl-8 md:pl-12"
+          className="border-l-4 border-teal-500 italic my-4 pl-4 md:pl-12"
         >
           {children}
         </blockquote>
@@ -338,13 +300,13 @@ const Element = ({ attributes, children, element }: RenderElementProps) => {
       )
     case 'image':
       return <ImageElement {...props} />
-    
-      case 'link':
-        return (
-          <a {...attributes} href={element.url.toString()}>
-            {children}
-          </a>
-        )
+
+    case 'link':
+      return (
+        <a {...attributes} href={element.url.toString()}>
+          {children}
+        </a>
+      )
     default:
       return <p {...attributes}>{children}</p>
   }
@@ -356,12 +318,10 @@ const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
   }
 
   if (leaf.code) {
-    // children = <pre><code>{children}</code></pre>;
-    children = (
-      <pre className="bg-gray-900 rounded text-white font-mono text-base p-2 md:p-4">
-        <code className="break-words whitespace-pre-wrap">{children}</code>
-      </pre>
-    )
+    children=(
+    <span className="bg-gray-900 py-0 ">
+      <code className=" text-white font-mono text-base ">{children}</code>
+    </span>)
   }
 
   if (leaf.italic) {
@@ -372,50 +332,9 @@ const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
     children = <u>{children}</u>
   }
 
-  // return <span {...attributes}>{children}</span>
 
   return (
-    <span
-      {...attributes}
-      className={css`
-        font-weight: ${leaf.bold && 'bold'};
-        font-style: ${leaf.italic && 'italic'};
-        text-decoration: ${leaf.underlined && 'underline'};
-        ${leaf.title &&
-          css`
-            display: inline-block;
-            font-weight: bold;
-            font-size: 20px;
-            margin: 20px 0 10px 0;
-          `}
-        ${leaf.list &&
-          css`
-            padding-left: 10px;
-            font-size: 20px;
-            line-height: 10px;
-          `}
-        ${leaf.hr &&
-          css`
-            display: block;
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-          `}
-        ${leaf.blockquote &&
-          css`
-            display: inline-block;
-            border-left: 2px solid #ddd;
-            padding-left: 10px;
-            color: #aaa;
-            font-style: italic;
-          `}
-        ${leaf.code &&
-          css`
-            font-family: monospace;
-            background-color: #eee;
-            padding: 3px;
-          `}
-      `}
-    >
+    <span {...attributes}>
       {children}
     </span>
   )
@@ -443,7 +362,6 @@ const ImageElement = ({ attributes, children, element }) => {
 }
 
 //End element render after button click
-
 
 //Define button toolbar
 const BlockButton = ({ format, icon }) => {
@@ -476,7 +394,6 @@ const MarkButton = ({ format, icon }) => {
   )
 }
 
-
 const InsertImageButton = ({ icon }) => {
   const editor = useEditor()
   return (
@@ -495,14 +412,14 @@ const InsertImageButton = ({ icon }) => {
 
 //Width link
 
-const withLinks = editor => {
+const withLinks = (editor) => {
   const { insertData, insertText, isInline } = editor
 
-  editor.isInline = element => {
+  editor.isInline = (element) => {
     return element.type === 'link' ? true : isInline(element)
   }
 
-  editor.insertText = text => {
+  editor.insertText = (text) => {
     if (text && isUrl(text)) {
       wrapLink(editor, text)
     } else {
@@ -510,7 +427,7 @@ const withLinks = editor => {
     }
   }
 
-  editor.insertData = data => {
+  editor.insertData = (data) => {
     const text = data.getData('text/plain')
 
     if (text && isUrl(text)) {
@@ -529,13 +446,13 @@ const insertLink = (editor, url) => {
   }
 }
 
-const isLinkActive = editor => {
-  const [link] = Editor.nodes(editor, { match: n => n.type === 'link' })
+const isLinkActive = (editor) => {
+  const [link] = Editor.nodes(editor, { match: (n) => n.type === 'link' })
   return !!link
 }
 
-const unwrapLink = editor => {
-  Transforms.unwrapNodes(editor, { match: n => n.type === 'link' })
+const unwrapLink = (editor) => {
+  Transforms.unwrapNodes(editor, { match: (n) => n.type === 'link' })
 }
 
 const wrapLink = (editor, url) => {
@@ -559,36 +476,35 @@ const wrapLink = (editor, url) => {
   }
 }
 
-
-const LinkButton = ({icon}) => {
+const LinkButton = ({ icon }) => {
   const editor = useSlate()
   return (
     <Button
       active={isLinkActive(editor)}
-      onMouseDown={event => {
+      onMouseDown={(event) => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the link:')
         if (!url) return
         insertLink(editor, url)
       }}
     >
-     {icon}
+      {icon}
     </Button>
   )
 }
 
 //Markdown-shortcuts
 
-const withShortcuts = editor => {
+const withShortcuts = (editor) => {
   const { deleteBackward, insertText } = editor
 
-  editor.insertText = text => {
+  editor.insertText = (text) => {
     const { selection } = editor
 
     if (text === ' ' && selection && Range.isCollapsed(selection)) {
       const { anchor } = selection
       const block = Editor.above(editor, {
-        match: n => Editor.isBlock(editor, n),
+        match: (n) => Editor.isBlock(editor, n),
       })
       const path = block ? block[1] : []
       const start = Editor.start(editor, path)
@@ -599,16 +515,12 @@ const withShortcuts = editor => {
       if (type) {
         Transforms.select(editor, range)
         Transforms.delete(editor)
-        Transforms.setNodes(
-          editor,
-          { type },
-          { match: n => Editor.isBlock(editor, n) }
-        )
+        Transforms.setNodes(editor, { type }, { match: (n) => Editor.isBlock(editor, n) })
 
         if (type === 'list-item') {
           const list = { type: 'bulleted-list', children: [] }
           Transforms.wrapNodes(editor, list, {
-            match: n => n.type === 'list-item',
+            match: (n) => n.type === 'list-item',
           })
         }
 
@@ -624,22 +536,19 @@ const withShortcuts = editor => {
 
     if (selection && Range.isCollapsed(selection)) {
       const match = Editor.above(editor, {
-        match: n => Editor.isBlock(editor, n),
+        match: (n) => Editor.isBlock(editor, n),
       })
 
       if (match) {
         const [block, path] = match
         const start = Editor.start(editor, path)
 
-        if (
-          block.type !== 'paragraph' &&
-          Point.equals(selection.anchor, start)
-        ) {
+        if (block.type !== 'paragraph' && Point.equals(selection.anchor, start)) {
           Transforms.setNodes(editor, { type: 'paragraph' })
 
           if (block.type === 'list-item') {
             Transforms.unwrapNodes(editor, {
-              match: n => n.type === 'bulleted-list',
+              match: (n) => n.type === 'bulleted-list',
               split: true,
             })
           }
@@ -654,6 +563,5 @@ const withShortcuts = editor => {
 
   return editor
 }
-
 
 export default RichTextEditor
