@@ -3,20 +3,22 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 interface Props {
-  children: ReactNode
+  preview?: boolean
+  children: React.ReactNode
 }
 
-function Layout(props: Props) {
+
+function Layout({ preview, children }: Props) {
   return (
-    <div className="bg-gray-100 font-sans flex flex-col items-center justify-center">
+    <div className="bg-gray-100 font-sans">
         <Header />
-        <div className="mt-18 pt-16">
-            {props.children}
+        <div className="min-h-screen mt-16 pt-4">
+          <main>{children}</main>
         </div>
-            
-        {/* <Footer /> */}
     </div>
   )
 }
 
 export default Layout
+
+

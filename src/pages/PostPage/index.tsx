@@ -3,7 +3,7 @@ import db from '../../firebase'
 import SideBar from '../../components/SideBar'
 import { Link } from 'react-router-dom'
 import { PostProps } from '../../resources/models/PostProps'
-import { RichTextViewer } from '../../components/Editors/EditorView'
+import { RichTextViewer } from '../../components/Editors/Editor'
 
 
 
@@ -43,14 +43,6 @@ const Post = ({ match }: any) => {
                 <p className="text-sm md:text-base font-normal text-gray-600">Published 19 February 2019</p>
               </span>
             </div>
-            {/* <p className="py-6">
-              👋 Welcome fellow
-              <a className="text-teal-500 no-underline hover:underline" href="https://www.tailwindcss.com">
-                Tailwind CSS
-              </a>
-              and miminal monochrome blog fan. This starter template provides a starting point to create your own minimal monochrome blog using Tailwind CSS and vanilla Javascript.
-            </p>
-            <p className="py-6">The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a few hardcoded style tags). If you are going to use this in your project, you will want to convert the classes into components.</p> */}
 
             <div className="py-6">
               <img src={currentPost.cover_image} alt="new" />

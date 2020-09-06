@@ -1,2 +1,3 @@
 @import "./tailwindBase.css";
 @import "./tailwindsUtilities.css";
+@import "../assets/prism/prism.css"

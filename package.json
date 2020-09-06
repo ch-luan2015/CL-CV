@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^3.31.0",
     "@convertkit/slate-code": "^0.1.3",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
