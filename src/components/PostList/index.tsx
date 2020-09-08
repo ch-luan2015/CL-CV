@@ -1,55 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import db from '../../firebase'
 import Card from '../Card'
-import {PostProps} from '../../resources/models/PostProps'
+import { PostProps } from '../../resources/models/PostProps'
+import axios from 'axios'
+import moment from 'moment'
 
-
-//Mo phong mot array object
 interface PostListProps extends Array<PostProps> {}
 
 interface Props {
-  post?: PostProps,
-  postList?: PostListProps,
+  post?: PostProps
+  postList?: PostListProps
 }
 
 function PostList(props: Props) {
   const [loading, setLoading] = useState(true)
   const [postList, setPostList] = useState([])
- 
-  if (loading && !postList.length) {
-    db.collection('post')
-      .get()
-      .then((snapshot: any) => {
-        var posts = []
-        snapshot.forEach((doc:any)=>{
-          var eachDoc = doc.data()
-          posts.push(eachDoc);
-        }) 
-        const newestFirst: any = posts.reverse()
-        setPostList(newestFirst)
-        setLoading(false)
-      })
-  }
 
-  if (loading) {
-    return <h1>Loading...</h1>
-  }
+  useEffect(() => {
+   const fetchData = async()=>{
+     const response = await axios.get('https://api.linhtinh.tech/post')
+     setPostList(response.data)
+   }
+   fetchData();
+  },[])
+  // if (loading && !postList.length) {
+  //   db.collection('post')
+  //     .get()
+  //     .then((snapshot: any) => {
+  //       var posts = []
+  //       snapshot.forEach((doc: any) => {
+  //         var eachDoc = doc.data()
+  //         posts.push(eachDoc)
+  //       })
+  //       const newestFirst: any = posts.reverse()
+  //       setPostList(newestFirst)
+  //       setLoading(false)
+  //     })
+  // }
+
+  // if (loading) {
+  //   return <h1>Loading...</h1>
+  // }
 
   return (
     <>
-      {postList.map((post) => (
+ 
+      {postList.map(post => (
+        
         <section key={post.id}>
-          <Link to={`/${post.title}`}>
-            <Card 
-            title={post.title} 
-            content={post.title} 
-            cover_image={post.cover_image}  
-            tag={post.tag_list} 
-            author="NCL" 
-            date={post.readable_publish_date} />
+          <Link to={`/${post.subject}`}>
+            <Card
+              title={post.subject}
+              content={post.title}
+              cover_image={post.cover_image}
+              tag={post.tag_list}
+              author={post.createdBy}
+              date={post.createdAt}
+            />
           </Link>
-
         </section>
       ))}
     </>

@@ -35,5 +35,6 @@
     "ms-vscode.vscode-typescript-tslint-plugin",
     "visualstudioexptteam.vscodeintellicode",
     "formulahendry.code-runner"
-  ]
+  ],
+  "eslint.enable": false
 }

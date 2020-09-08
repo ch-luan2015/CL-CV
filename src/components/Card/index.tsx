@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import {PostCardProps} from '../../resources/models/PostCardProps';
+import moment from 'moment-timezone';
+import 'moment/locale/vi'
 
 
 
 const Card: React.FC<PostCardProps> = (props) => {
 
   let subtitle = (props.content)?(props.content.substr(0,99)):(" ")
+
+  var local = moment.utc(props.date).local().fromNow();
+
+  
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-40 rounded-lg relative">
       <img className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6" src={props.cover_image} alt={props.cover_imageAlt} />
@@ -30,7 +36,9 @@ const Card: React.FC<PostCardProps> = (props) => {
             <img src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" className="w-8 h-8 object-cover rounded-full" alt="avatar" />
             <Link to="#" className="text-gray-700 text-sm mx-3" ></Link>
           </div>
-          <span className="font-light text-sm text-gray-600">{props.date}</span>
+          <span className="font-light text-sm text-gray-600">        
+          {local}
+          </span>
         </div>
 
       </div>
