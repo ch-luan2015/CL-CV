@@ -1,3 +1,39 @@
 {
-    "eslint.enable": false
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "recommendations": [
+    "mikael.angular-beastcode",
+    "angular.ng-template",
+    "coenraads.bracket-pair-colorizer",
+    "mikestead.dotenv",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "mkxml.vscode-filesize",
+    "ritwickdey.liveserver",
+    "davidanson.vscode-markdownlint",
+    "pkief.material-icon-theme",
+    "zhuangtongfa.material-theme",
+    "esbenp.prettier-vscode",
+    "syler.sass-indented",
+    "octref.vetur",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "visualstudioexptteam.vscodeintellicode",
+    "formulahendry.code-runner"
+  ]
 }
