@@ -4,3 +4,22 @@ export enum PostRestriction{
   NONE = 0,
   ALLOW_USERS = 1,
 }
+export interface PostContentRequest {
+  content: string;
+  subject: string;
+}
+
+export interface PostSettingRequest {
+  canComment: boolean;
+  postRestrictionType: PostRestriction;
+  accessUsers: string[];
+}
+
+
+export interface CreatePostRequest extends PostSettingRequest, PostContentRequest{
+  tag:string[];
+}
+
+export interface UpdatePostRequest
+  extends PostSettingRequest,
+    PostContentRequest {}

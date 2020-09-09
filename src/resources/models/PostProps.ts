@@ -1,29 +1,44 @@
 import { UserProps } from './UserProps'
+import { PostRestriction } from "./PostAPI";
+import { TagProps } from "./TagProps";
+
+
+
+export interface PostTagProps {
+  tag: TagProps;
+}
+
+
+export interface PostMetric {
+  commentCount: number;
+  viewCount: number;
+}
+
 
 export interface PostProps {
-  type_of?: string,
-  id?: number|null,
-  title?: string,
-  content?:string,
-  description?: string,
-  cover_image?: string,
-  readable_publish_date?: string,
-  social_image?: string,
-  tag_list?: string,
-  tags?: string[],
-  slug?: string,
-  path?: string,
-  url?: string,
-  canonical_url?: string,
-  comments_count?: number,
-  positive_reactions_count?: number,
-  collection_id?: number|null,
-
-  created_at?: number|null,
-  edited_at?: number,
-  published_at?: number,
-  last_comment_at?: number,
-  published_timestamp?: number,
-
+  content: string;
+  canComment: boolean;
+  postRestrictionType: PostRestriction;
+  postAccessUsers: string[];
   user?:  UserProps;
+}
+
+
+export interface PostOverviewProps extends PostMetric {
+  id: number;
+  subject: string;
+  overview: string;
+  createdAt: string;
+  createdBy: string;
+  modifiedAt?: string;
+  imageURL?: string;
+  tags?: string[];
+  commentCount: number;
+  viewCount: number;
+}
+
+export interface PostListProps {
+  posts: PostProps[];
+  showImage?: boolean;
+  showTag?: boolean;
 }
