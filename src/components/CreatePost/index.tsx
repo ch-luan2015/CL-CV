@@ -1,7 +1,16 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
-import db from '../../firebase'
+import { useHistory } from "react-router-dom";
+
+import { postAPI } from "../../resources/api/post";
+import {
+  CreatePostRequest,
+  PostRestriction,
+  PostContentRequest,
+  PostSettingRequest,
+} from "../../resources/models/PostAPI";
 import RichTextEditor from '../Editors/Editor'
 import { PostProps } from '../../resources/models/PostProps'
+import { TagProps } from "../../resources/models/TagProps";
 
 
 const defaultPost: PostProps = {
@@ -26,14 +35,7 @@ const initialValue = [
 
 
 function CreatePost() {
-  // const [title, setTitle] = useState(' ')
-  // const [collection_id, setCollection_id] = useState(null)
-  // const [id, setId] = useState(null)
-  // const [slug, setSlug] = useState('')
-  // const [cover_image, setCover_image] = useState('')
-  // const [content, setContent] = useState('')
-  // const [tag_list, setTag_list] = useState(' ')
-
+ 
 
   //Parse nhan Json => JS
   //Stringify nhan Text => Json

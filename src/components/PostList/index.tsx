@@ -24,25 +24,7 @@ function PostList(props: Props) {
    }
    fetchData();
   },[])
-  // if (loading && !postList.length) {
-  //   db.collection('post')
-  //     .get()
-  //     .then((snapshot: any) => {
-  //       var posts = []
-  //       snapshot.forEach((doc: any) => {
-  //         var eachDoc = doc.data()
-  //         posts.push(eachDoc)
-  //       })
-  //       const newestFirst: any = posts.reverse()
-  //       setPostList(newestFirst)
-  //       setLoading(false)
-  //     })
-  // }
-
-  // if (loading) {
-  //   return <h1>Loading...</h1>
-  // }
-
+  
   return (
     <>
  
