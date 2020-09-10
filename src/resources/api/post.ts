@@ -26,3 +26,7 @@ const updatePost = async (id: number, req: UpdatePostRequest) => {
 
   return p;
 };
+
+export const postAPI = {
+  createPost,
+};

@@ -1,6 +1,4 @@
-
-
-export enum PostRestriction{
+export enum PostRestriction {
   NONE = 0,
   ALLOW_USERS = 1,
 }
@@ -15,9 +13,10 @@ export interface PostSettingRequest {
   accessUsers: string[];
 }
 
-
-export interface CreatePostRequest extends PostSettingRequest, PostContentRequest{
-  tag:string[];
+export interface CreatePostRequest
+  extends PostSettingRequest,
+    PostContentRequest {
+  tags: string[];
 }
 
 export interface UpdatePostRequest
