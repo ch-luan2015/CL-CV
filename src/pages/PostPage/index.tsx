@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../../components/SideBar";
 import { Link } from "react-router-dom";
-import { PostOverviewProps } from "../../resources/models/PostProps";
+import { PostProps } from "../../resources/models/PostProps";
 import { RichTextViewer } from "../../components/Editors/Editor";
 import { postAPI } from "../../resources/api/post";
+import { RequestError } from "../../resources/api/helper";
 
 const Post = ({ match }: any) => {
-  const [loading, setLoading] = useState(true);
-  const [currentPost, setCurrentPost] = useState<PostOverviewProps>();
+  const [currentPost, setCurrentPost] = useState<PostProps>();
+  const [error, setError] = useState<string>();
 
   const id = match.params.id;
+  console.log("params", match.params);
+  console.log("id", id);
 
-  useEffect=((id)=>{
+  useEffect(() => {
     postAPI
-    .getPost(id);
-    .then((u)=>{})
-    .catch((e)=>{})
-  },[])
+      .getPost(id)
+      .then((u) => {
+        setCurrentPost(u);
+      })
+      .catch((e: RequestError) => {
+        setError(e.message);
+      });
+  }, [id]);
 
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
@@ -36,7 +43,7 @@ const Post = ({ match }: any) => {
                 </p>
               </span>
             </div>
-
+            {console.log("currentPost", currentPost)}
             <div className="py-6">
               {/* <img src={currentPost.cover_image} alt="new" /> */}
               {/* <h1>{currentPost.title}</h1> */}
@@ -44,7 +51,11 @@ const Post = ({ match }: any) => {
             </div>
             <ol>
               <li className="py-2">
-                {/* <RichTextViewer initialValue={currentPost.content} /> */}
+                {currentPost !== undefined ? (
+                  <RichTextViewer initialValue={currentPost.content} />
+                ) : (
+                  ""
+                )}
               </li>
 
               <li className="py-3">
