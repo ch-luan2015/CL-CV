@@ -1,35 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import db from '../../firebase'
-import Card from '../Card'
-import { PostProps } from '../../resources/models/PostProps'
-import axios from 'axios'
-import moment from 'moment'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Card from "../Card";
+import { PostProps } from "../../resources/models/PostProps";
+import { postAPI } from "../../resources/api/post";
 
 interface PostListProps extends Array<PostProps> {}
 
 interface Props {
-  post?: PostProps
-  postList?: PostListProps
+  post?: PostProps;
+  postList?: PostListProps;
 }
 
 function PostList(props: Props) {
-  const [loading, setLoading] = useState(true)
-  const [postList, setPostList] = useState([])
+  const [error, setError] = useState();
+  const [postList, setPostList] = useState([]);
 
   useEffect(() => {
-   const fetchData = async()=>{
-     const response = await axios.get('https://api.linhtinh.tech/post')
-     setPostList(response.data)
-   }
-   fetchData();
-  },[])
   
+    postAPI
+    .getPost()
+    .then((u)=>{})
+    .catch((e)=>{})
+  }
+
   return (
     <>
- 
-      {postList.map(post => (
-        
+      {postList.map((post) => (
         <section key={post.id}>
           <Link to={`/${post.id}`}>
             <Card
@@ -44,7 +40,7 @@ function PostList(props: Props) {
         </section>
       ))}
     </>
-  )
+  );
 }
 
-export default PostList
+export default PostList;
