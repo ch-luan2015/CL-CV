@@ -6,13 +6,21 @@ import { exceptions } from "./exceptions";
 const queryString = require("query-string");
 
 export const createPost = async (req: CreatePostRequest) => {
-  const post = await put<PostProps>(
+  const postData = await post<PostProps>(
     `${process.env.REACT_APP_API_URL}/post`,
     JSON.stringify(req)
   );
 
-  if (post === undefined) return Promise.reject(exceptions.invalidFormat);
+  if (postData === undefined) return Promise.reject(exceptions.invalidFormat);
 
+  return postData;
+};
+
+export const getPost = async (id: number) => {
+  const post = await get<PostProps>(
+    `${process.env.REACT_APP_API_URL}/post/${id}`
+  );
+  if (post === undefined) return Promise.reject(exceptions.invalidFormat);
   return post;
 };
 

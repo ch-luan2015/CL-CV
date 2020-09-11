@@ -31,7 +31,7 @@ export const PostSettingEditor = (props: PostSettingEditorProps) => {
 
   const handleTagsChange = useCallback(
     (tags: TagProps[]) => {
-      const tagStrs = tags.map((map) => tag.value);
+      const tagStrs = tags.map((tag) => tag.value);
       props.onTagsChange && props.onTagsChange(tagStrs);
     },
     [props]
