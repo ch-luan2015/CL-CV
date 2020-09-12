@@ -1,28 +1,24 @@
-import { UserProps } from './UserProps'
+import { UserProps } from "./UserProps";
 import { PostRestriction } from "./PostAPI";
 import { TagProps } from "./TagProps";
-
-
 
 export interface PostTagProps {
   tag: TagProps;
 }
-
 
 export interface PostMetric {
   commentCount: number;
   viewCount: number;
 }
 
-
 export interface PostProps {
+  subject: string;
   content: string;
   canComment: boolean;
   postRestrictionType: PostRestriction;
   postAccessUsers: string[];
-  user?:  UserProps;
+  user?: UserProps;
 }
-
 
 export interface PostOverviewProps extends PostMetric {
   id: number;

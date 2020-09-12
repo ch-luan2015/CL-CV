@@ -24,6 +24,25 @@ export const getPost = async (id: number) => {
   return post;
 };
 
+export const getPosts = async (
+  pageIndex: number,
+  pageRows: number,
+  tags: string[]
+) => {
+  //Create query take paginate
+  var query: any = { pageIndex, pageRows, tags };
+
+  const url = queryString.stringifyUrl({
+    url: `${process.env.REACT_APP_API_URL}/post`,
+    query,
+  });
+
+  const posts = await get<PostProps[]>(url);
+
+  if (posts === undefined) return Promise.reject(exceptions.invalidFormat);
+  return posts;
+};
+
 const updatePost = async (id: number, req: UpdatePostRequest) => {
   var p = await post<UpdatePostRequest>(
     `${process.env.REACT_APP_API_URL}/post/${id}`,
@@ -38,5 +57,6 @@ const updatePost = async (id: number, req: UpdatePostRequest) => {
 export const postAPI = {
   createPost,
   getPost,
+  getPosts,
   updatePost,
 };
