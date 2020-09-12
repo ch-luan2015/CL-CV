@@ -11,8 +11,7 @@ export interface PostMetric {
   viewCount: number;
 }
 
-export interface PostProps {
-  subject: string;
+export interface PostProps extends PostOverviewProps {
   content: string;
   canComment: boolean;
   postRestrictionType: PostRestriction;

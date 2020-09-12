@@ -6,20 +6,20 @@ import { postAPI } from "../../resources/api/post";
 
 function PostList(props) {
   const [error, setError] = useState();
-  const [postList, setPostList] = useState<PostProps[]>();
+  const [posts, setPosts] = useState<PostProps[]>();
 
   useEffect(() => {
-    postAPI.getPosts(0, 10, []).then((posts) => {
-      setPostList(posts);
+    postAPI.getPosts(0, 30, []).then((posts) => {
+      setPosts(posts);
     });
-  }, [postList]);
+  }, [setPosts]);
 
   return (
     <>
-      {postList == undefined ? (
+      {posts == undefined ? (
         <div className="text-center">Loading ... </div>
       ) : (
-        postList.map((post: any) => (
+        posts.map((post: any) => (
           <section key={post.id}>
             <Link to={`/${post.id}`}>
               <Card
