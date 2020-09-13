@@ -217,16 +217,25 @@ const withImages = (editor) => {
   };
 
   editor.insertData = (data) => {
+    console.log("data", data);
+
     const text = data.getData("text/plain");
+    console.log("text", text);
+
     const { files } = data;
+    console.log("file", data.files);
+
     if (files && files.length > 0) {
       const formData = new FormData();
       formData.append("file", files[0]);
       formData.append("name", files[0].name);
+      console.log("formData", formData);
       fetch("https://cdn.linhtinh.tech/admin/image", {
         method: "PUT",
         body: formData,
       }).then((response) => {
+        console.log("response", response);
+
         insertImage(
           editor,
           `https://cdn.linhtinh.tech/images/static/${files[0].name}`
@@ -246,8 +255,11 @@ const withImages = (editor) => {
       //   }
       // }
     } else if (isImageUrl(text)) {
+      console.log("isImageUrl(text)", text);
+
       insertImage(editor, text);
     } else {
+      console.log("data", data);
       insertData(data);
     }
   };

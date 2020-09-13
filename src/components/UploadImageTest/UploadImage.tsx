@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from "react";
 
 function UploadImage() {
-  const [file, setFile] = useState();
+  const [fileImage, setFileImage] = useState({
+    name: "",
+    file: "",
+  });
 
-  const handleImage = (e) => {
-    console.log("e.target", e.target);
-    e.preventDefault();
-    var fileImage = e.target.files[0];
-    console.log("fileImage", fileImage);
-    setFile(fileImage);
+  const handleChangeImage = (e) => {
+    setFileImage({
+      name: e.target.files[0].name,
+      file: e.target.files[0],
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!file) {
-      alert("Ban chua chon file");
-      return;
-    }
 
     const formData = new FormData();
+    formData.append("file", fileImage.file);
+    formData.append("name", fileImage.name);
+    await fetch("https://cdn.linhtinh.tech/admin/image", {
+      method: "PUT",
+      body: formData,
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
-  console.log("file in state", file);
   return (
     <div className="flex flex-row justify-center align-center ">
       <form>
@@ -29,12 +34,16 @@ function UploadImage() {
 
         <input
           type="file"
-          id="avatar"
-          name="avatar"
-          onChange={(e) => handleImage(e)}
+          id="upload-button"
+          onChange={handleChangeImage}
           placeholder="Choose File"
         />
-        <input type="submit" onChange={(e) => handleSubmit(e)} />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleSubmit}
+        >
+          UpLoad
+        </button>
       </form>
     </div>
   );

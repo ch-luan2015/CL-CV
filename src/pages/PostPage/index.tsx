@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../../components/SideBar";
-import { Link } from "react-router-dom";
 import { PostProps } from "../../resources/models/PostProps";
 import { RichTextViewer } from "../../components/Editors/Editor";
 import { postAPI } from "../../resources/api/post";
@@ -11,8 +10,6 @@ const Post = ({ match }: any) => {
   const [error, setError] = useState<string>();
 
   const id = match.params.id;
-  console.log("params", match.params);
-  console.log("id", id);
 
   useEffect(() => {
     postAPI
@@ -23,7 +20,7 @@ const Post = ({ match }: any) => {
       .catch((e: RequestError) => {
         setError(e.message);
       });
-  }, [id]);
+  }, [currentPost]);
 
   return (
     <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
@@ -56,6 +53,8 @@ const Post = ({ match }: any) => {
                 ) : (
                   ""
                 )}
+
+                {/* <RichTextViewer initialValue={currentPost.content} /> */}
               </li>
 
               <li className="py-3">

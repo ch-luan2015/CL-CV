@@ -24,7 +24,6 @@ export const getPost = async (id: number) => {
   return post;
 };
 
-var ketqua = getPost(5);
 export const getPosts = async (
   pageIndex: number,
   pageRows: number,
@@ -56,16 +55,16 @@ const updatePost = async (id: number, req: UpdatePostRequest) => {
 };
 
 //Dinh nghix props dau vao data
-const postImage = async (data) => {
-  // Dinh nghia props image
-  var file = await put<PropsImage>(
-    `${process.env.REACT_APP_API_URL}/admin/image`,
-    file
-  );
-  if (file === undefined) return Promise.reject(exceptions.cantUpImage);
+// const postImage = async (data) => {
+//   // Dinh nghia props image
+//   var file = await put<>(
+//     `${process.env.REACT_APP_API_URL}/admin/image`,
+//     file
+//   );
+//   if (file === undefined) return Promise.reject(exceptions.cantUpImage);
 
-  return file;
-};
+//   return file;
+// };
 
 export const postAPI = {
   createPost,
