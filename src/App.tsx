@@ -7,6 +7,7 @@ import CreatePost from "./components/CreatePost";
 import PostPage from "./pages/PostPage";
 import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
+import UploadImage from "./components/UploadImageTest/UploadImage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <AdminPage>
             <Switch>
               <Route path="/admin/post" exact component={CreatePost} />
-              {/* <Route path='/admin/postlist' exact component={''} /> */}
+              <Route path="/admin/image" exact component={UploadImage} />
             </Switch>
           </AdminPage>
         </Route>

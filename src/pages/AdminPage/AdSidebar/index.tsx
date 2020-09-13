@@ -1,15 +1,20 @@
-import React, { Children } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import CreatePost from '../../../components/CreatePost'
-
+import React, { Children } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CreatePost from "../../../components/CreatePost";
 
 function AdSidebar() {
   return (
     <>
-      <aside id="sidebar" className="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+      <aside
+        id="sidebar"
+        className="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block"
+      >
         <ul className="list-reset flex flex-col">
           <li className=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
-            <Link to="/admin/post" className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+            <Link
+              to="/admin/post"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
               <i className="fas fa-tachometer-alt float-left mx-2" />
               Create Post
               <span>
@@ -18,16 +23,22 @@ function AdSidebar() {
             </Link>
           </li>
           <li className=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
-            <Link to="/admin/list" className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+            <Link
+              to="/admin/image"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
               <i className="fas fa-tachometer-alt float-left mx-2" />
-              Post List
+              Post Image
               <span>
                 <i className="fas fa-angle-right float-right" />
               </span>
             </Link>
           </li>
           <li className="w-full h-full py-3 px-2 border-b border-light-border">
-            <a href="forms.html" className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+            <a
+              href="forms.html"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
               <i className="fab fa-wpforms float-left mx-2" />
               Post Settings
               <span>
@@ -36,7 +47,10 @@ function AdSidebar() {
             </a>
           </li>
           <li className="w-full h-full py-3 px-2 border-b border-light-border">
-            <a href="buttons.html" className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+            <a
+              href="buttons.html"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
               <i className="fas fa-grip-horizontal float-left mx-2" />
               Category
               <span>
@@ -45,7 +59,10 @@ function AdSidebar() {
             </a>
           </li>
           <li className="w-full h-full py-3 px-2 border-b border-light-border">
-            <a href="tables.html" className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+            <a
+              href="tables.html"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
               <i className="fas fa-table float-left mx-2" />
               Tables
               <span>
@@ -55,9 +72,8 @@ function AdSidebar() {
           </li>
         </ul>
       </aside>
-
     </>
-  )
+  );
 }
 
-export default AdSidebar
+export default AdSidebar;
