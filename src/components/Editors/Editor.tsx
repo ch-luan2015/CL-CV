@@ -22,6 +22,7 @@ import {
   useSelected,
   useFocused,
 } from "slate-react";
+
 import { Text, Editor, Transforms, createEditor, Node } from "slate";
 import { withHistory } from "slate-history";
 import { Icon, IconName } from "@blueprintjs/core";
@@ -211,6 +212,8 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
 
 const withImages = (editor) => {
   const { insertData, isVoid } = editor;
+  console.log("inserdata", insertData);
+  console.log("isVoid", isVoid);
 
   editor.isVoid = (element) => {
     return element.type === "image" ? true : isVoid(element);

@@ -42,9 +42,6 @@ const initialState: CreatePostRequest = {
 };
 
 function CreatePost() {
-  //Parse nhan Json => JS
-  //Stringify nhan Text => Json
-
   const [request, setRequest] = useState<CreatePostRequest>(initialState);
   const [alert, setAlert] = useState({ isOpen: false, message: "" });
   const history = useHistory();
