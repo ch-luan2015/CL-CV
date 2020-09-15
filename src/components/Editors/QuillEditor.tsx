@@ -1,61 +1,34 @@
-import React, { Component, useState } from "react";
+import React from "react";
+import hljs from "highlight.js";
+
 import ReactQuill from "react-quill";
+import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
+import "highlight.js/styles/darcula.css";
 
-class QuillEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "",
-    };
-  }
+hljs.configure({
+  languages: ["javascript", "ruby", "python", "rust"],
+});
 
-  modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
-      ["clean"],
-    ],
+export const QuillEditor = () => {
+  const [state, setState] = React.useState({ value: null });
+  const handleChange = (value) => {
+    setState({ value });
   };
 
-  formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
-
-  render() {
-    return (
-      <div className="text-editor">
-        <ReactQuill
-          theme="snow"
-          modules={this.modules}
-          formats={this.formats}
-        ></ReactQuill>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="text-editor">
+      <EditorToolbar />
+      <ReactQuill
+        theme="snow"
+        value={state.value}
+        onChange={handleChange}
+        placeholder={"Write something awesome..."}
+        modules={modules}
+        formats={formats}
+      />
+    </div>
+  );
+};
 
 export default QuillEditor;
-// function QuillEditor() {
-//   const [value, setValue] = useState("");
-
-//   return <ReactQuill theme="snow" value={value} onChange={setValue} />;
-// }
-// export default QuillEditor;
