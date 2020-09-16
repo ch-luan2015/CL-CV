@@ -35,16 +35,16 @@ function AdSidebar() {
             </Link>
           </li>
           <li className="w-full h-full py-3 px-2 border-b border-light-border">
-            <a
-              href="forms.html"
+            <Link
+              to="/admin/table"
               className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
             >
-              <i className="fab fa-wpforms float-left mx-2" />
-              Post Settings
+              <i className="fas fa-tachometer-alt float-left mx-2" />
+              Post Table
               <span>
-                <i className="fa fa-angle-right float-right" />
+                <i className="fas fa-angle-right float-right" />
               </span>
-            </a>
+            </Link>
           </li>
           <li className="w-full h-full py-3 px-2 border-b border-light-border">
             <a

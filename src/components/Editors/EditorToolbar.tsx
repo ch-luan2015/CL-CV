@@ -3,7 +3,7 @@ import { Quill } from "react-quill";
 import "react-quill/dist/quill.core.css";
 import "react-quill/dist/quill.bubble.css";
 import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/styles/sunburst.css";
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
 // handle them correctly
@@ -17,6 +17,21 @@ const CustomUndo = () => (
   </svg>
 );
 
+hljs.configure({
+  languages: [
+    "makefile",
+    "javascript",
+    "html",
+    "scss",
+    "css",
+    "http",
+    "typescript",
+    ".properties",
+    "json",
+    "plain text",
+    "xml",
+  ],
+});
 // Redo button icon component for Quill editor
 const CustomRedo = () => (
   <svg viewBox="0 0 18 18">

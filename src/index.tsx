@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './assets/main-tailwind.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import "./assets/main-tailwind.css";
+import "../node_modules/normalize.css/normalize.css";
+import "../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
+import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+import "../node_modules/@blueprintjs/table/lib/css/table.css";
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
