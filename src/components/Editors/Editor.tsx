@@ -1,9 +1,4 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
-import Prism from "prismjs";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-css";
-import "prismjs/components/prism-tsx";
 
 import isHotkey from "is-hotkey";
 import "../../assets/prism/prism.css";
@@ -51,36 +46,6 @@ export const RichTextViewer = ({ initialValue }: RichTextViewerProps) => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const [language, setLanguage] = useState("tsx");
 
-  // decorate function depends on the language selected
-  const decorate = useCallback(
-    ([node, path]) => {
-      const ranges = [];
-      if (!Text.isText(node)) {
-        return ranges;
-      }
-      const tokens = Prism.tokenize(node.text, Prism.languages[language]);
-      let start = 0;
-
-      for (const token of tokens) {
-        const length = getLength(token);
-        const end = start + length;
-
-        if (typeof token !== "string") {
-          ranges.push({
-            [token.type]: true,
-            anchor: { path, offset: start },
-            focus: { path, offset: end },
-          });
-        }
-
-        start = end;
-      }
-
-      return ranges;
-    },
-    [language]
-  );
-
   useEffect(() => {
     if (initialValue == null) {
       return;
@@ -99,7 +64,6 @@ export const RichTextViewer = ({ initialValue }: RichTextViewerProps) => {
   return (
     <Slate editor={editor} value={value} onChange={() => {}}>
       <Editable
-        decorate={decorate}
         readOnly
         renderElement={renderElement}
         renderLeaf={renderLeaf}
@@ -123,36 +87,6 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
     []
   );
   const [language, setLanguage] = useState("tsx");
-
-  // decorate function depends on the language selected
-  const decorate = useCallback(
-    ([node, path]) => {
-      const ranges = [];
-      if (!Text.isText(node)) {
-        return ranges;
-      }
-      const tokens = Prism.tokenize(node.text, Prism.languages[language]);
-      let start = 0;
-
-      for (const token of tokens) {
-        const length = getLength(token);
-        const end = start + length;
-
-        if (typeof token !== "string") {
-          ranges.push({
-            [token.type]: true,
-            anchor: { path, offset: start },
-            focus: { path, offset: end },
-          });
-        }
-
-        start = end;
-      }
-
-      return ranges;
-    },
-    [language]
-  );
 
   const handleChange = (value: Node[]) => {
     setValue(value);
@@ -190,7 +124,7 @@ const RichTextEditor = ({ onChange, initialValue, clear }: RichTextEditor) => {
       </Toolbar>
 
       <Editable
-        decorate={decorate}
+        // decorate={decorate}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder="Enter some rich text…"
@@ -524,80 +458,80 @@ const MarkButton = ({ format, icon }: ToolbarButtonProps) => {
 
 // modifications and additions to prism library
 
-Prism.languages.javascript = Prism.languages.extend("javascript", {});
-Prism.languages.insertBefore("javascript", "prolog", {
-  comment: { pattern: /\/\/[^\n]*/, alias: "comment" },
-});
-Prism.languages.html = Prism.languages.extend("html", {});
-Prism.languages.insertBefore("html", "prolog", {
-  comment: { pattern: /<!--[^\n]*-->/, alias: "comment" },
-});
-Prism.languages.markdown = Prism.languages.extend("markup", {});
-Prism.languages.insertBefore("markdown", "prolog", {
-  blockquote: { pattern: /^>(?:[\t ]*>)*/m, alias: "punctuation" },
-  code: [
-    { pattern: /^(?: {4}|\t).+/m, alias: "keyword" },
-    { pattern: /``.+?``|`[^`\n]+`/, alias: "keyword" },
-  ],
-  title: [
-    {
-      pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
-      alias: "important",
-      inside: { punctuation: /==+$|--+$/ },
-    },
-    {
-      pattern: /(^\s*)#+.+/m,
-      lookbehind: !0,
-      alias: "important",
-      inside: { punctuation: /^#+|#+$/ },
-    },
-  ],
-  hr: {
-    pattern: /(^\s*)([*-])([\t ]*\2){2,}(?=\s*$)/m,
-    lookbehind: !0,
-    alias: "punctuation",
-  },
-  list: {
-    pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
-    lookbehind: !0,
-    alias: "punctuation",
-  },
-  "url-reference": {
-    pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
-    inside: {
-      variable: { pattern: /^(!?\[)[^\]]+/, lookbehind: !0 },
-      string: /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
-      punctuation: /^[\[\]!:]|[<>]/,
-    },
-    alias: "url",
-  },
-  bold: {
-    pattern: /(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
-    lookbehind: !0,
-    inside: { punctuation: /^\*\*|^__|\*\*$|__$/ },
-  },
-  italic: {
-    pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
-    lookbehind: !0,
-    inside: { punctuation: /^[*_]|[*_]$/ },
-  },
-  url: {
-    pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
-    inside: {
-      variable: { pattern: /(!?\[)[^\]]+(?=\]$)/, lookbehind: !0 },
-      string: { pattern: /"(?:\\.|[^"\\])*"(?=\)$)/ },
-    },
-  },
-});
-Prism.languages.markdown.bold.inside.url = Prism.util.clone(
-  Prism.languages.markdown.url
-);
-Prism.languages.markdown.italic.inside.url = Prism.util.clone(
-  Prism.languages.markdown.url
-);
-Prism.languages.markdown.bold.inside.italic = Prism.util.clone(
-  Prism.languages.markdown.italic
-);
-Prism.languages.markdown.italic.inside.bold = Prism.util.clone(Prism.languages.markdown.bold); // prettier-ignore
+// Prism.languages.javascript = Prism.languages.extend("javascript", {});
+// Prism.languages.insertBefore("javascript", "prolog", {
+//   comment: { pattern: /\/\/[^\n]*/, alias: "comment" },
+// });
+// Prism.languages.html = Prism.languages.extend("html", {});
+// Prism.languages.insertBefore("html", "prolog", {
+//   comment: { pattern: /<!--[^\n]*-->/, alias: "comment" },
+// });
+// Prism.languages.markdown = Prism.languages.extend("markup", {});
+// Prism.languages.insertBefore("markdown", "prolog", {
+//   blockquote: { pattern: /^>(?:[\t ]*>)*/m, alias: "punctuation" },
+//   code: [
+//     { pattern: /^(?: {4}|\t).+/m, alias: "keyword" },
+//     { pattern: /``.+?``|`[^`\n]+`/, alias: "keyword" },
+//   ],
+//   title: [
+//     {
+//       pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
+//       alias: "important",
+//       inside: { punctuation: /==+$|--+$/ },
+//     },
+//     {
+//       pattern: /(^\s*)#+.+/m,
+//       lookbehind: !0,
+//       alias: "important",
+//       inside: { punctuation: /^#+|#+$/ },
+//     },
+//   ],
+//   hr: {
+//     pattern: /(^\s*)([*-])([\t ]*\2){2,}(?=\s*$)/m,
+//     lookbehind: !0,
+//     alias: "punctuation",
+//   },
+//   list: {
+//     pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
+//     lookbehind: !0,
+//     alias: "punctuation",
+//   },
+//   "url-reference": {
+//     pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
+//     inside: {
+//       variable: { pattern: /^(!?\[)[^\]]+/, lookbehind: !0 },
+//       string: /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
+//       punctuation: /^[\[\]!:]|[<>]/,
+//     },
+//     alias: "url",
+//   },
+//   bold: {
+//     pattern: /(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+//     lookbehind: !0,
+//     inside: { punctuation: /^\*\*|^__|\*\*$|__$/ },
+//   },
+//   italic: {
+//     pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+//     lookbehind: !0,
+//     inside: { punctuation: /^[*_]|[*_]$/ },
+//   },
+//   url: {
+//     pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
+//     inside: {
+//       variable: { pattern: /(!?\[)[^\]]+(?=\]$)/, lookbehind: !0 },
+//       string: { pattern: /"(?:\\.|[^"\\])*"(?=\)$)/ },
+//     },
+//   },
+// });
+// Prism.languages.markdown.bold.inside.url = Prism.util.clone(
+//   Prism.languages.markdown.url
+// );
+// Prism.languages.markdown.italic.inside.url = Prism.util.clone(
+//   Prism.languages.markdown.url
+// );
+// Prism.languages.markdown.bold.inside.italic = Prism.util.clone(
+//   Prism.languages.markdown.italic
+// );
+// Prism.languages.markdown.italic.inside.bold = Prism.util.clone(Prism.languages.markdown.bold); // prettier-ignore
 
 export default RichTextEditor;

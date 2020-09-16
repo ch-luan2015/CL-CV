@@ -1,21 +1,13 @@
 import * as React from "react";
 
-import { Cell, Column, Table, Utils } from "@blueprintjs/table";
+import {
+  Cell,
+  Column,
+  Table,
+  Utils,
+  TableLoadingOption,
+} from "@blueprintjs/table";
 import { postAPI } from "../../resources/api/post";
-
-const REORDERABLE_TABLE_DATA = [
-  ["A", "Apple", "Ape", "Albania", "Anchorage"],
-  ["B", "Banana", "Boa", "Brazil", "Boston"],
-  ["C", "Cranberry", "Cougar", "Croatia", "Chicago"],
-  ["D", "Dragonfruit", "Deer", "Denmark", "Denver"],
-  ["E", "Eggplant", "Elk", "Eritrea", "El Paso"],
-].map(([letter, fruit, animal, country, city]) => ({
-  letter,
-  fruit,
-  animal,
-  country,
-  city,
-}));
 
 var POST_DATA = [
   ["A", "Apple", "Ape", "Albania", "Anchorage"],
@@ -31,55 +23,67 @@ var POST_DATA = [
   City,
 }));
 
-var POST_DATA1 = [];
-
-console.log("POST_DATA1", POST_DATA1);
-var POST_DATA2 = POST_DATA1.map(([id, subject, createdBy]) => ({
-  id,
-  subject,
-  createdBy,
-}));
-
-console.log("POST_DATA2", POST_DATA2);
-
 export interface ITableState {
   columns?: JSX.Element[];
   data?: any[];
+  cellsLoading?: boolean;
 }
 
-class PostTable extends React.Component<ITableState> {
-  state: ITableState = {
-    data: POST_DATA,
-    columns: [],
-  };
+export interface ITableProps {
+  data: any[];
+}
 
-  componentDidMount() {
-    const columns = [
-      <Column key="1" name="Id" cellRenderer={this.renderLetterCell} />,
-      <Column key="2" name="Subject" cellRenderer={this.renderFruitCell} />,
-      <Column key="3" name="Author" cellRenderer={this.renderAnimalCell} />,
-      <Column key="4" name="Country" cellRenderer={this.renderCountryCell} />,
-      <Column key="5" name="City" cellRenderer={this.renderCityCell} />,
-    ];
-
-    postAPI.getPosts(0, 10, []).then((posts) => {
-      POST_DATA1.push({ posts });
-    });
-
-    this.setState({ columns });
+class PostTable extends React.Component<ITableProps, ITableState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cellsLoading: true,
+      data: [],
+      columns: [],
+    };
   }
 
-  renderLetterCell = (row: number) => <Cell>{this.state.data[row].Id}</Cell>;
-  renderFruitCell = (row: number) => (
-    <Cell>{this.state.data[row].Subject}</Cell>
+  // componentDidMount() {
+  //   // postAPI.getPosts(0, 10, []).then((posts) => {
+  //   //   // console.table(posts);
+  //   //   POST_DATA1 = posts.map((post) => {
+  //   //     let { id, subject, createdBy } = post;
+  //   //     // var postNew.push(id,subject,createdBy)
+  //   //     return { ...POST_DATA1, id, subject, createdBy };
+  //   //   });
+
+  //     // var columns = Object.keys(POST_DATA1[0]).map((columnName, index) => (
+  //     //   <Column
+  //     //     key={index}
+  //     //     name={this.formatColumnName(columnName)}
+  //     //     cellRenderer={this.renderCell}
+  //     //   />
+  //     // ));
+
+  //     // console.log("columns", columns);
+  //     // console.log(POST_DATA1);
+
+  //     // console.table(POST_DATA1);
+  //   // });
+
+  //   // this.setState({ columns });
+  //   <></>
+  // }
+
+  handleCellsLoading = (cellsLoading) => this.setState({ cellsLoading });
+
+  getCellRenderer(key: string) {
+    return (row: number) => <Cell>{this.state.data[row][key]}</Cell>;
+  }
+
+  renderIdCell = (row: number) => <Cell>{this.state.data[row].id}</Cell>;
+
+  renderSubjectCell = (row: number) => (
+    <Cell>{this.state.data[row].subject}</Cell>
   );
-  renderAnimalCell = (row: number) => (
-    <Cell>{this.state.data[row].Author}</Cell>
+  renderCreatedByCell = (row: number) => (
+    <Cell>{this.state.data[row].createdBy}</Cell>
   );
-  renderCountryCell = (row: number) => (
-    <Cell>{this.state.data[row].Country}</Cell>
-  );
-  renderCityCell = (row: number) => <Cell>{this.state.data[row].City}</Cell>;
 
   handleColumnsReordered = (
     oldIndex: number,
@@ -114,10 +118,11 @@ class PostTable extends React.Component<ITableState> {
   render() {
     return (
       <Table
+        loadingOptions={this.getLoadingOptions()}
         enableColumnReordering={true}
-        enableColumnResizing={false}
+        enableColumnResizing={true}
         enableRowReordering={true}
-        enableRowResizing={false}
+        enableRowResizing={true}
         onColumnsReordered={this.handleColumnsReordered}
         onRowsReordered={this.handleRowsReordered}
         numRows={this.state.data.length}
@@ -125,6 +130,25 @@ class PostTable extends React.Component<ITableState> {
         {this.state.columns}
       </Table>
     );
+  }
+
+  renderCell = (rowIndex: number, columnIndex: number) => {
+    const bigSpaceRock = POST_DATA1[rowIndex];
+    return <Cell>{bigSpaceRock[Object.keys(bigSpaceRock)[columnIndex]]}</Cell>;
+  };
+
+  formatColumnName = (columnName: string) => {
+    return columnName
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (firstCharacter) => firstCharacter.toUpperCase());
+  };
+
+  getLoadingOptions() {
+    const loadingOptions: TableLoadingOption[] = [];
+    if (this.state.cellsLoading) {
+      loadingOptions.push(TableLoadingOption.CELLS);
+    }
+    return loadingOptions;
   }
 }
 
