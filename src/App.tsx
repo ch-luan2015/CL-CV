@@ -35,7 +35,7 @@ function App() {
             <Layout>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/:id" component={PostPage} />
+                <Route path="/:id" component={PostTable} />
               </Switch>
             </Layout>
           </Route>

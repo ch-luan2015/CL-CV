@@ -1,139 +1,93 @@
 import * as React from "react";
 
-import {
-  Cell,
-  Column,
-  Table,
-  Utils,
-  TableLoadingOption,
-} from "@blueprintjs/table";
+import { Cell, Column, Table, TableLoadingOption } from "@blueprintjs/table";
 import { postAPI } from "../../resources/api/post";
 
-var POST_DATA = [
-  ["A", "Apple", "Ape", "Albania", "Anchorage"],
-  ["B", "Banana", "Boa", "Brazil", "Boston"],
-  ["C", "Cranberry", "Cougar", "Croatia", "Chicago"],
-  ["D", "Dragonfruit", "Deer", "Denmark", "Denver"],
-  ["E", "Eggplant", "Elk", "Eritrea", "El Paso"],
-].map(([Id, Subject, Author, Country, City]) => ({
-  Id,
-  Subject,
-  Author,
-  Country,
-  City,
-}));
+// const bigSpaceRocks = require("./post.json") as IBigSpaceRock[];
+// console.log("bigSpaceRocks", bigSpaceRocks);
 
-export interface ITableState {
-  columns?: JSX.Element[];
-  data?: any[];
+//Data
+interface IBigSpaceRock {
+  [key: string]: number | string;
+}
+
+interface ITableLoading {
   cellsLoading?: boolean;
+  bigSpaceRocks: IBigSpaceRock[];
 }
 
-export interface ITableProps {
-  data: any[];
-}
-
-class PostTable extends React.Component<ITableProps, ITableState> {
+interface IProps {}
+//Component
+class PostTable extends React.Component<IProps, ITableLoading> {
   constructor(props) {
     super(props);
     this.state = {
       cellsLoading: true,
-      data: [],
-      columns: [],
+      bigSpaceRocks: [
+        {
+          id: "",
+          subject: "",
+          createdBy: "",
+        },
+      ],
     };
   }
 
-  // componentDidMount() {
-  //   // postAPI.getPosts(0, 10, []).then((posts) => {
-  //   //   // console.table(posts);
-  //   //   POST_DATA1 = posts.map((post) => {
-  //   //     let { id, subject, createdBy } = post;
-  //   //     // var postNew.push(id,subject,createdBy)
-  //   //     return { ...POST_DATA1, id, subject, createdBy };
-  //   //   });
+  componentDidMount() {
+    postAPI.getPosts(0, 10, []).then((posts) => {
+      posts.map((post) => {
+        var { id, subject, createdBy } = post;
+        return this.setState({
+          ...this.state.bigSpaceRocks,
+          id,
+          subject,
+          createdBy,
+        });
+      });
+    });
 
-  //     // var columns = Object.keys(POST_DATA1[0]).map((columnName, index) => (
-  //     //   <Column
-  //     //     key={index}
-  //     //     name={this.formatColumnName(columnName)}
-  //     //     cellRenderer={this.renderCell}
-  //     //   />
-  //     // ));
-
-  //     // console.log("columns", columns);
-  //     // console.log(POST_DATA1);
-
-  //     // console.table(POST_DATA1);
-  //   // });
-
-  //   // this.setState({ columns });
-  //   <></>
-  // }
+    this.setState({
+      cellsLoading: false,
+    });
+  }
 
   handleCellsLoading = (cellsLoading) => this.setState({ cellsLoading });
 
-  getCellRenderer(key: string) {
-    return (row: number) => <Cell>{this.state.data[row][key]}</Cell>;
-  }
-
-  renderIdCell = (row: number) => <Cell>{this.state.data[row].id}</Cell>;
-
-  renderSubjectCell = (row: number) => (
-    <Cell>{this.state.data[row].subject}</Cell>
-  );
-  renderCreatedByCell = (row: number) => (
-    <Cell>{this.state.data[row].createdBy}</Cell>
-  );
-
-  handleColumnsReordered = (
-    oldIndex: number,
-    newIndex: number,
-    length: number
-  ) => {
-    if (oldIndex === newIndex) {
-      return;
-    }
-    const nextChildren = Utils.reorderArray(
-      this.state.columns,
-      oldIndex,
-      newIndex,
-      length
-    );
-    this.setState({ columns: nextChildren });
-  };
-
-  handleRowsReordered = (
-    oldIndex: number,
-    newIndex: number,
-    length: number
-  ) => {
-    if (oldIndex === newIndex) {
-      return;
-    }
-    this.setState({
-      data: Utils.reorderArray(this.state.data, oldIndex, newIndex, length),
-    });
-  };
-
+  //Render
   render() {
+    const loadingOptions: TableLoadingOption[] = [];
+    if (this.state.cellsLoading) {
+      loadingOptions.push(TableLoadingOption.CELLS);
+    }
+
     return (
       <Table
-        loadingOptions={this.getLoadingOptions()}
-        enableColumnReordering={true}
-        enableColumnResizing={true}
-        enableRowReordering={true}
-        enableRowResizing={true}
-        onColumnsReordered={this.handleColumnsReordered}
-        onRowsReordered={this.handleRowsReordered}
-        numRows={this.state.data.length}
+        numRows={this.state.bigSpaceRocks.length}
+        loadingOptions={loadingOptions}
       >
-        {this.state.columns}
+        {this.renderColumns()}
       </Table>
     );
   }
 
+  renderColumns() {
+    const columns: JSX.Element[] = [];
+
+    Object.keys(this.state.bigSpaceRocks[0]).forEach((columnName, index) => {
+      columns.push(
+        <Column
+          key={index}
+          name={this.formatColumnName(columnName)}
+          cellRenderer={this.renderCell}
+        />
+      );
+    });
+
+    return columns;
+  }
+
   renderCell = (rowIndex: number, columnIndex: number) => {
-    const bigSpaceRock = POST_DATA1[rowIndex];
+    const bigSpaceRock = this.state.bigSpaceRocks[rowIndex];
     return <Cell>{bigSpaceRock[Object.keys(bigSpaceRock)[columnIndex]]}</Cell>;
   };
 
@@ -142,14 +96,6 @@ class PostTable extends React.Component<ITableProps, ITableState> {
       .replace(/([A-Z])/g, " $1")
       .replace(/^./, (firstCharacter) => firstCharacter.toUpperCase());
   };
-
-  getLoadingOptions() {
-    const loadingOptions: TableLoadingOption[] = [];
-    if (this.state.cellsLoading) {
-      loadingOptions.push(TableLoadingOption.CELLS);
-    }
-    return loadingOptions;
-  }
 }
 
 export default PostTable;
