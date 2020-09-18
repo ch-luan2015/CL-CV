@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Cell, Column, Table, TableLoadingOption } from "@blueprintjs/table";
 import { postAPI } from "../../resources/api/post";
+import { Button, Icon } from "@blueprintjs/core";
 
 // const bigSpaceRocks = require("./post.json") as IBigSpaceRock[];
 // console.log("bigSpaceRocks", bigSpaceRocks);
@@ -35,14 +36,16 @@ class PostTable extends React.Component<IProps, ITableLoading> {
 
   componentDidMount() {
     postAPI.getPosts(0, 10, []).then((posts) => {
+      var newBigSpaceRocks: IBigSpaceRock[] = [];
+
       posts.map((post) => {
         var { id, subject, createdBy } = post;
-        return this.setState({
-          ...this.state.bigSpaceRocks,
-          id,
-          subject,
-          createdBy,
-        });
+        var newPost = { ...newPost, id, subject, createdBy };
+        return newBigSpaceRocks.push(newPost);
+      });
+
+      this.setState({
+        bigSpaceRocks: newBigSpaceRocks,
       });
     });
 
@@ -51,15 +54,12 @@ class PostTable extends React.Component<IProps, ITableLoading> {
     });
   }
 
-  handleCellsLoading = (cellsLoading) => this.setState({ cellsLoading });
-
   //Render
   render() {
     const loadingOptions: TableLoadingOption[] = [];
     if (this.state.cellsLoading) {
       loadingOptions.push(TableLoadingOption.CELLS);
     }
-
     return (
       <Table
         numRows={this.state.bigSpaceRocks.length}
@@ -80,6 +80,9 @@ class PostTable extends React.Component<IProps, ITableLoading> {
           name={this.formatColumnName(columnName)}
           cellRenderer={this.renderCell}
         />
+        // <Column>
+        //   <Button rightIcon="arrow-right" intent="success" text="Next step" />
+        // </Column>
       );
     });
 
