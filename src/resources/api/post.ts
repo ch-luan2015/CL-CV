@@ -54,6 +54,12 @@ const updatePost = async (id: number, req: UpdatePostRequest) => {
   return p;
 };
 
+const deletePost = async (id: number) => {
+  var post = await _delete<any>(`${process.env.REACT_APP_API_URL}/post/${id}`);
+  if (post === undefined) return Promise.reject(exceptions.postNotFound);
+  return post;
+};
+
 //Dinh nghix props dau vao data
 // const postImage = async (data) => {
 //   // Dinh nghia props image
@@ -71,4 +77,5 @@ export const postAPI = {
   getPost,
   getPosts,
   updatePost,
+  deletePost,
 };

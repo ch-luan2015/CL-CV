@@ -20,6 +20,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/slate": "^0.47.7",
     "@types/slate-react": "^0.22.9",
+    "antd": "^4.6.4",
     "axios": "^0.20.0",
     "cross-env": "^7.0.2",
     "draft-js": "^0.11.7",
