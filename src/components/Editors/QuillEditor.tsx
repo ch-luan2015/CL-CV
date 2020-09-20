@@ -12,6 +12,30 @@ interface QuillEditor {
   initialValue: string;
 }
 
+interface QuillEditorView {
+  initialValue: any;
+}
+
+export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
+  const [state, setState] = useState({ value: initialValue });
+
+  useEffect(() => {
+    setState({ value: initialValue });
+  }, [initialValue]);
+
+  return (
+    <div className="text-editor">
+      {/* <EditorToolbar /> */}
+      <ReactQuill
+        // theme="snow"
+        value={state.value}
+        // modules={modules}
+        // formats={formats}
+      />
+    </div>
+  );
+};
+
 export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
   const [state, setState] = useState({ value: null });
 
@@ -19,7 +43,6 @@ export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
     setState({ value });
   };
 
-  console.log("value", state.value);
   return (
     <div className="text-editor">
       <EditorToolbar />

@@ -23,9 +23,9 @@ function App() {
           <Route path="/admin/:path?" exact>
             <AdminPage>
               <Switch>
-                {/* <Route path="/admin/post" exact component={CreatePost} /> */}
+                <Route path="/admin/post" exact component={CreatePost} />
                 <Route path="/admin/image" exact component={UploadImage} />
-                <Route path="/admin/post" exact component={QuillEditor} />
+                {/* <Route path="/admin/post" exact component={PostEditor} /> */}
                 <Route path="/admin/table" exact component={PostTable} />
               </Switch>
             </AdminPage>
@@ -35,7 +35,7 @@ function App() {
             <Layout>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/:id" component={PostTable} />
+                <Route path="/:id" component={PostPage} />
               </Switch>
             </Layout>
           </Route>

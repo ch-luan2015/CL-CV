@@ -4,7 +4,6 @@ import { PostProps } from "../../resources/models/PostProps";
 import { RichTextViewer } from "../../components/Editors/Editor";
 import { postAPI } from "../../resources/api/post";
 import { RequestError } from "../../resources/api/helper";
-import { QuillEditorView } from "../../components/Editors/QuillEditor";
 
 const Post = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
@@ -42,11 +41,15 @@ const Post = ({ match }: any) => {
               </span>
             </div>
             {console.log("currentPost", currentPost)}
-
+            <div className="py-6">
+              {/* <img src={currentPost.cover_image} alt="new" /> */}
+              {/* <h1>{currentPost.title}</h1> */}
+              {/* <em>{currentPost.datePretty}</em> */}
+            </div>
             <ol>
               <li className="py-2">
                 {currentPost !== undefined ? (
-                  <QuillEditorView initialValue={currentPost.content} />
+                  <RichTextViewer initialValue={currentPost.content} />
                 ) : (
                   ""
                 )}

@@ -87,7 +87,7 @@ function CreatePost() {
   // };
 
   return (
-    <div className="w-full bg-gray-300">
+    <div className="w-full">
       <section className="flex flex-col justify-start flex-wrap ">
         <div className="w-3/4 "></div>
 
