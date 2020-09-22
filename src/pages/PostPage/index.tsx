@@ -5,6 +5,8 @@ import { RichTextViewer } from "../../components/Editors/Editor";
 import { postAPI } from "../../resources/api/post";
 import { RequestError } from "../../resources/api/helper";
 import { QuillEditorView } from "../../components/Editors/QuillEditor";
+import Layout from "../../layout";
+import Container from "../../components/Container";
 
 const Post = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
@@ -24,44 +26,23 @@ const Post = ({ match }: any) => {
   }, [setCurrentPost]);
 
   return (
-    <div className="max-w-screen-xl flex flex-row flex-wrap justify-center align-center">
-      <div className="w-3/4 flex flex-row flex-wrap justify-end align-center pr-5">
-        <div className="w-full md:max-w-3xl mx-auto pt-10 bg-gray-100">
-          <div
-            className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal"
-            style={{ fontFamily: "Georgia,serif" }}
-          >
-            <div className="font-sans">
-              <span className="text-base md:text-sm text-teal-500 font-bold">
-                <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
-                  Welcome to Minimal Blog
-                </h1>
-                <p className="text-sm md:text-base font-normal text-gray-600">
-                  Published 19 February 2019
-                </p>
-              </span>
-            </div>
-            {console.log("currentPost", currentPost)}
+    <Layout>
+      <Container>
+        <div className="flex flex-row flex-wrap justify-start align-left">
+          <div className="w-4/5">
+            {currentPost !== undefined ? (
+              <QuillEditorView initialValue={currentPost.content} />
+            ) : (
+              ""
+            )}
+          </div>
 
-            <ol>
-              <li className="py-2">
-                {currentPost !== undefined ? (
-                  <QuillEditorView initialValue={currentPost.content} />
-                ) : (
-                  ""
-                )}
-
-                {/* <RichTextViewer initialValue={currentPost.content} /> */}
-              </li>
-            </ol>
+          <div className="w-1/5 pl-12">
+            <SideBar />
           </div>
         </div>
-      </div>
-
-      <div className="w-1/4 ">
-        <SideBar />
-      </div>
-    </div>
+      </Container>
+    </Layout>
   );
 };
 

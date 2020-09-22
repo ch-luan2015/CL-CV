@@ -59,6 +59,7 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   const handleContentChange = (content: string) => {
+    console.log("handle content PostEditor: ", content);
     setContent(content);
     props.onChange({ content, subject });
   };

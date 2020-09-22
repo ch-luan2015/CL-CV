@@ -6,7 +6,6 @@ import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "highlight.js/styles/sunburst.css";
-
 interface QuillEditor {
   onChange: (value: string) => void;
   initialValue: string;
@@ -28,39 +27,48 @@ export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
     // console.log("nodes", nodes);
     setStateView({ value: nodes });
   }, [initialValue]);
+
+  var config = {
+    modules: {
+      toolbar: false,
+      syntax: {
+        highlight: (text) => hljs.highlightAuto(text).value,
+      },
+    },
+    theme: "bubble",
+  };
+
   return (
     <div className="text-editor">
-      <EditorToolbar />
       <ReactQuill
         readOnly={true}
-        theme="snow"
         value={stateView.value}
-        modules={modules}
-        formats={formats}
+        modules={config.modules}
+        theme={config.theme}
       />
     </div>
   );
 };
 
 export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
-  const [state, setState] = useState({ value: initialValue });
+  // const [state, setState] = useState({ value: initialValue });
 
-  const handleChange = (value) => {
-    console.log("value handleChange", value);
-    var data = value;
-    console.log("data handleChange", data);
+  // const handleChange = (value) => {
+  //   console.log("value handleChange", value);
+  //   var data = value;
+  //   console.log("data handleChange", data);
 
-    setState({ value: data });
-  };
-  console.log("state", state.value);
+  //   setState({ value: data });
+  // };
+  // console.log("state", state.value);
 
   return (
     <div className="text-editor">
       <EditorToolbar />
       <ReactQuill
         theme="snow"
-        value={state.value}
-        onChange={handleChange}
+        value={initialValue}
+        onChange={onChange}
         placeholder={"Write something awesome..."}
         modules={modules}
         formats={formats}
