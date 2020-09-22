@@ -13,37 +13,46 @@ interface QuillEditor {
 }
 
 interface QuillEditorView {
-  initialValue: any;
+  initialValue: string;
 }
 
 export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
-  const [stateView, setState] = useState({ value: initialValue });
+  console.log("initialValue", initialValue);
+
+  const [stateView, setStateView] = useState({ value: initialValue });
 
   useEffect(() => {
-    setState({ value: initialValue });
+    // const nodes = JSON.parse(initialValue);
+    const nodes = initialValue;
+
+    // console.log("nodes", nodes);
+    setStateView({ value: nodes });
   }, [initialValue]);
-  const nodes: Node[] = JSON.parse(initialValue);
   return (
     <div className="text-editor">
-      {/* <EditorToolbar /> */}
+      <EditorToolbar />
       <ReactQuill
-        // theme="snow"
+        readOnly={true}
+        theme="snow"
         value={stateView.value}
-        // modules={modules}
-        // formats={formats}
+        modules={modules}
+        formats={formats}
       />
     </div>
   );
 };
 
 export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
-  const [state, setState] = useState({ value: null });
+  const [state, setState] = useState({ value: initialValue });
 
   const handleChange = (value) => {
-    console.log("state.value", value);
+    console.log("value handleChange", value);
+    var data = value;
+    console.log("data handleChange", data);
 
-    setState({ value });
+    setState({ value: data });
   };
+  console.log("state", state.value);
 
   return (
     <div className="text-editor">

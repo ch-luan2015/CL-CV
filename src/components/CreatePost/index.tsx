@@ -25,7 +25,7 @@ const initialValue = [
 ];
 
 const initialState: CreatePostRequest = {
-  content: JSON.stringify(initialValue),
+  content: "",
   subject: "",
   canComment: false,
   postRestrictionType: PostRestriction.NONE,
