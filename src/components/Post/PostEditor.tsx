@@ -86,6 +86,7 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
           <QuillEditor onChange={handleContentChange} initialValue={content} />
         </div>
       </section>
+      <p>{`${console.log("content", content)}`}</p>
     </div>
   );
 };

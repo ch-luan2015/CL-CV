@@ -17,18 +17,18 @@ interface QuillEditorView {
 }
 
 export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
-  const [state, setState] = useState({ value: initialValue });
+  const [stateView, setState] = useState({ value: initialValue });
 
   useEffect(() => {
     setState({ value: initialValue });
   }, [initialValue]);
-
+  const nodes: Node[] = JSON.parse(initialValue);
   return (
     <div className="text-editor">
       {/* <EditorToolbar /> */}
       <ReactQuill
         // theme="snow"
-        value={state.value}
+        value={stateView.value}
         // modules={modules}
         // formats={formats}
       />
@@ -40,6 +40,8 @@ export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
   const [state, setState] = useState({ value: null });
 
   const handleChange = (value) => {
+    console.log("state.value", value);
+
     setState({ value });
   };
 

@@ -22,14 +22,6 @@ const initialValue = [
     type: "paragraph",
     children: [{ text: "" }],
   },
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
 ];
 
 const initialState: CreatePostRequest = {
