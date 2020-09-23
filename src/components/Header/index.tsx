@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 interface Props {}
 
 function Header(props: Props) {
@@ -15,12 +15,11 @@ function Header(props: Props) {
       />
       <div className="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 py-3">
         <div className="pl-4">
-          <a
-            className="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl"
-            href="#"
-          >
-            500.dev
-          </a>
+          <Link to="/">
+            <p className="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl">
+              500.dev
+            </p>
+          </Link>
         </div>
 
         <div
@@ -33,7 +32,7 @@ function Header(props: Props) {
                 className="inline-block py-2 px-4 text-gray-900 font-bold no-underline"
                 href="#"
               >
-                Project
+                DashBoard
               </a>
             </li>
             <li className="mr-3">
@@ -41,7 +40,7 @@ function Header(props: Props) {
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
                 href="#"
               >
-                DashBoard
+                Project
               </a>
             </li>
             <li className="mr-3">
