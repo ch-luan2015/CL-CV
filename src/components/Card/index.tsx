@@ -8,9 +8,13 @@ const htmlToText = require("html-to-text");
 const Card: React.FC<PostCardProps> = (props) => {
   var local = moment.utc(props.date).local().fromNow();
   const [subTitle, setSubtitle] = useState("");
+  const [imgP, setImgP] = useState();
+
+  // console.log(props.content);
 
   useEffect(() => {
     var textP = [];
+    var imgP = [];
 
     const text = htmlToText.fromString(props.content, {
       ignoreImage: true,
@@ -27,16 +31,31 @@ const Card: React.FC<PostCardProps> = (props) => {
         },
       },
     });
-    var firtP = textP[0].substr(0, 75);
 
+    const img = htmlToText.fromString(props.content, {
+      format: {
+        image: function (elem, fn, options) {
+          var img = elem.attribs.src;
+          console.log("img", img);
+          imgP.push(img);
+          return null;
+        },
+      },
+    });
+
+    var firtP = textP[0].substr(0, 75);
+    var firtImg = imgP[0];
+    console.log("firtImg", firtImg);
     setSubtitle(firtP);
+    setImgP(firtImg);
   }, [props.content]);
 
+  console.log("imgP", imgP);
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-48 rounded-lg relative">
       <img
         className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6"
-        src={props.cover_image}
+        src={imgP}
         alt={props.cover_imageAlt}
       />
       <div className="w-full md:w-2/3 px-4 py-4 bg-white rounded-lg">

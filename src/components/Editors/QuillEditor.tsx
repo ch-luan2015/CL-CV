@@ -21,10 +21,7 @@ export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
   const [stateView, setStateView] = useState({ value: initialValue });
 
   useEffect(() => {
-    // const nodes = JSON.parse(initialValue);
     const nodes = initialValue;
-
-    // console.log("nodes", nodes);
     setStateView({ value: nodes });
   }, [initialValue]);
 
@@ -51,17 +48,6 @@ export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
 };
 
 export const QuillEditor = ({ onChange, initialValue }: QuillEditor) => {
-  // const [state, setState] = useState({ value: initialValue });
-
-  // const handleChange = (value) => {
-  //   console.log("value handleChange", value);
-  //   var data = value;
-  //   console.log("data handleChange", data);
-
-  //   setState({ value: data });
-  // };
-  // console.log("state", state.value);
-
   return (
     <div className="text-editor">
       <EditorToolbar />

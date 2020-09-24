@@ -79,10 +79,6 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
 
         <div className="w-3/4 ">
           <label htmlFor="content">Nội dung </label>
-          {/* <RichTextEditor
-            onChange={handleContentChange}
-            initialValue={content}
-          /> */}
 
           <QuillEditor onChange={handleContentChange} initialValue={content} />
         </div>
