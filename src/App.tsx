@@ -11,6 +11,9 @@ import HomePage from "./pages/HomePage";
 import UploadImage from "./components/UploadImageTest/UploadImage";
 import QuillEditor from "./components/Editors/QuillEditor";
 import PostTable from "./components/Post/PostTable";
+import hljs from "highlight.js";
+import "highlight.js/styles/sunburst.css";
+
 function App() {
   return (
     <>

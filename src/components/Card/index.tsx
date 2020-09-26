@@ -36,7 +36,6 @@ const Card: React.FC<PostCardProps> = (props) => {
       format: {
         image: function (elem, fn, options) {
           var img = elem.attribs.src;
-          console.log("img", img);
           imgP.push(img);
           return null;
         },
@@ -45,12 +44,10 @@ const Card: React.FC<PostCardProps> = (props) => {
 
     var firtP = textP[0].substr(0, 75);
     var firtImg = imgP[0];
-    console.log("firtImg", firtImg);
     setSubtitle(firtP);
     setImgP(firtImg);
   }, [props.content]);
 
-  console.log("imgP", imgP);
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-48 rounded-lg relative">
       <img

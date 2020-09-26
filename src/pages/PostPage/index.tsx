@@ -29,19 +29,19 @@ const Post = ({ match }: any) => {
       <Container>
         <div className="flex flex-row flex-wrap justify-start align-left">
           <div className="w-4/5">
-            {/* {currentPost !== undefined ? (
+            {currentPost !== undefined ? (
               <QuillEditorView initialValue={currentPost.content} />
             ) : (
               ""
-            )} */}
+            )}
 
-            {currentPost !== undefined ? (
+            {/* {currentPost !== undefined ? (
               <div
                 dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
               />
             ) : (
               ""
-            )}
+            )} */}
           </div>
 
           <div className="w-1/5 pl-12">
