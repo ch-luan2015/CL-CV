@@ -22,6 +22,82 @@ const useSearch = () =>
   );
 
 export const TagSelect = (props: TagSelectProp) => {
+  const { inputText, setInputText, searchResults } = useSearch();
+  const [selectedTags, setSelectedTags] = useState<TagProps[]>(
+    getTagProps(props.value)
+  );
+
+  useEffect(() => {
+    setInputText("");
+  }, [setInputText]);
+
+  const handleSelect = (tag: TagProps) => {
+    setSelectedTags((tags) => {
+      const existed = tags.reduce((pre, cur) => {
+        if (cur.value === tag.value) return true;
+        return pre;
+      }, false);
+      if (existed) return tags;
+      const rs = [...tags, tag];
+      setInputText("");
+      props.onChange && props.onChange(rs);
+      return rs;
+    });
+    props.onSelect && props.onSelect(tag.value);
+  };
+
+  const handleClear = () => {
+    setSelectedTags([]);
+    setInputText("");
+  };
+
+  const handleQueryChange = (search: string) => {
+    setInputText(search);
+  };
+
+  const handleRemove = (value: string) => {
+    setSelectedTags((tags) => {
+      const rs = tags.reduce((pre, cur) => {
+        if (cur.value === value) return pre;
+        return [...pre, cur];
+      }, [] as TagProps[]);
+      props.onChange && props.onChange(rs);
+      return rs;
+    });
+    props.onRemove && props.onRemove(value);
+  };
+
+  const handleEnter = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.keyCode === 13) {
+      props.onEnter &&
+        props.onEnter({
+          text: inputText,
+          event,
+          tags: selectedTags?.map((tag) => tag.value),
+        });
+    }
+  };
+
+  const clearButton =
+    searchResults.result && searchResults.result.length > 0 ? (
+      <Button icon="cross" minimal={true} onClick={handleClear} />
+    ) : undefined;
+
+  const itemRender: ItemRenderer<TagProps> = (
+    tag: TagProps,
+    { modifiers, handleClick }
+  ) => {
+    return (
+      <MenuItem
+        active={modifiers.active}
+        onClick={handleClick}
+        key={tag.value}
+        text={tag.value}
+        shouldDismissPopover={false}
+      />
+    );
+  };
+
   return (
     <TagMultiSelect
       fill={props.fill}

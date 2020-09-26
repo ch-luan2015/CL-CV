@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
+import { TagSelect } from "../Tags/TagSelect";
+
+import { Switch as Sw, Label, FormGroup, InputGroup } from "@blueprintjs/core";
 
 // Data
 import {
@@ -7,7 +10,6 @@ import {
   PostContentRequest,
 } from "../../resources/models/PostAPI";
 
-import RichTextEditor from "../Editors/Editor";
 import QuillEditor from "../Editors/QuillEditor";
 
 //Post setting
@@ -37,7 +39,21 @@ export const PostSettingEditor = (props: PostSettingEditorProps) => {
     },
     [props]
   );
-  return <></>;
+  return (
+    <>
+      {/* <Sw checked={settings.canComment} onChange={handleCanCommentChange}>
+        Có thể bình luận
+      </Sw> */}
+      <Label>Tags</Label>
+      <TagSelect
+        fill
+        value={props.tags}
+        onChange={handleTagsChange}
+        onSelect={(tag) => props.onTagSelect && props.onTagSelect(tag)}
+        onRemove={(tag) => props.onTagRemove && props.onTagRemove(tag)}
+      />
+    </>
+  );
 };
 
 //Post content
