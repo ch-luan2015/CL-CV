@@ -28,7 +28,6 @@ function App() {
               <Switch>
                 <Route path="/admin/post" exact component={CreatePost} />
                 <Route path="/admin/image" exact component={UploadImage} />
-                {/* <Route path="/admin/post" exact component={PostEditor} /> */}
                 <Route path="/admin/table" exact component={PostTable} />
               </Switch>
             </AdminPage>

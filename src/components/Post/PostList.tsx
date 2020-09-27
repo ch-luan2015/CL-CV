@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "../Card";
 import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
+import Search from "antd/lib/input/Search";
 
 function PostList(props) {
   const [error, setError] = useState();
@@ -16,6 +17,7 @@ function PostList(props) {
 
   return (
     <>
+      <Search />
       {posts == undefined ? (
         <div className="text-center">Loading ... </div>
       ) : (

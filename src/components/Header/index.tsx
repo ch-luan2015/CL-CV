@@ -59,6 +59,14 @@ function Header(props: Props) {
                 About We
               </a>
             </li>
+            <li className="mr-3">
+              <Link
+                to="/admin"
+                className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+              >
+                <span>Admin</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
