@@ -24,6 +24,18 @@ function AdSidebar() {
           </li>
           <li className=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
             <Link
+              to="/admin/markdown"
+              className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
+              <i className="fas fa-tachometer-alt float-left mx-2" />
+              Markdown Editor
+              <span>
+                <i className="fas fa-angle-right float-right" />
+              </span>
+            </Link>
+          </li>
+          <li className=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+            <Link
               to="/admin/image"
               className="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
             >
