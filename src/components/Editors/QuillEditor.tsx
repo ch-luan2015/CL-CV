@@ -6,6 +6,7 @@ import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "highlight.js/styles/sunburst.css";
+
 interface QuillEditor {
   onChange: (value: string) => void;
   initialValue: string;

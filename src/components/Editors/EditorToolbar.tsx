@@ -1,21 +1,10 @@
 import React from "react";
 import { Quill } from "react-quill";
+import MarkdownShortcuts from "quill-markdown-shortcuts";
 import "react-quill/dist/quill.core.css";
 import "react-quill/dist/quill.bubble.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/sunburst.css";
-// Custom Undo button icon component for Quill editor. You can import it directly
-// from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
-// handle them correctly
-const CustomUndo = () => (
-  <svg viewBox="0 0 18 18">
-    <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
-    <path
-      className="ql-stroke"
-      d="M8.09,13.91A4.6,4.6,0,0,0,9,14,5,5,0,1,0,4,9"
-    />
-  </svg>
-);
 
 hljs.configure({
   languages: [
@@ -32,6 +21,7 @@ hljs.configure({
     "xml",
   ],
 });
+
 // Redo button icon component for Quill editor
 const CustomRedo = () => (
   <svg viewBox="0 0 18 18">
@@ -39,6 +29,15 @@ const CustomRedo = () => (
     <path
       className="ql-stroke"
       d="M9.91,13.91A4.6,4.6,0,0,1,9,14a5,5,0,1,1,5-5"
+    />
+  </svg>
+);
+const CustomUndo = () => (
+  <svg viewBox="0 0 18 18">
+    <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
+    <path
+      className="ql-stroke"
+      d="M8.09,13.91A4.6,4.6,0,0,0,9,14,5,5,0,1,0,4,9"
     />
   </svg>
 );
@@ -67,6 +66,7 @@ Font.whitelist = [
   "lucida",
 ];
 Quill.register(Font, true);
+Quill.register("modules/markdownShortcuts", MarkdownShortcuts);
 
 // Modules object for setting up the Quill editor
 export const modules = {
@@ -88,6 +88,7 @@ export const modules = {
   clipboard: {
     matchVisual: false,
   },
+  markdownShortcuts: {},
 };
 
 // Formats objects for setting up the Quill editor
@@ -110,6 +111,7 @@ export const formats = [
   "image",
   "color",
   "code-block",
+  "markdown",
 ];
 
 // Quill Toolbar component
@@ -132,7 +134,7 @@ export const QuillToolbar = () => (
         <option value="large">Large</option>
         <option value="huge">Huge</option>
       </select>
-      <select className="ql-header" defaultValue="3">
+      <select className="ql-header" defaultValue="1">
         <option value="1">Heading</option>
         <option value="2">Subheading</option>
         <option value="3">Normal</option>
@@ -154,7 +156,7 @@ export const QuillToolbar = () => (
       <button className="ql-script" value="super" />
       <button className="ql-script" value="sub" />
       <button className="ql-blockquote" />
-      <button className="ql-direction" />
+      <button className="ql-code-block" />
     </span>
     <span className="ql-formats">
       <select className="ql-align" />
@@ -166,11 +168,7 @@ export const QuillToolbar = () => (
       <button className="ql-image" />
       <button className="ql-video" />
     </span>
-    <span className="ql-formats">
-      <button className="ql-formula" />
-      <button className="ql-code-block" />
-      <button className="ql-clean" />
-    </span>
+
     <span className="ql-formats">
       <button className="ql-undo">
         <CustomUndo />
