@@ -1,35 +1,32 @@
-import React, { Component } from "react";
-import ReactMarkdown from "react-markdown";
+import * as React from "react";
+import ReactMde from "react-mde";
+import * as Showdown from "showdown";
+import "react-mde/lib/styles/css/react-mde-all.css";
 
-const markdownContext = require.context("./input", false, /\.md$/);
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true,
+});
 
-interface Props {
-  terms?: any;
+function ReactMarkDown() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+    "write"
+  );
+  return (
+    <div className="container">
+      <ReactMde
+        value={value}
+        onChange={setValue}
+        selectedTab={selectedTab}
+        onTabChange={setSelectedTab}
+        generateMarkdownPreview={(markdown) =>
+          Promise.resolve(converter.makeHtml(markdown))
+        }
+      />
+    </div>
+  );
 }
-type State = { value: string };
-
-class ReactMarkDown extends Component<State, Props> {
-  constructor(props) {
-    super(props);
-
-    this.state = { terms: null };
-  }
-
-  componentWillMount() {
-    fetch(input)
-      .then((response) => response.text())
-      .then((text) => {
-        this.setState({ terms: text });
-      });
-  }
-
-  render() {
-    return (
-      <div className="content">
-        <ReactMarkdown source={this.state.terms} />
-      </div>
-    );
-  }
-}
-
 export default ReactMarkDown;
