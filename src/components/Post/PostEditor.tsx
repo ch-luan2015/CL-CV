@@ -11,6 +11,7 @@ import {
 } from "../../resources/models/PostAPI";
 
 import QuillEditor from "../Editors/QuillEditor";
+import ReactMarkDown from "../Editors/ReactMarkDown";
 
 //Post setting
 export interface PostSettingEditorProps {
@@ -96,7 +97,11 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
         <div className="w-3/4 ">
           <label htmlFor="content">Nội dung </label>
 
-          <QuillEditor onChange={handleContentChange} initialValue={content} />
+          {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
+          <ReactMarkDown
+            onChange={handleContentChange}
+            initialValue={content}
+          />
         </div>
       </section>
     </div>

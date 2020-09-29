@@ -12,41 +12,41 @@ const Card: React.FC<PostCardProps> = (props) => {
 
   // console.log(props.content);
 
-  useEffect(() => {
-    var textP = [];
-    var imgP = [];
+  // useEffect(() => {
+  //   var textP = [];
+  //   var imgP = [];
 
-    const text = htmlToText.fromString(props.content, {
-      ignoreImage: true,
-      ignoreHref: true,
-      noAnchorUrl: true,
-      wordwrap: false,
-      uppercaseHeadings: true,
+  //   const text = htmlToText.fromString(props.content, {
+  //     ignoreImage: true,
+  //     ignoreHref: true,
+  //     noAnchorUrl: true,
+  //     wordwrap: false,
+  //     uppercaseHeadings: true,
 
-      format: {
-        paragraph: function (elem, fn, options) {
-          var p = fn(elem.children, options);
-          textP.push(p);
-          return p;
-        },
-      },
-    });
+  //     format: {
+  //       paragraph: function (elem, fn, options) {
+  //         var p = fn(elem.children, options);
+  //         textP.push(p);
+  //         return p;
+  //       },
+  //     },
+  //   });
 
-    const img = htmlToText.fromString(props.content, {
-      format: {
-        image: function (elem, fn, options) {
-          var img = elem.attribs.src;
-          imgP.push(img);
-          return null;
-        },
-      },
-    });
+  //   const img = htmlToText.fromString(props.content, {
+  //     format: {
+  //       image: function (elem, fn, options) {
+  //         var img = elem.attribs.src;
+  //         imgP.push(img);
+  //         return null;
+  //       },
+  //     },
+  //   });
 
-    var firtP = textP[0].substr(0, 75);
-    var firtImg = imgP[0];
-    setSubtitle(firtP);
-    setImgP(firtImg);
-  }, [props.content]);
+  //   var firtP = textP[0].substr(0, 75);
+  //   var firtImg = imgP[0];
+  //   setSubtitle(firtP);
+  //   setImgP(firtImg);
+  // }, [props.content]);
 
   return (
     <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-48 rounded-lg relative">
