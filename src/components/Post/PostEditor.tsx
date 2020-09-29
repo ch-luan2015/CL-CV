@@ -3,6 +3,7 @@ import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
 
 import { Switch as Sw, Label, FormGroup, InputGroup } from "@blueprintjs/core";
+import * as Showdown from "showdown";
 
 // Data
 import {
@@ -65,6 +66,12 @@ interface PostContentEditorProps {
   onChange: (p: PostContentRequest) => void;
 }
 
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true,
+});
 export const PostContentEditor = (props: PostContentEditorProps) => {
   const [subject, setSubject] = useState(props.subject);
   const [content, setContent] = useState(props.content);
@@ -76,8 +83,10 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   const handleContentChange = (content: string) => {
-    console.log("handle content PostEditor: ", content);
-    setContent(content);
+    console.log("value reactmarkdown :", content);
+    var convertData = converter.makeHtml(content);
+    console.log("convertData", convertData);
+    setContent(convertData.toString());
     props.onChange({ content, subject });
   };
 

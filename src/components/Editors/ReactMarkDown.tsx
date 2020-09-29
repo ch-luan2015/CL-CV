@@ -41,8 +41,9 @@ interface ReactMarkDown {
   initialValue: string;
 }
 
+// { onChange, initialValue }: ReactMarkDown
 function ReactMarkDown({ onChange, initialValue }: ReactMarkDown) {
-  // const [value, setValue] = React.useState("");
+  // const [value, setValue] = React.useState(initialValue);
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "write"
   );
