@@ -12,7 +12,7 @@ import {
 } from "../../resources/models/PostAPI";
 
 import QuillEditor from "../Editors/QuillEditor";
-import ReactMarkDown from "../Editors/ReactMarkDown";
+import { ReactMarkDown, ReactMarkDownView } from "../Editors/ReactMarkDown";
 
 //Post setting
 export interface PostSettingEditorProps {
@@ -83,10 +83,10 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   const handleContentChange = (content: string) => {
-    console.log("value reactmarkdown :", content);
-    var convertData = converter.makeHtml(content);
-    console.log("convertData", convertData);
-    setContent(convertData.toString());
+    console.log("content postEditor :", content);
+    // var convertData = converter.makeHtml(content);
+    // console.log("convertData", convertData);
+    setContent(content);
     props.onChange({ content, subject });
   };
 
@@ -103,14 +103,19 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
           />
         </div>
 
-        <div className="w-3/4 ">
-          <label htmlFor="content">Nội dung </label>
+        <div className="w-3/4 flex flex-row justify-center align-middle ">
+          <div className="w-1/2">
+            <label htmlFor="content">Nội dung </label>
 
-          {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
-          <ReactMarkDown
-            onChange={handleContentChange}
-            initialValue={content}
-          />
+            {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
+            <ReactMarkDown
+              onChange={handleContentChange}
+              initialValue={content}
+            />
+          </div>
+          <div className="w-1/2">
+            <ReactMarkDownView initialValue={content} />
+          </div>
         </div>
       </section>
     </div>

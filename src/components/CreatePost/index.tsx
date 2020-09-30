@@ -17,13 +17,6 @@ import {
   PostSettingEditor,
 } from "../../components/Post/PostEditor";
 
-const initialValue = [
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
-];
-
 const initialState: CreatePostRequest = {
   content: "",
   subject: "",
