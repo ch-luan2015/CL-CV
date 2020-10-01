@@ -13,6 +13,7 @@ import {
 import QuillEditor from "../Editors/QuillEditor";
 import MdEditor from "../Editors/MdEditor";
 import Markdown from "react-markdown";
+import CodeBlock from "../Editors/CodeBlock";
 
 //Post setting
 export interface PostSettingEditorProps {
@@ -109,7 +110,7 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
             <MdEditor onChange={handleContentChange} initialValue={content} />
           </div>
           <div className="w-1/2 p-2 text-align">
-            <Markdown source={content} />
+            <Markdown source={content} renderers={{ code: CodeBlock }} />
           </div>
         </div>
       </section>

@@ -39,6 +39,8 @@
     "npm": "^6.14.8",
     "postcss-import": "^12.0.1",
     "prettier": "^2.1.1",
+    "prismjs": "^1.21.0",
+    "prop-types": "^15.7.2",
     "query-string": "^6.13.1",
     "quill-markdown-shortcuts": "0.0.10",
     "quill-markdown-toolbar": "^0.1.3",

@@ -7,7 +7,7 @@ import { QuillEditorView } from "../../components/Editors/QuillEditor";
 import Layout from "../../layout";
 import Container from "../../components/Container";
 import MdEditor from "../../components/Editors/MdEditor";
-
+import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";
 
 const Post = ({ match }: any) => {
@@ -38,7 +38,10 @@ const Post = ({ match }: any) => {
               // />
 
               // <ReactMarkDownView initialValue={currentPost.content} />
-              <Markdown source={currentPost.content} />
+              <Markdown
+                renderers={{ code: CodeBlock }}
+                source={currentPost.content}
+              />
             ) : (
               ""
             )}

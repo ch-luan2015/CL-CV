@@ -83,7 +83,7 @@ export const MdEditor = ({ onChange, initialValue }: MdEditor) => {
           <Markdown source={markdown} renderers={{ code: CodeBlock }} />
         )
       }
-      disablePreview
+      // disablePreview
       loadSuggestions={loadSuggestions}
       childProps={{
         writeButton: {
