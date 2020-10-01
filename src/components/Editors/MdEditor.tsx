@@ -2,6 +2,9 @@ import * as React from "react";
 import ReactMde, { Suggestion, SaveImageHandler } from "react-mde";
 import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import Markdown from "react-markdown";
+
+import CodeBlock from "./CodeBlock";
 
 const loadSuggestions = async (text: string) => {
   return new Promise<Suggestion[]>((accept, reject) => {
@@ -36,14 +39,12 @@ const converter = new Showdown.Converter({
   tasklists: true,
 });
 
-interface ReactMarkDown {
+interface MdEditor {
   onChange: (value: string) => void;
   initialValue: string;
 }
 
-// { onChange, initialValue }: ReactMarkDown
-export const ReactMarkDown = ({ onChange, initialValue }: ReactMarkDown) => {
-  // const [value, setValue] = React.useState(initialValue);
+export const MdEditor = ({ onChange, initialValue }: MdEditor) => {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
     "write"
   );
@@ -78,7 +79,9 @@ export const ReactMarkDown = ({ onChange, initialValue }: ReactMarkDown) => {
       selectedTab={selectedTab}
       onTabChange={setSelectedTab}
       generateMarkdownPreview={(markdown) =>
-        Promise.resolve(converter.makeHtml(markdown))
+        Promise.resolve(
+          <Markdown source={markdown} renderers={{ code: CodeBlock }} />
+        )
       }
       disablePreview
       loadSuggestions={loadSuggestions}
@@ -95,33 +98,4 @@ export const ReactMarkDown = ({ onChange, initialValue }: ReactMarkDown) => {
   );
 };
 
-interface ReactMarkDownView {
-  initialValue: string;
-}
-
-export const ReactMarkDownView = ({ initialValue }: ReactMarkDownView) => {
-  const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
-    "preview"
-  );
-  return (
-    <ReactMde
-      maxEditorHeight={600}
-      minPreviewHeight={600}
-      maxPreviewHeight={600}
-      value={initialValue}
-      selectedTab={selectedTab}
-      onTabChange={setSelectedTab}
-      generateMarkdownPreview={(markdown) =>
-        Promise.resolve(converter.makeHtml(markdown))
-      }
-      disablePreview
-      loadSuggestions={loadSuggestions}
-      childProps={{
-        writeButton: {
-          tabIndex: -1,
-        },
-      }}
-    />
-  );
-};
-export default ReactMarkDown;
+export default MdEditor;

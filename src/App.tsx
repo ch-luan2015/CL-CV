@@ -13,7 +13,7 @@ import QuillEditor from "./components/Editors/QuillEditor";
 import PostTable from "./components/Post/PostTable";
 import hljs from "highlight.js";
 import "highlight.js/styles/sunburst.css";
-import ReactMarkDown from "./components/Editors/ReactMarkDown";
+import MdEditor from "./components/Editors/MdEditor";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/admin/post" exact component={CreatePost} />
                 <Route path="/admin/image" exact component={UploadImage} />
                 <Route path="/admin/table" exact component={PostTable} />
-                <Route path="/admin/markdown" exact component={ReactMarkDown} />
+                <Route path="/admin/markdown" exact component={MdEditor} />
               </Switch>
             </AdminPage>
           </Route>

@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
-
 import { Switch as Sw, Label, FormGroup, InputGroup } from "@blueprintjs/core";
 import * as Showdown from "showdown";
 
@@ -12,7 +11,8 @@ import {
 } from "../../resources/models/PostAPI";
 
 import QuillEditor from "../Editors/QuillEditor";
-import { ReactMarkDown, ReactMarkDownView } from "../Editors/ReactMarkDown";
+import MdEditor from "../Editors/MdEditor";
+import Markdown from "react-markdown";
 
 //Post setting
 export interface PostSettingEditorProps {
@@ -104,15 +104,12 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
         </div>
 
         <div className="w-full flex flex-row justify-center align-middle ">
-          <div className="w-1/2">
+          <div className="w-1/2 p-2">
             {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
-            <ReactMarkDown
-              onChange={handleContentChange}
-              initialValue={content}
-            />
+            <MdEditor onChange={handleContentChange} initialValue={content} />
           </div>
-          <div className="w-1/2">
-            <ReactMarkDownView initialValue={content} />
+          <div className="w-1/2 p-2 text-align">
+            <Markdown source={content} />
           </div>
         </div>
       </section>
