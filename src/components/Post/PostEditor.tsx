@@ -91,9 +91,9 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   return (
-    <div className="w-full  bg-gray-300">
+    <div className="w-full">
       <section className="flex flex-col justify-start flex-wrap ">
-        <div className="w-3/4 ">
+        <div className="w-full">
           <label htmlFor="title">Tiêu đề bài viết</label>
           <input
             name="title"
@@ -103,10 +103,8 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
           />
         </div>
 
-        <div className="w-3/4 flex flex-row justify-center align-middle ">
+        <div className="w-full flex flex-row justify-center align-middle ">
           <div className="w-1/2">
-            <label htmlFor="content">Nội dung </label>
-
             {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
             <ReactMarkDown
               onChange={handleContentChange}

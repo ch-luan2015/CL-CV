@@ -57,25 +57,9 @@ function CreatePost() {
     setRequest((request) => ({ ...request, tags }));
   };
 
-  // let output = identity<string>("myString");
-
-  //handel InputChange la 1 anonymous function : handleInputChange<T>
-
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   e.preventDefault();
-  //   const { name, value } = e.target;
-  //   setPost({ ...post, [name]: value });
-  // };
-
-  // const handleContentChange = (content: string) => {
-  //   setPost({ ...post, content });
-  // };
-
   return (
     <div className="w-full">
-      <section className="flex flex-col justify-start flex-wrap ">
-        <div className="w-3/4 "></div>
-
+      <section className="flex flex-row justify-start flex-wrap ">
         <PostContentEditor
           content={request.content}
           subject={request.subject}

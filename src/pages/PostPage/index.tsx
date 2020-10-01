@@ -6,7 +6,9 @@ import { RequestError } from "../../resources/api/helper";
 import { QuillEditorView } from "../../components/Editors/QuillEditor";
 import Layout from "../../layout";
 import Container from "../../components/Container";
-import ReactMarkDown from "../../components/Editors/ReactMarkDown";
+import ReactMarkDown, {
+  ReactMarkDownView,
+} from "../../components/Editors/ReactMarkDown";
 
 const Post = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
@@ -31,19 +33,12 @@ const Post = ({ match }: any) => {
         <div className="flex flex-row flex-wrap justify-start align-left">
           <div className="w-4/5">
             {currentPost !== undefined ? (
-              // <ReactMarkDown initialValue={currentPost.content} />
-              <p>{currentPost.content}</p>
-            ) : (
-              ""
-            )}
-
-            {/* {currentPost !== undefined ? (
               <div
                 dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
               />
             ) : (
               ""
-            )} */}
+            )}
           </div>
 
           <div className="w-1/5 pl-12">
