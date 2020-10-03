@@ -11,8 +11,6 @@ import { PostSettingEditor, PostContentEditor } from "../Post/PostEditor";
 
 type TParams = { id: string };
 const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
-  console.log("match", match);
-
   const [request, setRequest] = useState<UpdatePostRequest>();
   const [tags, setTags] = useState<string[]>();
   const [id, setId] = useState<number>();
@@ -21,12 +19,10 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
 
   useEffect(() => {
     const id = Number(match.params.id);
-    console.log("id", id);
 
     postAPI
       .getPost(id)
       .then((u) => {
-        console.log("u", u);
         const request: UpdatePostRequest = {
           content: u.content,
           subject: u.subject,
@@ -34,6 +30,7 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
           postRestrictionType: u.postRestrictionType,
           accessUsers: u.postAccessUsers,
         };
+
         setRequest(request);
         setTags(u.tags ?? []);
         setId(id);
@@ -112,7 +109,6 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
           Lưu
         </Button>
       </section>
-      <p>Post Update {match}</p>
     </div>
   );
 };

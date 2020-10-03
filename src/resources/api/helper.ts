@@ -1,38 +1,40 @@
 //Error
 export interface RequestError {
-  code: number
-  message: string
+  code: number;
+  message: string;
 }
 
 const getError = (code: number, message: string) => {
-  return { code, message } as RequestError
-}
+  return { code, message } as RequestError;
+};
 
 export const request = async <T>(method: string, path: string, body: any) => {
   const headers = {
     "Content-Type": "application/json",
-  }
+  };
 
-  var response = await fetch(path, { method, headers, body })
+  var response = await fetch(path, { method, headers, body });
   if (response.status !== 200) {
-    var text = await response.text()
-    return Promise.reject(getError(response.status, text))
+    var text = await response.text();
+    return Promise.reject(getError(response.status, text));
   }
   try {
-    var res = (await response.json()) as T
+    var res = (await response.json()) as T;
   } catch {
-    return undefined
+    return undefined;
   }
 
-  return res
-}
+  return res;
+};
 
-export const get = async <T>(path: string) => request<T>("GET", path, null)
+export const get = async <T>(path: string) => request<T>("GET", path, null);
 
-export const post = async <T>(path: string, body?: string) => request<T>("POST", path, body)
+export const post = async <T>(path: string, body?: string) =>
+  request<T>("POST", path, body);
 
-export const _delete = async <T>(path: string, body?: string) => request<T>("DELETE", path, null)
+export const _delete = async <T>(path: string, body?: string) =>
+  request<T>("DELETE", path, null);
 
-export const put = async <T>(path: string, body?: string) => {
-  return await request<T>("PUT", path, body)
-}
+export const _put = async <T>(path: string, body?: string) => {
+  return await request<T>("PUT", path, body);
+};

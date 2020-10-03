@@ -41,9 +41,6 @@ class PostTable extends React.Component<IProps, IState> {
     postAPI.deletePost(id).then();
     return this.componentDidMount();
   }
-  handleUpdate(id) {
-    return alert(`${id}`);
-  }
 
   columns = [
     {
@@ -93,7 +90,6 @@ class PostTable extends React.Component<IProps, IState> {
               shape="circle"
               icon={<EditOutlined />}
               size="large"
-              onClick={() => this.handleUpdate(record.id)}
             />
           </Tooltip>
         </Link>

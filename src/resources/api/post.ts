@@ -1,5 +1,5 @@
 import { CreatePostRequest, UpdatePostRequest } from "../models/PostAPI";
-import { put, get, post, _delete } from "./helper";
+import { _put, get, post, _delete } from "./helper";
 import { PostProps, PostMetric } from "../models/PostProps";
 import { exceptions } from "./exceptions";
 
@@ -44,14 +44,40 @@ export const getPosts = async (
   return posts;
 };
 
+// const updatePost = async (id: number, req: UpdatePostRequest) => {
+//   var p = await _put<UpdatePostRequest>(
+//     `${process.env.REACT_APP_API_URL}/post/${id}`,
+//     JSON.stringify(req)
+//   );
+//   console.log("req api", req);
+//   console.log("p api", p);
+//   var test = JSON.stringify(req);
+//   console.log("test api", test);
+
+//   if (p === undefined) return Promise.reject(exceptions.invalidFormat);
+
+//   return p;
+// };
+
 const updatePost = async (id: number, req: UpdatePostRequest) => {
-  var p = await post<UpdatePostRequest>(
+  console.log("req", req);
+
+  console.log("id", id);
+
+  console.log("p", p);
+  var p = await _put<void>(
     `${process.env.REACT_APP_API_URL}/post/${id}`,
     JSON.stringify(req)
   );
+  console.log("var", JSON.stringify(req));
+
+  console.log("req", req);
+
+  console.log("id", id);
+
+  console.log("p", p);
 
   if (p === undefined) return Promise.reject(exceptions.invalidFormat);
-
   return p;
 };
 
@@ -90,7 +116,7 @@ const searchPosts = async (
 //TAGS
 
 const attachTag = async (postId: number, tag: string) => {
-  return await put<void>(
+  return await _put<void>(
     `${process.env.REACT_APP_API_URL}/post/${postId}/tag?tag=${tag}`
   );
 };
