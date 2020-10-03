@@ -31,6 +31,7 @@ function App() {
                 <Route path="/admin/image" exact component={UploadImage} />
                 <Route path="/admin/table" exact component={PostTable} />
                 <Route path="/admin/markdown" exact component={MdEditor} />
+                <Route path="/admin/edit/:id" exact component={MdEditor} />
               </Switch>
             </AdminPage>
           </Route>

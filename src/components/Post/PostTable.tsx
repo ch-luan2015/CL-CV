@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Table, Tag, Radio, Space, Button, Tooltip } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { postAPI } from "../../resources/api/post";
-
+import { Link } from "react-router-dom";
 interface IProps {}
 interface IState {
   top: any;
@@ -42,6 +42,9 @@ class PostTable extends React.Component<IProps, IState> {
   handleDelete(id) {
     postAPI.deletePost(id).then();
     return this.componentDidMount();
+  }
+  handleEdit(id) {
+    return alert("Edit");
   }
 
   columns = [
@@ -83,20 +86,32 @@ class PostTable extends React.Component<IProps, IState> {
       key: "createdBy",
     },
     {
-      title: "Action",
       key: "id",
       render: (text, record) => (
-        <Tooltip title="delete">
+        <Tooltip title="Update">
+          <Link to={`/admin/edit/${record.id}`}>
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<EditOutlined />}
+              size="large"
+              // onClick={() => this.handleEdit(record.id)}
+            />
+          </Link>
+        </Tooltip>
+      ),
+    },
+    {
+      key: "id",
+      render: (text, record) => (
+        <Tooltip title="Delete">
           <Button
             type="primary"
             danger
-            shape="round"
             icon={<DeleteOutlined />}
             size="large"
             onClick={() => this.handleDelete(record.id)}
-          >
-            Delete
-          </Button>
+          />
         </Tooltip>
       ),
     },

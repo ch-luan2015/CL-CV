@@ -1,13 +1,16 @@
+import { PostRestriction } from "./PostAPI";
 
-export interface PostCardProps{
-    title?: string
-    content?: string,
-    cover_image?: string,
-    cover_imageAlt?: string,
-    tag?: string[],
-    author?: string,
-    date?: string,
+export interface PostCardProps {
+  id?: number;
+  subject?: string;
+  content?: string;
+  canComment?: boolean;
+  lastModifiedAt?: string;
+  createdBy?: string;
+  createdAt?: string;
+  viewCount?: number;
+  commentCount?: number;
+  postRestrictionType?: PostRestriction;
+  postAccessUsers?: string[];
+  tags?: string[];
 }
-
-
-

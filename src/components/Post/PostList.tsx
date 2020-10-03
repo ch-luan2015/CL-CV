@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Card from "../Card";
 import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
+import Card from "../Card";
 import Search from "antd/lib/input/Search";
 
 function PostList(props) {
@@ -22,18 +22,22 @@ function PostList(props) {
         <div className="text-center">Loading ... </div>
       ) : (
         posts.map((post: any) => (
-          <section key={post.id}>
-            <Link to={`/${post.id}`}>
-              <Card
-                title={post.subject}
-                content={post.content}
-                // cover_image={post.cover_image}
-                tag={post.tags}
-                author={post.createdBy}
-                date={post.createdAt}
-              />
-            </Link>
-          </section>
+          <>
+            {console.log("post", post)}
+            <section key={post.id}>
+              <Link to={`/${post.id}`}>
+                <Card
+                  id={post.id}
+                  content={post.content}
+                  subject={post.subject}
+                  createdBy={post.createdBy}
+                  createdAt={post.createdAt}
+                  commentCount={post.commentCount}
+                  tags={post.tags}
+                />
+              </Link>
+            </section>
+          </>
         ))
       )}
     </>
