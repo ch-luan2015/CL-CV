@@ -21,10 +21,12 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
 
   useEffect(() => {
     const id = Number(match.params.id);
+    console.log("id", id);
 
     postAPI
       .getPost(id)
       .then((u) => {
+        console.log("u", u);
         const request: UpdatePostRequest = {
           content: u.content,
           subject: u.subject,
@@ -81,9 +83,9 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
   const viewDetail = useCallback(() => {
     id && history.push(`/admin/update/${id}`);
   }, [id, history]);
-  // if (request == null || tags == null) {
-  //   return <Spinner />;
-  // }
+  if (request == null || tags == null) {
+    return <Spinner />;
+  }
   return (
     <div className="w-full">
       <section className="flex flex-row justify-start flex-wrap ">

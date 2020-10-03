@@ -9,7 +9,6 @@ import PostPage from "./pages/PostPage";
 import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
 import UploadImage from "./components/UploadImageTest/UploadImage";
-import QuillEditor from "./components/Editors/QuillEditor";
 import PostTable from "./components/Post/PostTable";
 import MdEditor from "./components/Editors/MdEditor";
 import PostUpdate from "./components/Post/PostUpdate";
@@ -23,7 +22,7 @@ function App() {
         <Switch>
           {/* <Route path="/login" component={Login}/> */}
 
-          <Route path="/admin/:path?/:path?" exact>
+          <Route path="/admin">
             <AdminPage>
               <Switch>
                 <Route path="/admin/post" exact component={CreatePost} />
