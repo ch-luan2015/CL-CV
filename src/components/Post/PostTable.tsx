@@ -27,8 +27,6 @@ class PostTable extends React.Component<IProps, IState> {
       posts.map((post, index) => {
         var { id, subject, createdBy, tags } = post;
         var key = id.toString();
-        console.log("key", key);
-
         var newPost = { ...newPost, id, subject, createdBy, tags, key };
         return data.push(newPost);
       });
@@ -43,8 +41,8 @@ class PostTable extends React.Component<IProps, IState> {
     postAPI.deletePost(id).then();
     return this.componentDidMount();
   }
-  handleEdit(id) {
-    return alert("Edit");
+  handleUpdate(id) {
+    return alert(`${id}`);
   }
 
   columns = [
@@ -88,17 +86,17 @@ class PostTable extends React.Component<IProps, IState> {
     {
       key: "id",
       render: (text, record) => (
-        <Tooltip title="Update">
-          <Link to={`/admin/edit/${record.id}`}>
+        <Link to={`/admin/update/${record.id}`}>
+          <Tooltip title="Update">
             <Button
               type="primary"
               shape="circle"
               icon={<EditOutlined />}
               size="large"
-              // onClick={() => this.handleEdit(record.id)}
+              onClick={() => this.handleUpdate(record.id)}
             />
-          </Link>
-        </Tooltip>
+          </Tooltip>
+        </Link>
       ),
     },
     {

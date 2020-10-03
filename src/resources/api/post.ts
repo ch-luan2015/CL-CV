@@ -5,6 +5,7 @@ import { exceptions } from "./exceptions";
 
 const queryString = require("query-string");
 
+//POST
 export const createPost = async (req: CreatePostRequest) => {
   const postData = await post<PostProps>(
     `${process.env.REACT_APP_API_URL}/post`,
@@ -60,6 +61,20 @@ const deletePost = async (id: number) => {
   return post;
 };
 
+const searchPosts = async (
+  pageIndex: number,
+  pageRows: number,
+  tags?: string[],
+  keywords?: string[]
+) => {
+  const query = { pageIndex, pageRows, tags };
+  const url = queryString.stringifyUrl({
+    url: `${process.env.REACT_APP_API_URL}/post/search`,
+    query,
+  });
+  return await get<PostProps[]>(queryString.stringifyUrl({ query, url }));
+};
+
 //Dinh nghix props dau vao data
 // const postImage = async (data) => {
 //   // Dinh nghia props image
@@ -72,10 +87,27 @@ const deletePost = async (id: number) => {
 //   return file;
 // };
 
+//TAGS
+
+const attachTag = async (postId: number, tag: string) => {
+  return await put<void>(
+    `${process.env.REACT_APP_API_URL}/post/${postId}/tag?tag=${tag}`
+  );
+};
+
+const detachTag = async (postId: number, tag: string) => {
+  return await _delete<void>(
+    `${process.env.REACT_APP_API_URL}/post/${postId}/tag?tag=${tag}`
+  );
+};
+
 export const postAPI = {
   createPost,
   getPost,
   getPosts,
   updatePost,
   deletePost,
+  searchPosts,
+  attachTag,
+  detachTag,
 };
