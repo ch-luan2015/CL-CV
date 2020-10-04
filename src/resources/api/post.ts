@@ -1,5 +1,5 @@
 import { CreatePostRequest, UpdatePostRequest } from "../models/PostAPI";
-import { _put, get, post, _delete } from "./helper";
+import { put, get, post, _delete } from "./helper";
 import { PostProps, PostMetric } from "../models/PostProps";
 import { exceptions } from "./exceptions";
 
@@ -65,7 +65,7 @@ const updatePost = async (id: number, req: UpdatePostRequest) => {
   console.log("id", id);
 
   console.log("p", p);
-  var p = await _put<void>(
+  var p = await put<UpdatePostRequest>(
     `${process.env.REACT_APP_API_URL}/post/${id}`,
     JSON.stringify(req)
   );
@@ -101,22 +101,10 @@ const searchPosts = async (
   return await get<PostProps[]>(queryString.stringifyUrl({ query, url }));
 };
 
-//Dinh nghix props dau vao data
-// const postImage = async (data) => {
-//   // Dinh nghia props image
-//   var file = await put<>(
-//     `${process.env.REACT_APP_API_URL}/admin/image`,
-//     file
-//   );
-//   if (file === undefined) return Promise.reject(exceptions.cantUpImage);
-
-//   return file;
-// };
-
 //TAGS
 
 const attachTag = async (postId: number, tag: string) => {
-  return await _put<void>(
+  return await put<void>(
     `${process.env.REACT_APP_API_URL}/post/${postId}/tag?tag=${tag}`
   );
 };

@@ -1,4 +1,4 @@
-import { get, _put } from "./helper";
+import { get, put } from "./helper";
 import { TagProps } from "../models/TagProps";
 
 const getTags = async (search: string) => {
@@ -10,9 +10,7 @@ const getTags = async (search: string) => {
 };
 
 const putTag = async (tag: string) => {
-  return await _put<TagProps>(
-    `${process.env.REACT_APP_API_URL}/tag?tag=${tag}`
-  );
+  return await put<TagProps>(`${process.env.REACT_APP_API_URL}/tag?tag=${tag}`);
 };
 
 export const tagAPI = { get: getTags, put: putTag };

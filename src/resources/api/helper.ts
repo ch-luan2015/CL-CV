@@ -35,6 +35,6 @@ export const post = async <T>(path: string, body?: string) =>
 export const _delete = async <T>(path: string, body?: string) =>
   request<T>("DELETE", path, null);
 
-export const _put = async <T>(path: string, body?: string) => {
+export const put = async <T>(path: string, body?: string) => {
   return await request<T>("PUT", path, body);
 };
