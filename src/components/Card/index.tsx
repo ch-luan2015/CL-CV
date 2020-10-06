@@ -28,7 +28,7 @@ const Card: React.FC<PostCardProps> = (props) => {
   var firtsImg = resultImg != null ? resultImg[0] : "";
 
   return (
-    <div className="md:flex shadow-lg mx-2 md:mx-auto my-10 max-w-lg md:max-w-3xl h-48 rounded-lg relative">
+    <div className="md:flex shadow-lg mx-2  md:mx-auto my-10 max-w-lg md:max-w-3xl rounded-lg relative h-40">
       <img
         className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6"
         src={firtsImg != null ? firtsImg : ""}
@@ -44,7 +44,7 @@ const Card: React.FC<PostCardProps> = (props) => {
           {subTitle.length > 1 ? subTitle + "..." : ""}
         </p>
 
-        <div className="flex items-center justify-end absolute right-0 top-0 m-4">
+        <div className="flex items-center justify-end absolute right-0 bottom-0 m-4">
           <div className="flex justify-center items-center">
             {props.tags
               ? props.tags.map((tag) => {

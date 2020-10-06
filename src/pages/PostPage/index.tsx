@@ -30,27 +30,25 @@ const Post = ({ match }: any) => {
   return (
     <Layout>
       <Container>
-        <div className="flex flex-row flex-wrap justify-start align-left">
-          <div className="w-4/5">
-            {currentPost !== undefined ? (
-              // <div
-              //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
-              // />
+        <div className="text-justify">
+          {currentPost !== undefined ? (
+            // <div
+            //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
+            // />
 
-              // <ReactMarkDownView initialValue={currentPost.content} />
-              <Markdown
-                renderers={{ code: CodeBlock }}
-                source={currentPost.content}
-              />
-            ) : (
-              ""
-            )}
-          </div>
-
-          <div className="w-1/5 pl-12">
-            <SideBar />
-          </div>
+            // <ReactMarkDownView initialValue={currentPost.content} />
+            <Markdown
+              renderers={{ code: CodeBlock }}
+              source={currentPost.content}
+            />
+          ) : (
+            ""
+          )}
         </div>
+
+        {/* <div className="w-1/5 pl-12">
+            <SideBar />
+          </div> */}
       </Container>
     </Layout>
   );

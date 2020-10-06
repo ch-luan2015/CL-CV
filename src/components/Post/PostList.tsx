@@ -24,7 +24,6 @@ function PostList(props) {
       ) : (
         posts.map((post: any) => (
           <>
-            {console.log("post", post)}
             <section key={post.id}>
               <Link to={`/${post.id}`}>
                 <Card
