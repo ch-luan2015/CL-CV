@@ -67,6 +67,14 @@ function Header(props: Props) {
                 <span>Admin</span>
               </Link>
             </li>
+            <li className="mr-3">
+              <Link
+                to="/login"
+                className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
+              >
+                <span>Login</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

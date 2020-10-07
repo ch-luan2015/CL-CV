@@ -12,6 +12,7 @@ import UploadImage from "./components/UploadImageTest/UploadImage";
 import PostTable from "./components/Post/PostTable";
 import MdEditor from "./components/Editors/MdEditor";
 import PostUpdate from "./components/Post/PostUpdate";
+import LoginModal from "./components/User/Login/LoginModal";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Layout>
               <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route exact path="/login" component={LoginModal} />
                 <Route exact path="/:id" component={PostPage} />
               </Switch>
             </Layout>
