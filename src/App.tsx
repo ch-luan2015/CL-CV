@@ -1,8 +1,6 @@
-import React from "react";
+import * as React from "react";
 import "./App.css";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import Layout from "./layout";
 import CreatePost from "./components/CreatePost";
 import PostPage from "./pages/PostPage";
@@ -17,8 +15,6 @@ import LoginModal from "./components/User/Login/LoginModal";
 function App() {
   return (
     <>
-      {/* <PostTable /> */}
-
       <Router>
         <Switch>
           {/* <Route path="/login" component={Login}/> */}

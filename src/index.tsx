@@ -1,5 +1,7 @@
-import React from "react";
+import { CSSReset, Heading, ThemeProvider } from "@chakra-ui/core";
+import * as React from "react";
 import ReactDOM from "react-dom";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./assets/main-tailwind.css";
@@ -11,7 +13,10 @@ import "../node_modules/antd/dist/antd.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <CSSReset />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
