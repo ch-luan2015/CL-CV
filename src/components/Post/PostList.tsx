@@ -36,7 +36,7 @@ function PostList(props) {
       ) : (
         posts.map((post: any) => (
           <div key={post.id}>
-            <Link to={`/${post.id}`}>
+            <Link to={`blogs/${post.id}`}>
               <Card
                 id={post.id}
                 content={post.content}

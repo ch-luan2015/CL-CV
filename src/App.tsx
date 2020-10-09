@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Layout from "./layout";
 import CreatePost from "./components/CreatePost";
 import PostPage from "./pages/PostPage";
@@ -11,38 +12,36 @@ import PostTable from "./components/Post/PostTable";
 import MdEditor from "./components/Editors/MdEditor";
 import PostUpdate from "./components/Post/PostUpdate";
 import LoginModal from "./components/User/Login/LoginModal";
+import BlogLayout from "layout/BlogLayout";
+import HomeLayout from "layout/HomeLayout";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Switch>
-          {/* <Route path="/login" component={Login}/> */}
-
-          <Route path="/admin">
-            <AdminPage>
-              <Switch>
-                <Route path="/admin/post" exact component={CreatePost} />
-                <Route path="/admin/image" exact component={UploadImage} />
-                <Route path="/admin/table" exact component={PostTable} />
-                <Route path="/admin/markdown" exact component={MdEditor} />
-                <Route path="/admin/update/:id?" component={PostUpdate} />
-              </Switch>
-            </AdminPage>
-          </Route>
-
-          <Route>
-            {/* <Layout> */}
+    <Router>
+      <Switch>
+        <Route>
+          <HomeLayout>
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/login" component={LoginModal} />
-              <Route exact path="/:id" component={PostPage} />
+              <Route path="/" exact component={HomePage} />
+              <Route path="/blogs" exact component={HomePage} />
+              <Route path="/blogs/:id" exact component={PostPage} />
             </Switch>
-            {/* </Layout> */}
-          </Route>
-        </Switch>
-      </Router>
-    </>
+          </HomeLayout>
+        </Route>
+
+        <Route path="/admin">
+          <AdminPage>
+            <Switch>
+              <Route path="/admin/post" exact component={CreatePost} />
+              <Route path="/admin/image" exact component={UploadImage} />
+              <Route path="/admin/table" exact component={PostTable} />
+              <Route path="/admin/markdown" exact component={MdEditor} />
+              <Route path="/admin/update/:id?" component={PostUpdate} />
+            </Switch>
+          </AdminPage>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

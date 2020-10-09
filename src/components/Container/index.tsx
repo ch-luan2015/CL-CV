@@ -1,14 +1,3 @@
-// import React,{ ReactNode, FunctionComponent } from 'react'
-
-// type Props = {
-//   children?: ReactNode
-// }
-
-// const Container: FunctionComponent = ({ children }: Props) => {
-//   return <div className="container mx-auto px-5">{children}</div>
-// }
-
-// export default Container;
 import React from "react";
 import { Link } from "react-router-dom";
 import { useColorMode, Button, Flex, Box, IconButton } from "@chakra-ui/core";
@@ -59,14 +48,14 @@ const Container = ({ children }) => {
           onClick={toggleColorMode}
         />
         <Box>
-          <Link to="/dashboard">
+          <Link to="/">
             <Button as="a" variant="ghost" p={[1, 4]}>
-              Dashboard
+              Home
             </Button>
           </Link>
-          <Link to="/blog">
+          <Link to="/blogs">
             <Button as="a" variant="ghost" p={[1, 4]}>
-              Blog
+              Blogs
             </Button>
           </Link>
           <Link to="/about">
@@ -74,9 +63,10 @@ const Container = ({ children }) => {
               About
             </Button>
           </Link>
-          <Link to="/">
+
+          <Link to="/GamePost">
             <Button as="a" variant="ghost" p={[1, 4]}>
-              Home
+              GameWorld
             </Button>
           </Link>
         </Box>

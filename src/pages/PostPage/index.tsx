@@ -10,7 +10,7 @@ import MdEditor from "../../components/Editors/MdEditor";
 import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";
 
-const Post = ({ match }: any) => {
+const PostPage = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
   const [error, setError] = useState<string>();
 
@@ -28,28 +28,22 @@ const Post = ({ match }: any) => {
   }, [id, setCurrentPost]);
 
   return (
-    <Container>
-      <div className="text-justify">
-        {currentPost !== undefined ? (
-          // <div
-          //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
-          // />
+    <div className="w-full">
+      {currentPost !== undefined ? (
+        // <div
+        //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
+        // />
 
-          // <ReactMarkDownView initialValue={currentPost.content} />
-          <Markdown
-            renderers={{ code: CodeBlock }}
-            source={currentPost.content}
-          />
-        ) : (
-          ""
-        )}
-      </div>
-
-      {/* <div className="w-1/5 pl-12">
-            <SideBar />
-          </div> */}
-    </Container>
+        // <ReactMarkDownView initialValue={currentPost.content} />
+        <Markdown
+          renderers={{ code: CodeBlock }}
+          source={currentPost.content}
+        />
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 
-export default Post;
+export default PostPage;
