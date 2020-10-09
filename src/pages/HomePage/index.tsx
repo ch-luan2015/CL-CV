@@ -7,13 +7,13 @@ interface Props {}
 // flex flex-row flex-wrap justify-start align-left
 function HomePage(props: Props) {
   return (
-    <Layout>
-      <Container>
-        <div className="w-full ">
-          <PostList />
-        </div>
-      </Container>
-    </Layout>
+    // <Layout>
+    <Container>
+      <div className="w-full ">
+        <PostList />
+      </div>
+    </Container>
+    // </Layout>
   );
 }
 

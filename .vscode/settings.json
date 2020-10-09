@@ -36,6 +36,6 @@
     "visualstudioexptteam.vscodeintellicode",
     "formulahendry.code-runner"
   ],
-  "eslint.enable": false,
+  "eslint.enable": true,
   "editor.fontFamily": "'MesloLGS NF Bold','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }

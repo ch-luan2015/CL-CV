@@ -9,7 +9,7 @@ interface Props {
 function Layout({ preview, children }: Props) {
   return (
     <div className="bg-gray-100 font-sans">
-      <Header />
+      {/* <Header /> */}
       <div className="min-h-screen mt-16 pt-4">
         <main>{children}</main>
       </div>

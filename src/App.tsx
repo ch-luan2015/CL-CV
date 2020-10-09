@@ -32,13 +32,13 @@ function App() {
           </Route>
 
           <Route>
-            <Layout>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/login" component={LoginModal} />
-                <Route exact path="/:id" component={PostPage} />
-              </Switch>
-            </Layout>
+            {/* <Layout> */}
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/login" component={LoginModal} />
+              <Route exact path="/:id" component={PostPage} />
+            </Switch>
+            {/* </Layout> */}
           </Route>
         </Switch>
       </Router>

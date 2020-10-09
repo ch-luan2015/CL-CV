@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useHistory, RouteComponentProps } from "react-router-dom";
-import { Button, Spinner, Icon } from "@blueprintjs/core";
+import { Button, Spinner } from "@chakra-ui/core";
 import { postAPI } from "../../resources/api/post";
 import {
   UpdatePostRequest,
@@ -81,7 +81,15 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
     id && history.push(`/admin/update/${id}`);
   }, [id, history]);
   if (request == null || tags == null) {
-    return <Spinner />;
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
   }
   return (
     <div className="w-full">
@@ -100,12 +108,7 @@ const PostUpdate = ({ match }: RouteComponentProps<TParams>) => {
           onTagRemove={handleRemove}
         />
 
-        <Button
-          minimal
-          intent="primary"
-          icon={<Icon icon="floppy-disk" />}
-          onClick={handleSave}
-        >
+        <Button variantColor="blue" onClick={handleSave}>
           Lưu
         </Button>
       </section>

@@ -25,32 +25,30 @@ const Post = ({ match }: any) => {
       .catch((e: RequestError) => {
         setError(e.message);
       });
-  }, [setCurrentPost]);
+  }, [id, setCurrentPost]);
 
   return (
-    <Layout>
-      <Container>
-        <div className="text-justify">
-          {currentPost !== undefined ? (
-            // <div
-            //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
-            // />
+    <Container>
+      <div className="text-justify">
+        {currentPost !== undefined ? (
+          // <div
+          //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
+          // />
 
-            // <ReactMarkDownView initialValue={currentPost.content} />
-            <Markdown
-              renderers={{ code: CodeBlock }}
-              source={currentPost.content}
-            />
-          ) : (
-            ""
-          )}
-        </div>
+          // <ReactMarkDownView initialValue={currentPost.content} />
+          <Markdown
+            renderers={{ code: CodeBlock }}
+            source={currentPost.content}
+          />
+        ) : (
+          ""
+        )}
+      </div>
 
-        {/* <div className="w-1/5 pl-12">
+      {/* <div className="w-1/5 pl-12">
             <SideBar />
           </div> */}
-      </Container>
-    </Layout>
+    </Container>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
-import { Switch as Sw, Label, FormGroup, InputGroup } from "@blueprintjs/core";
 import * as Showdown from "showdown";
+import { Text } from "@chakra-ui/core";
 
 // Data
 import {
@@ -47,7 +47,7 @@ export const PostSettingEditor = (props: PostSettingEditorProps) => {
       {/* <Sw checked={settings.canComment} onChange={handleCanCommentChange}>
         Có thể bình luận
       </Sw> */}
-      <Label>Tags</Label>
+      <Text>Tags</Text>
       <TagSelect
         fill
         value={props.tags}

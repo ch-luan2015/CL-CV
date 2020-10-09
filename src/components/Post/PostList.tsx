@@ -4,27 +4,34 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Button } from "@chakra-ui/core";
 
 function PostList(props) {
-  const [error, setError] = useState();
-  const [posts, setPosts] = useState<PostProps[]>();
+  const [posts, setPosts] = useState<PostProps[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageRows, setPageRows] = useState(2);
+  const [pageRows] = useState(5);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     postAPI.getPosts(0, pageRows, []).then((posts) => {
-      setPosts(posts);
+      setPosts((currentPosts) => [...currentPosts, ...posts]);
     });
   }, [pageRows]);
 
-  const addPageRows = () => {
-    return setPageRows(pageRows + 2);
-  };
+  const addPageRows = React.useCallback(() => {
+    setIsLoading(true);
+    postAPI
+      .getPosts(pageIndex + 1, pageRows, [])
+      .then((posts) => {
+        setPosts((currentPosts) => [...currentPosts, ...posts]); //Ghép 2 mảng lại với nhau
+        setPageIndex(pageIndex + 1);
+      })
+      .then(() => setIsLoading(false));
+  }, [pageIndex, pageRows]);
   return (
     <div className="flex-1 overflow-y-auto">
       {/* <PostSearch /> */}
 
-      {posts == undefined ? (
+      {posts === undefined ? (
         <div className="text-center">Loading ... </div>
       ) : (
         posts.map((post: any) => (
@@ -45,12 +52,9 @@ function PostList(props) {
       )}
 
       <div className="w-full text-center container">
-        <button
-          className="w-32  bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          onClick={addPageRows}
-        >
+        <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
           Xem Thêm
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -29,18 +29,19 @@ function Header(props: Props) {
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             <li className="mr-3">
               <a
-                className="inline-block py-2 px-4 text-gray-900 font-bold no-underline"
+                className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
                 href="#"
               >
-                DashBoard
+                Blog
               </a>
             </li>
+
             <li className="mr-3">
               <a
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
                 href="#"
               >
-                Project
+                About
               </a>
             </li>
             <li className="mr-3">
@@ -52,14 +53,6 @@ function Header(props: Props) {
               </a>
             </li>
             <li className="mr-3">
-              <a
-                className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
-                href="#"
-              >
-                About We
-              </a>
-            </li>
-            <li className="mr-3">
               <Link
                 to="/admin"
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
@@ -67,14 +60,14 @@ function Header(props: Props) {
                 <span>Admin</span>
               </Link>
             </li>
-            <li className="mr-3">
+            {/* <li className="mr-3">
               <Link
                 to="/login"
                 className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
               >
                 <span>Login</span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

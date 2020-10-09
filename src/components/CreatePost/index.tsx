@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Icon } from "@blueprintjs/core";
+import { Button } from "@chakra-ui/core";
 
 import { postAPI } from "../../resources/api/post";
 import {
@@ -73,12 +73,7 @@ function CreatePost() {
           onTagsChange={handleTagsChange}
         />
 
-        <Button
-          minimal
-          intent="primary"
-          icon={<Icon icon="floppy-disk" />}
-          onClick={handleSave}
-        >
+        <Button variantColor="blue" onClick={handleSave}>
           Lưu
         </Button>
       </section>
