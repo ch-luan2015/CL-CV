@@ -19,8 +19,6 @@ const Card: React.FC<PostCardProps> = (props) => {
   const [subTitle, setSubtitle] = useState("");
   const [imgP, setImgP] = useState();
 
-  console.log("tag", props.tags);
-
   var imgRe = /https.*(png|jpg)/g;
   // var pRe = /https.*(png|jpg)/g;
 

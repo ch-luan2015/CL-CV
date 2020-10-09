@@ -17,8 +17,6 @@ interface QuillEditorView {
 }
 
 export const QuillEditorView = ({ initialValue }: QuillEditorView) => {
-  console.log("initialValue", initialValue);
-
   const [stateView, setStateView] = useState({ value: initialValue });
 
   useEffect(() => {

@@ -36,11 +36,9 @@ function CreatePost() {
       .createPost(request)
       .then((u) => {
         if ((u = null)) return Promise.reject("ERROR");
-        console.log(`post `);
         // history.push(routes.postUpdate.getPath(u.id));
       })
       .catch((e) => {
-        console.log("ERROR", e);
         setAlert({ isOpen: true, message: e.message });
       });
   };

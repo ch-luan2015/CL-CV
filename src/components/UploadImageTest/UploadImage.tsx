@@ -22,9 +22,7 @@ function UploadImage() {
     await fetch("https://cdn.linhtinh.tech/admin/image", {
       method: "PUT",
       body: formData,
-    }).then((response) => {
-      console.log(response);
-    });
+    }).then((response) => {});
   };
 
   return (

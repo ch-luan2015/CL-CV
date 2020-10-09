@@ -84,7 +84,6 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   const handleContentChange = (content: string) => {
-    console.log("content postEditor :", content);
     // var convertData = converter.makeHtml(content);
     // console.log("convertData", convertData);
     setContent(content);

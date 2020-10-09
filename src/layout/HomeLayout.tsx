@@ -62,11 +62,11 @@ const HomeLayout = ({ children }) => {
           <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
             Blog
           </Heading>
-          {/* <Text color={secondaryTextColor[colorMode]}>
-              {`I've been writing online since 2014, mostly about web development and tech careers.
+          <Text color={secondaryTextColor[colorMode]}>
+            {`I've been writing online since 2014, mostly about web development and tech careers.
                 In total, I've written  articles on this site.
                 Use the search below to filter by title.`}
-            </Text> */}
+          </Text>
           <InputGroup my={4} mr={4} w="100%">
             <Input
               aria-label="Search articles"
