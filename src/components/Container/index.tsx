@@ -31,9 +31,9 @@ const Container = ({ children }) => {
     <>
       <StickyNav
         flexDirection="row"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         alignItems="center"
-        maxWidth="900px"
+        maxWidth="1280px"
         width="100%"
         bg={navBgColor[colorMode]}
         as="nav"
@@ -42,34 +42,35 @@ const Container = ({ children }) => {
         mb={8}
         mx="auto"
       >
-        <IconButton
+        {/* <IconButton
           aria-label="Toggle dark mode"
           icon={colorMode === "dark" ? "sun" : "moon"}
           onClick={toggleColorMode}
-        />
-        <Box>
-          <Link to="/">
-            <Button as="a" variant="ghost" p={[1, 4]}>
-              Home
-            </Button>
-          </Link>
-          <Link to="/blogs">
-            <Button as="a" variant="ghost" p={[1, 4]}>
-              Blogs
-            </Button>
-          </Link>
-          <Link to="/about">
-            <Button as="a" variant="ghost" p={[1, 4]}>
-              About
-            </Button>
-          </Link>
+        /> */}
 
-          <Link to="/GamePost">
-            <Button as="a" variant="ghost" p={[1, 4]}>
-              GameWorld
-            </Button>
-          </Link>
-        </Box>
+        {/* <Box> */}
+        <Link to="/">
+          <Button as="a" variant="ghost" p={[1, 4]}>
+            Home
+          </Button>
+        </Link>
+        <Link to="/blogs">
+          <Button as="a" variant="ghost" p={[1, 4]}>
+            Blogs
+          </Button>
+        </Link>
+        <Link to="/about">
+          <Button as="a" variant="ghost" p={[1, 4]}>
+            About
+          </Button>
+        </Link>
+
+        <Link to="/GamePost">
+          <Button as="a" variant="ghost" p={[1, 4]}>
+            GameWorld
+          </Button>
+        </Link>
+        {/* </Box> */}
       </StickyNav>
       <Flex
         as="main"

@@ -15,24 +15,26 @@ import LoginModal from "./components/User/Login/LoginModal";
 import BlogLayout from "layout/BlogLayout";
 import HomeLayout from "layout/HomeLayout";
 import Container from "components/Container";
-
+import AdminLayout from "layout/AdminLayout";
 function App() {
   return (
     <ThemeProvider>
       <ColorModeProvider>
         <Router>
           <Switch>
-            <Route>
+            <Route path={["/blog", "/blog/:id"]}>
+              <BlogLayout>
+                <Route path="/blog/:id" exact component={PostPage} />
+              </BlogLayout>
+            </Route>
+
+            <Route exact path={["/", "/blogs"]}>
               <HomeLayout>
-                <Switch>
-                  <Route path="/" exact component={HomePage} />
-                  <Route path="/blogs" exact component={HomePage} />
-                  <Route path="/blogs/:id" exact component={PostPage} />
-                </Switch>
+                <Route path="/" exact component={HomePage} />
               </HomeLayout>
             </Route>
 
-            <Route path="/admin">
+            <Route path={["/admin"]}>
               <AdminPage>
                 <Switch>
                   <Route path="/admin/post" exact component={CreatePost} />
@@ -42,6 +44,12 @@ function App() {
                   <Route path="/admin/update/:id?" component={PostUpdate} />
                 </Switch>
               </AdminPage>
+            </Route>
+
+            <Route>
+              <AdminLayout>
+                <Route path="/adminlayout" exact component={CreatePost} />
+              </AdminLayout>
             </Route>
           </Switch>
         </Router>

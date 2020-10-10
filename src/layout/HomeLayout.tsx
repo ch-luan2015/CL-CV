@@ -11,19 +11,12 @@ import {
   Icon,
 } from "@chakra-ui/core";
 import Container from "components/Container";
-// import Container from '../components/Container';
-// import BlogPost from '../components/BlogPost';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
 // import { frontMatter as blogPosts } from './blog/**/*.mdx';
 // import { frontMatter as styleGuides } from './blog/style-guides-component-libraries-design-systems.mdx';
 // import { frontMatter as stripeDesign } from './blog/how-stripe-designs-beautiful-websites.mdx';
 // import { frontMatter as monorepo } from './blog/monorepo-lerna-yarn-workspaces.mdx';
-
-const url = "https://leerob.io/blog";
-const title = "Blog – Lee Robinson";
-const description =
-  "Thoughts on the software industry, programming, tech, videography, music, and my personal life.";
 
 const HomeLayout = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -50,14 +43,14 @@ const HomeLayout = ({ children }) => {
         justifyContent="center"
         alignItems="flex-start"
         m="0 auto 4rem auto"
-        maxWidth="700px"
+        maxWidth="1280px"
       >
         <Flex
           className="w-full"
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="700px"
+          maxWidth="1280px"
         >
           <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
             Blog
@@ -101,7 +94,7 @@ const HomeLayout = ({ children }) => {
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="700px"
+          maxWidth="1280px"
           mt={8}
         >
           <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>

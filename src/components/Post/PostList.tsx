@@ -33,7 +33,7 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <div className="flex-1 overflow-y-auto">
+    <div>
       {/* <PostSearch /> */}
 
       {posts === undefined ? (
@@ -41,7 +41,7 @@ function PostList(props) {
       ) : (
         posts.map((post: any) => (
           <div key={post.id}>
-            <Link to={`blogs/${post.id}`}>
+            <Link to={`/blog/${post.id}`}>
               <Card
                 id={post.id}
                 content={post.content}

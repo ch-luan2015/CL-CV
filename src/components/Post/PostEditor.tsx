@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
 import * as Showdown from "showdown";
-import { Text } from "@chakra-ui/core";
+import { Text, Input } from "@chakra-ui/core";
 
 // Data
 import {
@@ -93,22 +93,23 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   return (
     <div className="w-full">
       <section className="flex flex-col justify-start flex-wrap ">
-        <div className="w-full">
-          <label htmlFor="title">Tiêu đề bài viết</label>
-          <input
+        <div className="w-full mb-4">
+          <Input
+            // focusBorderColor="true"
             name="title"
-            placeholder="Tiêu đề"
+            // variant="flushed"
             value={subject}
             onChange={handleInputChange}
+            placeholder="Tiêu đề bài viết"
           />
         </div>
 
         <div className="w-full flex flex-row justify-center align-middle ">
-          <div className="w-1/2 p-2">
+          <div className="w-1/2 pr-2">
             {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
             <MdEditor onChange={handleContentChange} initialValue={content} />
           </div>
-          <div className="w-1/2 p-2 text-align">
+          <div className="w-1/2 pl-2 text-align">
             <Markdown source={content} renderers={{ code: CodeBlock }} />
           </div>
         </div>

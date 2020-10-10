@@ -7,6 +7,7 @@ import { QuillEditorView } from "../../components/Editors/QuillEditor";
 import MdEditor from "../../components/Editors/MdEditor";
 import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";
+import Container from "components/Container";
 
 const PostPage = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
@@ -24,7 +25,7 @@ const PostPage = ({ match }: any) => {
         setError(e.message);
       });
   }, [id, setCurrentPost]);
-
+  console.log("match", match);
   return (
     <div className="w-full">
       {currentPost !== undefined ? (

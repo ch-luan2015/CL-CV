@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "@chakra-ui/core";
+import { Button, Flex } from "@chakra-ui/core";
 
 import { postAPI } from "../../resources/api/post";
 import {
@@ -56,26 +56,37 @@ function CreatePost() {
   };
 
   return (
-    <div className="w-full">
-      <section className="flex flex-row justify-start flex-wrap ">
-        <PostContentEditor
-          content={request.content}
-          subject={request.subject}
-          onChange={handleContentChange}
-        />
+    <Flex
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      p="30px"
+      width="100%"
+    >
+      <PostContentEditor
+        content={request.content}
+        subject={request.subject}
+        onChange={handleContentChange}
+      />
+      <PostSettingEditor
+        tags={request.tags}
+        settings={request}
+        onSettingChange={handleSettingChange}
+        onTagsChange={handleTagsChange}
+      />
 
-        <PostSettingEditor
-          tags={request.tags}
-          settings={request}
-          onSettingChange={handleSettingChange}
-          onTagsChange={handleTagsChange}
-        />
-
-        <Button variantColor="blue" onClick={handleSave}>
-          Lưu
-        </Button>
-      </section>
-    </div>
+      <Button
+        size="md"
+        border="2px"
+        borderRadius="5px"
+        borderColor="blue.500"
+        variantColor="blue"
+        onClick={handleSave}
+        mt={2}
+      >
+        Đăng bài viết
+      </Button>
+    </Flex>
   );
 }
 

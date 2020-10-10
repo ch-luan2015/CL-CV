@@ -29,14 +29,14 @@ function BlogLayout({ children }) {
         justifyContent="center"
         alignItems="flex-start"
         m="0 auto 4rem auto"
-        maxWidth="700px"
+        maxWidth="1280px"
         w="100%"
       >
         <Flex
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="700px"
+          maxWidth="1280px"
           w="100%"
         >
           <Flex
@@ -59,7 +59,7 @@ function BlogLayout({ children }) {
               </Text>
             </Flex>
           </Flex>
-          <main>{children}</main>
+          {children}
         </Flex>
       </Stack>
     </Container>
