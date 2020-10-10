@@ -1,10 +1,12 @@
 import React from "react";
-import SideBar from "../../components/SideBar";
+import Container from "components/Container";
 import PostList from "../../components/Post/PostList";
-import Layout from "../../layout/index";
-interface Props {}
-function HomePage(props: Props) {
-  return <PostList />;
+function HomePage() {
+  return (
+    <Container>
+      <PostList />;
+    </Container>
+  );
 }
 
 export default HomePage;

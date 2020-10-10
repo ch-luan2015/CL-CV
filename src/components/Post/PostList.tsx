@@ -4,9 +4,14 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import { Button } from "@chakra-ui/core";
+import { Button, useColorMode } from "@chakra-ui/core";
 
 function PostList(props) {
+  const { colorMode } = useColorMode();
+  const textColor = {
+    light: "gray.700",
+    dark: "gray.400",
+  };
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageRows] = useState(5);

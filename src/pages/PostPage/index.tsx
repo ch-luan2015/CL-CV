@@ -4,8 +4,6 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import { RequestError } from "../../resources/api/helper";
 import { QuillEditorView } from "../../components/Editors/QuillEditor";
-import Layout from "../../layout";
-import Container from "../../components/Container";
 import MdEditor from "../../components/Editors/MdEditor";
 import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";

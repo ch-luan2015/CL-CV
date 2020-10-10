@@ -1,4 +1,3 @@
-import { CSSReset, ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 import * as React from "react";
 import ReactDOM from "react-dom";
 
@@ -12,12 +11,7 @@ import "../node_modules/antd/dist/antd.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ColorModeProvider>
-        <CSSReset />
-        <App />
-      </ColorModeProvider>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
