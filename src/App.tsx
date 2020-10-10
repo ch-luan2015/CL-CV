@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { CSSReset, ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 
-import Layout from "./layout";
 import CreatePost from "./components/CreatePost";
 import PostPage from "./pages/PostPage";
 import AdminPage from "./pages/AdminPage";
