@@ -1,24 +1,14 @@
 import React, { ReactNode } from "react";
-import Header from "../components/Header";
-import {
-  Heading,
-  Flex,
-  Stack,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Icon,
-  Button,
-  Image,
-} from "@chakra-ui/core";
+import { Heading, Flex, Button, Image, Box } from "@chakra-ui/core";
+import { Link } from "react-router-dom";
 interface Props {
   preview?: boolean;
   children: React.ReactNode;
 }
 
-function AdminLayout({ preview, children }: Props) {
+function AdminLayout({ children }: Props) {
   return (
-    <Flex height="100vh">
+    <Flex height="90vh">
       <Flex
         flexDirection="column"
         maxWidth={150}
@@ -33,29 +23,32 @@ function AdminLayout({ preview, children }: Props) {
         <Flex
           flexDirection="column"
           height="100%"
-          pt={10}
+          p={10}
           display="flex"
           justifyContent="space-between"
         >
           <Flex flexDirection="column">
-            <Button
-              variant="ghost"
-              leftIcon="at-sign"
-              display="flex"
-              justifyContent="flex-start"
-            >
-              Viết Bài
-            </Button>
-            <Button
-              variant="ghost"
-              leftIcon="email"
-              display="flex"
-              alignItems="center"
-              flexDirection="row"
-              justifyContent="flex-start"
-            >
-              Quản Lý
-            </Button>
+            <Link to="/admin/post">
+              <Button
+                variant="ghost"
+                leftIcon="plus-square"
+                display="flex"
+                justifyContent="flex-start"
+              >
+                Viết Bài
+              </Button>
+            </Link>
+
+            <Link to="/admin/table">
+              <Button
+                variant="ghost"
+                leftIcon="edit"
+                display="flex"
+                justifyContent="flex-start"
+              >
+                Quản lý bài viết
+              </Button>
+            </Link>
           </Flex>
           <Button
             variant="ghost"
@@ -94,7 +87,7 @@ function AdminLayout({ preview, children }: Props) {
             shadow="6xl"
             maxWidth="100%"
           >
-            {children}
+            <Box>{children}</Box>
           </Flex>
         </Flex>
       </Flex>

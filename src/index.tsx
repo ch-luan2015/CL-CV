@@ -3,15 +3,21 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "./assets/main-tailwind.css";
+// import "./assets/main-tailwind.css";
 import "../node_modules/normalize.css/normalize.css";
 import "../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
 import "../node_modules/antd/dist/antd.css";
+import { CSSReset, ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <ColorModeProvider>
+        <CSSReset />
+        <App />
+      </ColorModeProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
