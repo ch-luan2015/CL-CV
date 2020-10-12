@@ -9,6 +9,7 @@ import {
   InputGroup,
   InputRightElement,
   Icon,
+  Box,
 } from "@chakra-ui/core";
 import Container from "../components/Container";
 
@@ -93,9 +94,8 @@ const HomeLayout = ({ children }) => {
         <Flex
           flexDirection="column"
           justify="flex-start"
-          align="center"
-          maxWidth="100%"
-          mt={8}
+          align="flex-start"
+          minWidth="100%"
         >
           <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
             All Posts
@@ -104,6 +104,7 @@ const HomeLayout = ({ children }) => {
             {filteredBlogPosts.map((frontMatter) => (
               <BlogPost key={frontMatter.title} {...frontMatter} />
             ))} */}
+
           {children}
         </Flex>
       </Stack>

@@ -41,15 +41,21 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <Stack align="center" justify="center" mt={8} w="100%">
-      {/* <PostSearch /> */}
+    <Box width="100%">
+      <Flex
+        width="100%"
+        alignItems="stretch"
+        justifyContent="flex-start"
+        flexDirection="column"
+      >
+        {/* <PostSearch /> */}
 
-      {posts === undefined ? (
-        <Text className="text-center">Loading ... </Text>
-      ) : (
-        posts.map((post: any) => (
-          <Link to={`/blog/${post.id}`} key={post.id}>
-            {/* <Card
+        {posts === undefined ? (
+          <Text className="text-center">Loading ... </Text>
+        ) : (
+          posts.map((post: any) => (
+            <Link to={`/blog/${post.id}`} key={post.id}>
+              {/* <Card
               id={post.id}
               content={post.content}
               subject={post.subject}
@@ -58,18 +64,34 @@ function PostList(props) {
               commentCount={post.commentCount}
               tags={post.tags}
             /> */}
-            <Box p={5} shadow="md" borderWidth="1px">
-              <Heading fontSize="xl">{post.subject}</Heading>
-              <Text mt={4}>{post.subject}</Text>
-            </Box>
-          </Link>
-        ))
-      )}
-
-      <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
+              <Box mb={8} display="block" width="100%">
+                <Heading size="md" as="h3" mb={2} fontWeight="medium">
+                  {post.subject}
+                </Heading>
+                <Text
+                  color="gray.500"
+                  minWidth="105px"
+                  textAlign={["left", "right"]}
+                  mb={[4, 0]}
+                >
+                  Views
+                </Text>
+                <Text>{post.subject}</Text>
+              </Box>
+            </Link>
+          ))
+        )}
+      </Flex>
+      <Button
+        variantColor="blue"
+        onClick={addPageRows}
+        isLoading={isLoading}
+        mx="40%"
+        width="20%"
+      >
         Xem Thêm
       </Button>
-    </Stack>
+    </Box>
   );
 }
 
