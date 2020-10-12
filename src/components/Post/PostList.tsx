@@ -54,8 +54,9 @@ function PostList(props) {
           <Text className="text-center">Loading ... </Text>
         ) : (
           posts.map((post: any) => (
-            <Link to={`/blog/${post.id}`} key={post.id}>
-              {/* <Card
+            <>
+              <Link to={`/blog/${post.id}`} key={post.id}>
+                {/* <Card
               id={post.id}
               content={post.content}
               subject={post.subject}
@@ -64,21 +65,32 @@ function PostList(props) {
               commentCount={post.commentCount}
               tags={post.tags}
             /> */}
-              <Box mb={8} display="block" width="100%">
-                <Heading size="md" as="h3" mb={2} fontWeight="medium">
-                  {post.subject}
-                </Heading>
-                <Text
-                  color="gray.500"
-                  minWidth="105px"
-                  textAlign={["left", "right"]}
-                  mb={[4, 0]}
-                >
-                  Views
-                </Text>
-                <Text>{post.subject}</Text>
-              </Box>
-            </Link>
+                <Box mb={8} display="block" width="100%">
+                  <Heading size="md" as="h3" mb={2} fontWeight="medium">
+                    {post.subject}
+                  </Heading>
+                  <Text
+                    color="gray.500"
+                    minWidth="105px"
+                    textAlign={["left", "right"]}
+                    mb={[4, 0]}
+                  >
+                    Views
+                  </Text>
+                  <Text>{post.subject}</Text>
+                </Box>
+              </Link>
+
+              <Card
+                id={post.id}
+                content={post.content}
+                subject={post.subject}
+                createdBy={post.createdBy}
+                createdAt={post.createdAt}
+                commentCount={post.commentCount}
+                tags={post.tags}
+              />
+            </>
           ))
         )}
       </Flex>
