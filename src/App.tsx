@@ -9,9 +9,9 @@ import UploadImage from "./components/UploadImageTest/UploadImage";
 import PostTable from "./components/Post/PostTable";
 import MdEditor from "./components/Editors/MdEditor";
 import PostUpdate from "./components/Post/PostUpdate";
-import BlogLayout from "layout/BlogLayout";
-import HomeLayout from "layout/HomeLayout";
-import AdminLayout from "layout/AdminLayout";
+import BlogLayout from "./layout/BlogLayout";
+import HomeLayout from "./layout/HomeLayout";
+import AdminLayout from "./layout/HomeLayout";
 function App() {
   return (
     <Router>

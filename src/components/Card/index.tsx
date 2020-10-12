@@ -28,7 +28,7 @@ const Card: React.FC<PostCardProps> = (props) => {
   };
 
   return (
-    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+    <Box minW="lg" borderWidth="1px" rounded="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
       <Box p="6">

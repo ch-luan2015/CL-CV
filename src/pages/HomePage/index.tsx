@@ -1,8 +1,12 @@
 import React from "react";
-import Container from "components/Container";
 import PostList from "../../components/Post/PostList";
+import { Box } from "@chakra-ui/core";
 function HomePage() {
-  return <PostList />;
+  return (
+    <Box w="100%">
+      <PostList />;
+    </Box>
+  );
 }
 
 export default HomePage;

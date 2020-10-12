@@ -4,7 +4,15 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import { Button, useColorMode } from "@chakra-ui/core";
+import {
+  Button,
+  useColorMode,
+  Box,
+  Heading,
+  Stack,
+  Text,
+  Flex,
+} from "@chakra-ui/core";
 
 function PostList(props) {
   const { colorMode } = useColorMode();
@@ -33,35 +41,35 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <div>
+    <Stack align="center" justify="center" mt={8} w="100%">
       {/* <PostSearch /> */}
 
       {posts === undefined ? (
-        <div className="text-center">Loading ... </div>
+        <Text className="text-center">Loading ... </Text>
       ) : (
         posts.map((post: any) => (
-          <div key={post.id}>
-            <Link to={`/blog/${post.id}`}>
-              <Card
-                id={post.id}
-                content={post.content}
-                subject={post.subject}
-                createdBy={post.createdBy}
-                createdAt={post.createdAt}
-                commentCount={post.commentCount}
-                tags={post.tags}
-              />
-            </Link>
-          </div>
+          <Link to={`/blog/${post.id}`} key={post.id}>
+            {/* <Card
+              id={post.id}
+              content={post.content}
+              subject={post.subject}
+              createdBy={post.createdBy}
+              createdAt={post.createdAt}
+              commentCount={post.commentCount}
+              tags={post.tags}
+            /> */}
+            <Box p={5} shadow="md" borderWidth="1px">
+              <Heading fontSize="xl">{post.subject}</Heading>
+              <Text mt={4}>{post.subject}</Text>
+            </Box>
+          </Link>
         ))
       )}
 
-      <div className="w-full text-center container">
-        <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
-          Xem Thêm
-        </Button>
-      </div>
-    </div>
+      <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
+        Xem Thêm
+      </Button>
+    </Stack>
   );
 }
 

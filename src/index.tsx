@@ -8,15 +8,12 @@ import "../node_modules/normalize.css/normalize.css";
 import "../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
 import "../node_modules/antd/dist/antd.css";
-import { CSSReset, ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
-
+import { CSSReset, ThemeProvider } from "@chakra-ui/core";
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <ColorModeProvider>
-        <CSSReset />
-        <App />
-      </ColorModeProvider>
+      <CSSReset />
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { useState } from "react";
 import {
   useColorMode,
   Heading,
@@ -10,7 +10,7 @@ import {
   InputRightElement,
   Icon,
 } from "@chakra-ui/core";
-import Container from "components/Container";
+import Container from "../components/Container";
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
 // import { frontMatter as blogPosts } from './blog/**/*.mdx';
@@ -92,9 +92,9 @@ const HomeLayout = ({ children }) => {
 
         <Flex
           flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          maxWidth="1280px"
+          justify="flex-start"
+          align="center"
+          maxWidth="100%"
           mt={8}
         >
           <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>

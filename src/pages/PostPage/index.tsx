@@ -7,8 +7,9 @@ import { QuillEditorView } from "../../components/Editors/QuillEditor";
 import MdEditor from "../../components/Editors/MdEditor";
 import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";
-import Container from "components/Container";
+import Container from "../../components/Container";
 
+import { Box } from "@chakra-ui/core";
 const PostPage = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
   const [error, setError] = useState<string>();
@@ -27,7 +28,7 @@ const PostPage = ({ match }: any) => {
   }, [id, setCurrentPost]);
   console.log("match", match);
   return (
-    <div className="w-full">
+    <Box w="100%">
       {currentPost !== undefined ? (
         // <div
         //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
@@ -41,7 +42,7 @@ const PostPage = ({ match }: any) => {
       ) : (
         ""
       )}
-    </div>
+    </Box>
   );
 };
 

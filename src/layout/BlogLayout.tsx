@@ -51,7 +51,7 @@ function BlogLayout({ children }) {
               <Avatar
                 size="md"
                 name="NCL"
-                src={require("assets/images/paleKing.jpg")}
+                src={require("../assets/images/Pale-King.png")}
                 mr={2}
               />
               <Text fontSize="sm" color={textColor[colorMode]}>
