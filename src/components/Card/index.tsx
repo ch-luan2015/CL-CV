@@ -40,18 +40,18 @@ const Card: React.FC<PostCardProps> = (props) => {
       display="flex"
       flexDirection="row"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="space-around"
       mt={4}
       border="1px"
       borderRadius="lg"
       borderColor="gray.200"
       boxShadow="md"
-      height="20vh"
       w="100%"
+      h="25vh"
     >
       <Image
-        w="30%"
-        h="100%"
+        width="40%"
+        height="100%"
         objectFit="cover"
         src={firtsImage != null ? firtsImage : ""}
         alt="new"
@@ -61,30 +61,19 @@ const Card: React.FC<PostCardProps> = (props) => {
 
       <Box
         d="flex"
-        flexDirection="row"
-        w="100%"
-        height="100%"
-        p={4}
+        flexDirection="column"
+        w="60%"
+        ml={4}
         textShadow="sm"
         flexWrap="wrap"
+        mt={2}
+        mb={2}
       >
-        <Box w="70%">
-          <Text fontSize="xl" fontWeight="bold" color="gray.900">
-            {props.subject}
-          </Text>
-          <Text fontSize="md" color="gray.700">
-            {/* {subTitle.length > 1 ? subTitle + "..." : ""} */}
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-            dolore amet praesentium cumque in eos, magni quibusdam perspiciatis
-            unde delectus sequi?
-          </Text>
-        </Box>
-
-        <Box w="30%">
+        <Box w="100%">
           {props.tags ? (
             <Stack spacing={4} isInline>
               {props.tags.map((tag) => (
-                <Tag size="lg" variantColor="gray">
+                <Tag size="md" variantColor="gray">
                   {tag}
                 </Tag>
               ))}
@@ -93,32 +82,47 @@ const Card: React.FC<PostCardProps> = (props) => {
             ""
           )}
         </Box>
+        <Box w="100%">
+          <Text fontSize="xl" fontWeight="bold" color="gray.900">
+            {props.subject}
+          </Text>
+          <Text fontSize="sm" color="gray.700">
+            {/* {subTitle.length > 1 ? subTitle + "..." : ""} */}
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
+            dolore amet praesentium cumque in eos, magni quibusdam perspiciatis
+          </Text>
+        </Box>
 
         <Box
           w="100%"
-          h="50%"
           d="flex"
           flexDirection="row"
           alignItems="center"
           justifyContent="space-between"
           flexWrap="nowrap"
         >
-          <Box w="50%">
-            <Link to="#">
-              <Avatar
-                size="md"
-                name="Author"
-                src={require("../../assets/images/paleKing.jpg")}
-              />
+          <Box
+            w="50%"
+            d="flex"
+            flexDirection="row"
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            {/* <Link to="#" > */}
+            <Avatar
+              size="md"
+              name="Author"
+              src={require("../../assets/images/paleKing.jpg")}
+            />
 
-              <Text fontSize="md" color="gray.700" pl={2}>
-                {props.createdBy}
-              </Text>
-            </Link>
+            <Text fontSize="md" color="gray.700" pl={4}>
+              {props.createdBy}
+            </Text>
+            {/* </Link> */}
           </Box>
 
           <Box w="50%" textAlign="right" mr={8}>
-            <Text fontSize="md" color="gray.600" as="mark">
+            <Text fontSize="sm" color="gray.600" as="mark">
               {local}
             </Text>
           </Box>
