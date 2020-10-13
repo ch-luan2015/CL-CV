@@ -4,7 +4,7 @@ import { PostCardProps } from "../../resources/models/PostCardProps";
 import moment from "moment-timezone";
 import "moment/locale/vi";
 import * as Showdown from "showdown";
-import { Box, Image, Text, Icon, Flex } from "@chakra-ui/core";
+import { Box, Image, Text, Icon, Flex, Stack, Tag } from "@chakra-ui/core";
 
 const htmlToText = require("html-to-text");
 
@@ -27,53 +27,76 @@ const Card: React.FC<PostCardProps> = (props) => {
   var firtsImage = resultImage != null ? resultImage[0] : "";
 
   return (
-    <Box className="md:flex shadow-lg mx-2  md:mx-auto my-10 max-w-lg md:max-w-3xl rounded-lg relative h-40">
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="center"
+      mt={4}
+      border="1px"
+      borderRadius="lg"
+      borderColor="gray.200"
+      boxShadow="md"
+      height="25vh"
+    >
       <Image
-        className=" w-full md:w-1/3  object-cover rounded-lg rounded-r-none pb-5/6"
+        w="300px"
+        h="100%"
+        objectFit="cover"
         src={firtsImage != null ? firtsImage : ""}
         alt="new"
+        borderRadius="lg"
       />
-      <Box className="w-full md:w-2/3 px-4 py-4 bg-white rounded-lg">
-        <Box className="flex items-center ">
-          <Box className="text-black font-bold text-xl mb-2">
+
+      <Box
+        d="flex"
+        flexDirection="row"
+        w="100%"
+        height="100%"
+        p={4}
+        textShadow="sm"
+        flexWrap="wrap"
+      >
+        <Box w="80%">
+          <Text fontSize="xl" fontWeight="bold">
             {props.subject}
-          </Box>
+          </Text>
         </Box>
-        <Text className="text-sm text-gray-700 mt-4">
+
+        {/* <Text className="text-sm text-gray-700 mt-4">
           {subTitle.length > 1 ? subTitle + "..." : ""}
-        </Text>
+        </Text> */}
 
-        <Box className="flex items-center justify-end absolute right-0 bottom-0 m-4">
-          <Box className="flex justify-center items-center">
-            {props.tags
-              ? props.tags.map((tag) => {
-                  return (
-                    <Link
-                      to="#"
-                      className="px-2 py-1 bg-blue-600 text-sm text-green-100 rounded ml-2"
-                    >
-                      {tag}
-                    </Link>
-                  );
-                })
-              : " "}
-          </Box>
+        <Box w="20%">
+          {props.tags ? (
+            <Stack spacing={4} isInline>
+              {props.tags.map((tag) => (
+                <Tag size="lg" variantColor="gray">
+                  {tag}
+                </Tag>
+              ))}
+            </Stack>
+          ) : (
+            " "
+          )}
         </Box>
 
-        <Flex direction="row" alignItems="center" justify="between">
-          <Flex direction="row" alignItems="center">
+        <Box w="100%" h="50%" d="flex" flexDirection="row" flexWrap="nowrap">
+          <Link to="#">
             <Image
               src={require("../../assets/images/paleKing.jpg")}
               rounded="full"
               size={12}
               alt="avatar"
             />
-            <Text className="pl-2">{props.createdBy}</Text>
-            <Link to="#" className="text-gray-700 text-sm mx-3"></Link>
-          </Flex>
 
-          <span className="font-light text-sm text-gray-600">{local}</span>
-        </Flex>
+            <Text pl={2}>{props.createdBy}</Text>
+          </Link>
+
+          <Box>
+            <Text as="mark">{local}</Text>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

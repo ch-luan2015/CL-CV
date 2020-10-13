@@ -90,16 +90,15 @@ const HomeLayout = ({ children }) => {
               <BlogPost {...monorepo} />
             </Flex>
           )} */}
-
+        <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
+          All Posts
+        </Heading>
         <Flex
           flexDirection="column"
           justify="flex-start"
           align="flex-start"
           minWidth="100%"
         >
-          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-            All Posts
-          </Heading>
           {/* {!filteredBlogPosts.length && "No posts found."}
             {filteredBlogPosts.map((frontMatter) => (
               <BlogPost key={frontMatter.title} {...frontMatter} />

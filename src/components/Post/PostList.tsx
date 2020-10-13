@@ -4,15 +4,7 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import {
-  Button,
-  useColorMode,
-  Box,
-  Heading,
-  Stack,
-  Text,
-  Flex,
-} from "@chakra-ui/core";
+import { Button, useColorMode, Box } from "@chakra-ui/core";
 
 function PostList(props) {
   const { colorMode } = useColorMode();
@@ -41,46 +33,15 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <Box width="100%">
-      <Flex
-        width="100%"
-        alignItems="stretch"
-        justifyContent="flex-start"
-        flexDirection="column"
-      >
-        {/* <PostSearch /> */}
+    <Box w="100%">
+      {/* <PostSearch /> */}
 
-        {posts === undefined ? (
-          <Text className="text-center">Loading ... </Text>
-        ) : (
-          posts.map((post: any) => (
-            <>
-              <Link to={`/blog/${post.id}`} key={post.id}>
-                {/* <Card
-              id={post.id}
-              content={post.content}
-              subject={post.subject}
-              createdBy={post.createdBy}
-              createdAt={post.createdAt}
-              commentCount={post.commentCount}
-              tags={post.tags}
-            /> */}
-                <Box mb={8} display="block" width="100%">
-                  <Heading size="md" as="h3" mb={2} fontWeight="medium">
-                    {post.subject}
-                  </Heading>
-                  <Text
-                    color="gray.500"
-                    minWidth="105px"
-                    textAlign={["left", "right"]}
-                    mb={[4, 0]}
-                  >
-                    Views
-                  </Text>
-                  <Text>{post.subject}</Text>
-                </Box>
-              </Link>
-
+      {posts === undefined ? (
+        <div className="text-center">Loading ... </div>
+      ) : (
+        posts.map((post: any) => (
+          <div key={post.id}>
+            <Link to={`/blog/${post.id}`}>
               <Card
                 id={post.id}
                 content={post.content}
@@ -90,19 +51,16 @@ function PostList(props) {
                 commentCount={post.commentCount}
                 tags={post.tags}
               />
-            </>
-          ))
-        )}
-      </Flex>
-      <Button
-        variantColor="blue"
-        onClick={addPageRows}
-        isLoading={isLoading}
-        mx="40%"
-        width="20%"
-      >
-        Xem Thêm
-      </Button>
+            </Link>
+          </div>
+        ))
+      )}
+
+      <div className="w-full text-center container">
+        <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
+          Xem Thêm
+        </Button>
+      </div>
     </Box>
   );
 }
