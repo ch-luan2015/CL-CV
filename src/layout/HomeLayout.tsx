@@ -51,7 +51,7 @@ const HomeLayout = ({ children }) => {
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="80%"
+          maxWidth="90%"
         >
           <Heading w="100%" letterSpacing="tight" mb={2} as="h1" size="2xl">
             Blog
@@ -97,7 +97,7 @@ const HomeLayout = ({ children }) => {
           flexDirection="column"
           justify="flex-start"
           align="flex-start"
-          maxWidth="80%"
+          maxWidth="90%"
         >
           {/* {!filteredBlogPosts.length && "No posts found."}
             {filteredBlogPosts.map((frontMatter) => (

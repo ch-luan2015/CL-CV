@@ -30,13 +30,12 @@ function BlogLayout({ children }) {
         alignItems="flex-start"
         m="0 auto 4rem auto"
         maxWidth="1280px"
-        w="100%"
       >
         <Flex
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="1280px"
+          maxWidth="1000px"
           w="100%"
         >
           <Flex
@@ -55,11 +54,11 @@ function BlogLayout({ children }) {
                 mr={2}
               />
               <Text fontSize="sm" color={textColor[colorMode]}>
-                {"NCL"}
+                NCL
               </Text>
             </Flex>
           </Flex>
-          {children}
+          <Box maxWidth="100%">{children}</Box>
         </Flex>
       </Stack>
     </Container>

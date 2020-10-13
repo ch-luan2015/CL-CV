@@ -4,7 +4,7 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import { Button, useColorMode, Box } from "@chakra-ui/core";
+import { Button, useColorMode, Box, Flex, Image, Text } from "@chakra-ui/core";
 
 function PostList(props) {
   const { colorMode } = useColorMode();
@@ -33,16 +33,25 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <Box maxWidth="1000px">
+    <Box
+      d="flex"
+      minWidth="1000px"
+      w="100%"
+      // w={["90vw", "90vw", "90vw", "100vw"]}
+      // direction={["row", "row", "column", "column"]}
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="space-around"
+    >
       {/* <PostSearch /> */}
 
       {posts === undefined ? (
         <div className="text-center">Loading ... </div>
       ) : (
         posts.map((post: any) => (
-          <div key={post.id}>
+          <Box key={post.id}>
             <Link to={`/blog/${post.id}`}>
-              <Card
+              {/* <Card
                 id={post.id}
                 content={post.content}
                 subject={post.subject}
@@ -50,17 +59,75 @@ function PostList(props) {
                 createdAt={post.createdAt}
                 commentCount={post.commentCount}
                 tags={post.tags}
-              />
+              /> */}
+
+              <Box p={4} display={{ md: "flex" }}>
+                <Box>
+                  <Image
+                    rounded="lg"
+                    width={{ md: 40 }}
+                    src="https://bit.ly/2jYM25F"
+                    alt="Woman paying for a purchase"
+                  />
+                </Box>
+                <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
+                  <Text
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    fontSize="sm"
+                    letterSpacing="wide"
+                    color="teal.600"
+                  >
+                    Marketing
+                  </Text>
+
+                  <Text mt={2} color="gray.500">
+                    Getting a new business off the ground is a lot of hard work.
+                    Here are five ideas you can use to find your first
+                    customers.
+                  </Text>
+                </Box>
+              </Box>
             </Link>
-          </div>
+          </Box>
         ))
       )}
 
-      <div className="w-full text-center container">
-        <Button variantColor="blue" onClick={addPageRows} isLoading={isLoading}>
-          Xem Thêm
-        </Button>
-      </div>
+      {/* <Box p={4} display={{ md: "flex" }}>
+        <Box>
+          <Image
+            rounded="lg"
+            width={{ md: 40 }}
+            src="https://bit.ly/2jYM25F"
+            alt="Woman paying for a purchase"
+          />
+        </Box>
+        <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
+          <Text
+            fontWeight="bold"
+            textTransform="uppercase"
+            fontSize="sm"
+            letterSpacing="wide"
+            color="teal.600"
+          >
+            Marketing
+          </Text>
+
+          <Text mt={2} color="gray.500">
+            Getting a new business off the ground is a lot of hard work. Here
+            are five ideas you can use to find your first customers.
+          </Text>
+        </Box>
+      </Box> */}
+
+      <Button
+        mt={4}
+        variantColor="blue"
+        onClick={addPageRows}
+        isLoading={isLoading}
+      >
+        Xem Thêm
+      </Button>
     </Box>
   );
 }

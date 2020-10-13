@@ -37,9 +37,9 @@ const Container = ({ children }) => {
         width="100%"
         bg={navBgColor[colorMode]}
         as="nav"
-        p={8}
-        mt={[0, 8]}
-        mb={8}
+        p={4}
+        mt={[0, 4]}
+        mb={4}
         mx="auto"
       >
         {/* <IconButton
