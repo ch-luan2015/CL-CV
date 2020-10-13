@@ -4,7 +4,16 @@ import { PostCardProps } from "../../resources/models/PostCardProps";
 import moment from "moment-timezone";
 import "moment/locale/vi";
 import * as Showdown from "showdown";
-import { Box, Image, Text, Icon, Flex, Stack, Tag } from "@chakra-ui/core";
+import {
+  Box,
+  Image,
+  Text,
+  Icon,
+  Flex,
+  Stack,
+  Tag,
+  Avatar,
+} from "@chakra-ui/core";
 
 const htmlToText = require("html-to-text");
 
@@ -37,15 +46,17 @@ const Card: React.FC<PostCardProps> = (props) => {
       borderRadius="lg"
       borderColor="gray.200"
       boxShadow="md"
-      height="25vh"
+      height="20vh"
+      w="100%"
     >
       <Image
-        w="300px"
+        w="30%"
         h="100%"
         objectFit="cover"
         src={firtsImage != null ? firtsImage : ""}
         alt="new"
-        borderRadius="lg"
+        borderTopLeftRadius="lg"
+        borderBottomLeftRadius="lg"
       />
 
       <Box
@@ -57,17 +68,19 @@ const Card: React.FC<PostCardProps> = (props) => {
         textShadow="sm"
         flexWrap="wrap"
       >
-        <Box w="80%">
-          <Text fontSize="xl" fontWeight="bold">
+        <Box w="70%">
+          <Text fontSize="xl" fontWeight="bold" color="gray.900">
             {props.subject}
+          </Text>
+          <Text fontSize="md" color="gray.700">
+            {/* {subTitle.length > 1 ? subTitle + "..." : ""} */}
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
+            dolore amet praesentium cumque in eos, magni quibusdam perspiciatis
+            unde delectus sequi?
           </Text>
         </Box>
 
-        {/* <Text className="text-sm text-gray-700 mt-4">
-          {subTitle.length > 1 ? subTitle + "..." : ""}
-        </Text> */}
-
-        <Box w="20%">
+        <Box w="30%">
           {props.tags ? (
             <Stack spacing={4} isInline>
               {props.tags.map((tag) => (
@@ -77,24 +90,37 @@ const Card: React.FC<PostCardProps> = (props) => {
               ))}
             </Stack>
           ) : (
-            " "
+            ""
           )}
         </Box>
 
-        <Box w="100%" h="50%" d="flex" flexDirection="row" flexWrap="nowrap">
-          <Link to="#">
-            <Image
-              src={require("../../assets/images/paleKing.jpg")}
-              rounded="full"
-              size={12}
-              alt="avatar"
-            />
+        <Box
+          w="100%"
+          h="50%"
+          d="flex"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          flexWrap="nowrap"
+        >
+          <Box w="50%">
+            <Link to="#">
+              <Avatar
+                size="md"
+                name="Author"
+                src={require("../../assets/images/paleKing.jpg")}
+              />
 
-            <Text pl={2}>{props.createdBy}</Text>
-          </Link>
+              <Text fontSize="md" color="gray.700" pl={2}>
+                {props.createdBy}
+              </Text>
+            </Link>
+          </Box>
 
-          <Box>
-            <Text as="mark">{local}</Text>
+          <Box w="50%" textAlign="right" mr={8}>
+            <Text fontSize="md" color="gray.600" as="mark">
+              {local}
+            </Text>
           </Box>
         </Box>
       </Box>

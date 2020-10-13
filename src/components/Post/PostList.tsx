@@ -33,7 +33,7 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <Box w="100%">
+    <Box maxWidth="1000px">
       {/* <PostSearch /> */}
 
       {posts === undefined ? (

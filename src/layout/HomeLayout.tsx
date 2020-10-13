@@ -42,25 +42,25 @@ const HomeLayout = ({ children }) => {
         as="main"
         spacing={8}
         justifyContent="center"
-        alignItems="flex-start"
+        alignItems="center"
         m="0 auto 4rem auto"
         maxWidth="1280px"
       >
         <Flex
-          className="w-full"
+          w="100%"
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="1280px"
+          maxWidth="80%"
         >
-          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
+          <Heading w="100%" letterSpacing="tight" mb={2} as="h1" size="2xl">
             Blog
           </Heading>
-          <Text color={secondaryTextColor[colorMode]}>
+          {/* <Text color={secondaryTextColor[colorMode]}>
             {`I've been writing online since 2014, mostly about web development and tech careers.
                 In total, I've written  articles on this site.
                 Use the search below to filter by title.`}
-          </Text>
+          </Text> */}
           <InputGroup my={4} mr={4} w="100%">
             <Input
               aria-label="Search articles"
@@ -97,7 +97,7 @@ const HomeLayout = ({ children }) => {
           flexDirection="column"
           justify="flex-start"
           align="flex-start"
-          minWidth="100%"
+          maxWidth="80%"
         >
           {/* {!filteredBlogPosts.length && "No posts found."}
             {filteredBlogPosts.map((frontMatter) => (
