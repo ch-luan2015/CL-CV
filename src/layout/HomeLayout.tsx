@@ -45,13 +45,14 @@ const HomeLayout = ({ children }) => {
         alignItems="center"
         m="0 auto 4rem auto"
         maxWidth="1280px"
+        w="100%"
       >
         <Flex
-          w="100%"
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="90%"
+          maxWidth="1000px"
+          w="100%"
         >
           <Heading w="100%" letterSpacing="tight" mb={2} as="h1" size="2xl">
             Blog
@@ -90,15 +91,23 @@ const HomeLayout = ({ children }) => {
               <BlogPost {...monorepo} />
             </Flex>
           )} */}
-        <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-          All Posts
-        </Heading>
+
         <Flex
           flexDirection="column"
           justify="flex-start"
           align="flex-start"
-          maxWidth="90%"
+          maxWidth="1000px"
+          w="100%"
         >
+          <Heading
+            w="100%"
+            letterSpacing="tight"
+            mb={4}
+            size="xl"
+            fontWeight={700}
+          >
+            All Posts
+          </Heading>
           {/* {!filteredBlogPosts.length && "No posts found."}
             {filteredBlogPosts.map((frontMatter) => (
               <BlogPost key={frontMatter.title} {...frontMatter} />

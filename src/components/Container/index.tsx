@@ -49,11 +49,7 @@ const Container = ({ children }) => {
         /> */}
 
         {/* <Box> */}
-        <Link to="/">
-          <Button as="a" variant="ghost" p={[1, 4]}>
-            Home
-          </Button>
-        </Link>
+
         <Link to="/blogs">
           <Button as="a" variant="ghost" p={[1, 4]}>
             Blogs
@@ -65,9 +61,14 @@ const Container = ({ children }) => {
           </Button>
         </Link>
 
-        <Link to="/GamePost">
+        <Link to="/project">
           <Button as="a" variant="ghost" p={[1, 4]}>
-            GameWorld
+            Một số sản phẩm của Lựng
+          </Button>
+        </Link>
+        <Link to="/admin">
+          <Button as="a" variant="ghost" p={[1, 4]}>
+            Admin
           </Button>
         </Link>
         {/* </Box> */}

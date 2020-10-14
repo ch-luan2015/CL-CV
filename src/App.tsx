@@ -11,7 +11,7 @@ import MdEditor from "./components/Editors/MdEditor";
 import PostUpdate from "./components/Post/PostUpdate";
 import BlogLayout from "./layout/BlogLayout";
 import HomeLayout from "./layout/HomeLayout";
-import AdminLayout from "./layout/HomeLayout";
+import AdminLayout from "./layout/AdminLayout";
 import {
   AuthenticationProvider,
   useReactOidc,
@@ -66,7 +66,7 @@ function App() {
                 <Route path="/admin/post" exact component={CreatePost} />
                 <Route path="/admin/image" exact component={UploadImage} />
                 <Route path="/admin/table" exact component={PostTable} />
-                <Route path="/admin/markdown" exact component={MdEditor} />
+                {/* <Route path="/admin/markdown" exact component={MdEditor} /> */}
                 <Route path="/admin/update/:id" component={PostUpdate} />
               </Switch>
             </AdminLayout>
@@ -78,3 +78,4 @@ function App() {
 }
 
 export default App;
+// "start": "npm run watch:css && HTTPS=true react-scripts start",

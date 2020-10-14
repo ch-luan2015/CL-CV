@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
 import * as Showdown from "showdown";
-import { Text, Input } from "@chakra-ui/core";
+import { Text, Input, Flex, Button, Box, Divider } from "@chakra-ui/core";
 
 // Data
 import {
@@ -43,11 +43,13 @@ export const PostSettingEditor = (props: PostSettingEditorProps) => {
     [props]
   );
   return (
-    <>
+    <Box mt={4} w="full">
       {/* <Sw checked={settings.canComment} onChange={handleCanCommentChange}>
         Có thể bình luận
       </Sw> */}
-      <Text>Tags</Text>
+      <Text fontSize="lg" fontWeight="bold" color="blue.400">
+        Add Tags
+      </Text>
       <TagSelect
         fill
         value={props.tags}
@@ -55,7 +57,7 @@ export const PostSettingEditor = (props: PostSettingEditorProps) => {
         onSelect={(tag) => props.onTagSelect && props.onTagSelect(tag)}
         onRemove={(tag) => props.onTagRemove && props.onTagRemove(tag)}
       />
-    </>
+    </Box>
   );
 };
 
@@ -91,29 +93,45 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
   };
 
   return (
-    <div className="w-full">
-      <section className="flex flex-col justify-start flex-wrap ">
-        <div className="w-full mb-4">
-          <Input
-            // focusBorderColor="true"
-            name="title"
-            // variant="flushed"
-            value={subject}
-            onChange={handleInputChange}
-            placeholder="Tiêu đề bài viết"
-          />
-        </div>
+    <Flex
+      direction="column"
+      wrap="wrap"
+      justify="flex-start"
+      align="center"
+      w="full"
+      h="auto"
+    >
+      <Box w="full" mb={4}>
+        <Input
+          // focusBorderColor="true"
+          name="title"
+          // variant="flushed"
+          value={subject}
+          onChange={handleInputChange}
+          placeholder="Tiêu đề bài viết"
+        />
+      </Box>
 
-        <div className="w-full flex flex-row justify-center align-middle ">
-          <div className="w-1/2 pr-2">
-            {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
-            <MdEditor onChange={handleContentChange} initialValue={content} />
-          </div>
-          <div className="w-1/2 pl-2 text-align">
-            <Markdown source={content} renderers={{ code: CodeBlock }} />
-          </div>
-        </div>
-      </section>
-    </div>
+      <Flex
+        w="full"
+        direction="row"
+        justify="start"
+        align="start"
+        flexWrap="wrap"
+      >
+        <Box w="45%" pr={2}>
+          {/* <QuillEditor onChange={handleContentChange} initialValue={content} /> */}
+          <MdEditor onChange={handleContentChange} initialValue={content} />
+        </Box>
+        <Divider
+          orientation="vertical"
+          borderColor="red.200"
+          borderWidth="4px"
+        />
+        <Box w="45%" backgroundColor="gray.200" pl={2}>
+          <Markdown source={content} renderers={{ code: CodeBlock }} />
+        </Box>
+      </Flex>
+    </Flex>
   );
 };

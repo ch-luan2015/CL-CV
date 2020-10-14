@@ -43,9 +43,10 @@ function PostList(props) {
   return (
     <Flex
       maxWidth="1000px"
-      height="100vh"
+      height="100%"
       direction="column"
-      alignItems="center"
+      alignItems="stretch"
+      w="100%"
     >
       {/* <PostSearch /> */}
 
@@ -79,6 +80,11 @@ function PostList(props) {
         variantColor="blue"
         onClick={addPageRows}
         isLoading={isLoading}
+        alignSelf="center"
+        size="md"
+        border="1px"
+        borderRadius={4}
+        borderColor="blue.400"
       >
         Xem Thêm
       </Button>

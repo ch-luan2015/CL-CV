@@ -50,46 +50,33 @@ function AdminLayout({ children }: Props) {
               </Button>
             </Link>
           </Flex>
-          <Button
+          {/* <Button
             variant="ghost"
             leftIcon="settings"
             display="flex"
             justifyContent="flex-start"
           >
             Cài đặt
-          </Button>
+          </Button> */}
         </Flex>
       </Flex>
       <Flex
         width="100%"
-        flexDirection="column"
+        flexDirection="row"
         flexWrap="nowrap"
-        justifyContent="space-around"
+        justifyContent="center"
         p="30px"
       >
-        <Flex alignItems="center" justifyContent="space-between" p="10px">
-          <Heading>Đăng bài viết</Heading>
-          <Button variantColor="green">Lưu</Button>
-        </Flex>
-
-        <Flex
-          flexDirection="column"
-          flexWrap="nowrap"
-          justifyContent="space-between"
-          alignItems="center"
-          p="30px"
+        <Box
+          width="100%"
+          borderRadius={8}
+          backgroundColor="gray.100"
+          shadow="6xl"
           maxWidth="100%"
+          height="auto"
         >
-          <Flex
-            width="100%"
-            borderRadius={25}
-            backgroundColor="gray.100"
-            shadow="6xl"
-            maxWidth="100%"
-          >
-            <Box>{children}</Box>
-          </Flex>
-        </Flex>
+          {children}
+        </Box>
       </Flex>
     </Flex>
   );

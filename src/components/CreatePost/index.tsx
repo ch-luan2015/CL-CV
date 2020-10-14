@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Flex } from "@chakra-ui/core";
+import { Button, Flex, Box, Grid } from "@chakra-ui/core";
 
 import { postAPI } from "../../resources/api/post";
 import {
@@ -63,6 +63,8 @@ function CreatePost() {
       alignItems="center"
       p="30px"
       width="100%"
+      wrap="nowrap"
+      h="auto"
     >
       <PostContentEditor
         content={request.content}
@@ -78,9 +80,9 @@ function CreatePost() {
 
       <Button
         size="md"
-        border="2px"
-        borderRadius="5px"
-        borderColor="blue.500"
+        border="1px"
+        borderRadius={8}
+        borderColor="blue.400"
         variantColor="blue"
         onClick={handleSave}
         mt={2}
@@ -91,4 +93,5 @@ function CreatePost() {
   );
 }
 
-export default withOidcSecure(CreatePost);
+// export default withOidcSecure(CreatePost);
+export default CreatePost;
