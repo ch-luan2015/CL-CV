@@ -55,17 +55,17 @@ const Card: React.FC<PostCardProps> = (props) => {
         objectFit="cover"
         src={firtsImage != null ? firtsImage : ""}
         alt="new"
-        borderTopLeftRadius="lg"
-        borderBottomLeftRadius="lg"
+        borderRadius="lg"
       />
 
       <Box
+        backgroundColor="gray.300"
         d="flex"
-        flexDirection="column"
+        flexDirection="row"
         justifyContent="space-around"
-        alignItems="center"
-        width="65%"
-        minHeight="100%"
+        alignItems="stretch"
+        width="100%"
+        h-full
         ml={4}
         textShadow="sm"
       >
