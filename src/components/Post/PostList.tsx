@@ -34,14 +34,9 @@ function PostList(props) {
   }, [pageIndex, pageRows]);
   return (
     <Box
-      d="flex"
-      minWidth="1000px"
-      w="100%"
+      maxWidth="1000px"
       // w={["90vw", "90vw", "90vw", "100vw"]}
       // direction={["row", "row", "column", "column"]}
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="space-around"
     >
       {/* <PostSearch /> */}
 
@@ -49,9 +44,9 @@ function PostList(props) {
         <div className="text-center">Loading ... </div>
       ) : (
         posts.map((post: any) => (
-          <Box key={post.id}>
+          <Box key={post.id} w="100%">
             <Link to={`/blog/${post.id}`}>
-              {/* <Card
+              <Card
                 id={post.id}
                 content={post.content}
                 subject={post.subject}
@@ -59,35 +54,7 @@ function PostList(props) {
                 createdAt={post.createdAt}
                 commentCount={post.commentCount}
                 tags={post.tags}
-              /> */}
-
-              <Box p={4} display={{ md: "flex" }}>
-                <Box>
-                  <Image
-                    rounded="lg"
-                    width={{ md: 40 }}
-                    src="https://bit.ly/2jYM25F"
-                    alt="Woman paying for a purchase"
-                  />
-                </Box>
-                <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
-                  <Text
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    fontSize="sm"
-                    letterSpacing="wide"
-                    color="teal.600"
-                  >
-                    Marketing
-                  </Text>
-
-                  <Text mt={2} color="gray.500">
-                    Getting a new business off the ground is a lot of hard work.
-                    Here are five ideas you can use to find your first
-                    customers.
-                  </Text>
-                </Box>
-              </Box>
+              />
             </Link>
           </Box>
         ))

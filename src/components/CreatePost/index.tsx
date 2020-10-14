@@ -16,6 +16,7 @@ import {
   PostContentEditor,
   PostSettingEditor,
 } from "../../components/Post/PostEditor";
+import { withOidcSecure } from "@axa-fr/react-oidc-context";
 
 const initialState: CreatePostRequest = {
   content: "",
@@ -90,4 +91,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default withOidcSecure(CreatePost);

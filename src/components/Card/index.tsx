@@ -37,20 +37,20 @@ const Card: React.FC<PostCardProps> = (props) => {
 
   return (
     <Box
+      d="flex"
       flexDirection="row"
+      flexWrap="nowrap"
       alignItems="center"
-      justifyContent="space-around"
+      justifyContent="space-between"
       mt={4}
       border="1px"
       borderRadius="lg"
       borderColor="gray.200"
       boxShadow="md"
       w="100%"
-      h="100%"
     >
       <Image
-        maxWidth="25%"
-        height="30%"
+        w="30%"
         size="250px"
         objectFit="cover"
         src={firtsImage != null ? firtsImage : ""}
@@ -63,13 +63,13 @@ const Card: React.FC<PostCardProps> = (props) => {
         d="flex"
         flexDirection="column"
         justifyContent="space-around"
-        alignItems="justify"
-        width="70%"
+        alignItems="center"
+        width="65%"
         minHeight="100%"
         ml={4}
         textShadow="sm"
       >
-        <Box w="100%" h="30%">
+        <Box w="100%">
           {props.tags ? (
             <Stack spacing={4} isInline>
               {props.tags.map((tag) => (
@@ -83,7 +83,7 @@ const Card: React.FC<PostCardProps> = (props) => {
           )}
         </Box>
 
-        <Box w="100%" h="30%">
+        <Box w="100%">
           <Text fontSize="xl" fontWeight="bold" color="gray.900">
             {props.subject}
           </Text>
@@ -96,7 +96,6 @@ const Card: React.FC<PostCardProps> = (props) => {
 
         <Box
           w="100%"
-          h="30%"
           d="flex"
           flexDirection="row"
           alignItems="center"
