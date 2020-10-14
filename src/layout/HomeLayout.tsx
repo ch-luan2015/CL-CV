@@ -94,10 +94,10 @@ const HomeLayout = ({ children }) => {
           All Posts
         </Heading>
         <Flex
-          // flexDirection="column"
-          // justify="flex-start"
-          // align="flex-start"
-          maxWidth="100%"
+          flexDirection="column"
+          justify="flex-start"
+          align="flex-start"
+          maxWidth="90%"
         >
           {/* {!filteredBlogPosts.length && "No posts found."}
             {filteredBlogPosts.map((frontMatter) => (

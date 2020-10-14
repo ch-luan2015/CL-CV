@@ -4,7 +4,15 @@ import { PostProps } from "../../resources/models/PostProps";
 import { postAPI } from "../../resources/api/post";
 import Card from "../Card";
 import PostSearch from "./PostSearch";
-import { Button, useColorMode, Box, Flex, Image, Text } from "@chakra-ui/core";
+import {
+  Button,
+  useColorMode,
+  Box,
+  Flex,
+  Divider,
+  Image,
+  Text,
+} from "@chakra-ui/core";
 
 function PostList(props) {
   const { colorMode } = useColorMode();
@@ -33,59 +41,38 @@ function PostList(props) {
       .then(() => setIsLoading(false));
   }, [pageIndex, pageRows]);
   return (
-    <Box
+    <Flex
       maxWidth="1000px"
-      // w={["90vw", "90vw", "90vw", "100vw"]}
-      // direction={["row", "row", "column", "column"]}
+      height="100vh"
+      direction="column"
+      alignItems="center"
     >
       {/* <PostSearch /> */}
 
-      {posts === undefined ? (
-        <div className="text-center">Loading ... </div>
-      ) : (
-        posts.map((post: any) => (
-          <Box key={post.id} w="100%">
-            <Link to={`/blog/${post.id}`}>
-              <Card
-                id={post.id}
-                content={post.content}
-                subject={post.subject}
-                createdBy={post.createdBy}
-                createdAt={post.createdAt}
-                commentCount={post.commentCount}
-                tags={post.tags}
-              />
-            </Link>
-          </Box>
-        ))
-      )}
-
-      {/* <Box p={4} display={{ md: "flex" }}>
-        <Box>
-          <Image
-            rounded="lg"
-            width={{ md: 40 }}
-            src="https://bit.ly/2jYM25F"
-            alt="Woman paying for a purchase"
-          />
-        </Box>
-        <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
-          <Text
-            fontWeight="bold"
-            textTransform="uppercase"
-            fontSize="sm"
-            letterSpacing="wide"
-            color="teal.600"
-          >
-            Marketing
-          </Text>
-
-          <Text mt={2} color="gray.500">
-            Getting a new business off the ground is a lot of hard work. Here
-            are five ideas you can use to find your first customers.
-          </Text>
-        </Box>
-      </Box> */}
+      <Box>
+        {posts === undefined ? (
+          <div className="text-center">Loading ... </div>
+        ) : (
+          posts.map((post: any) => (
+            <>
+              <Box key={post.id} mt={4}>
+                <Link to={`/blog/${post.id}`}>
+                  <Card
+                    id={post.id}
+                    content={post.content}
+                    subject={post.subject}
+                    createdBy={post.createdBy}
+                    createdAt={post.createdAt}
+                    commentCount={post.commentCount}
+                    tags={post.tags}
+                  />
+                </Link>
+              </Box>
+              <Divider />
+            </>
+          ))
+        )}
+      </Box>
 
       <Button
         mt={4}
@@ -95,7 +82,7 @@ function PostList(props) {
       >
         Xem Thêm
       </Button>
-    </Box>
+    </Flex>
   );
 }
 
