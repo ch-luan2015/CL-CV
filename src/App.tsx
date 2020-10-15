@@ -54,7 +54,7 @@ function App() {
             </BlogLayout>
           </Route>
 
-          <Route exact path={["/", "/blogs"]}>
+          <Route exact path={["/"]}>
             <HomeLayout>
               <Route path="/" exact component={HomePage} />
             </HomeLayout>

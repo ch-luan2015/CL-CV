@@ -46,14 +46,19 @@ function BlogLayout({ children }) {
             w="100%"
             mb={4}
           >
-            <Flex align="center">
+            <Flex
+              direction="row"
+              justify="flex-start"
+              align="flex-end"
+              alignContent="flex-end"
+            >
               <Avatar
-                size="md"
-                name="NCL"
-                src={require("../assets/images/Pale-King.png")}
-                mr={2}
+                size="sm"
+                name="Author"
+                src={require("../assets/images/paleKing.jpg")}
               />
-              <Text fontSize="sm" color={textColor[colorMode]}>
+
+              <Text fontSize="md" color="gray.700" pl={2} flex="1 1 auto">
                 NCL
               </Text>
             </Flex>

@@ -23,6 +23,7 @@
     "antd": "^4.6.4",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^0.20.0",
+    "commonmark-react-renderer": "^4.3.5",
     "cross-env": "^7.0.2",
     "emotion": "^10.0.27",
     "emotion-theming": "^10.0.27",

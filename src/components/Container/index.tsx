@@ -50,7 +50,7 @@ const Container = ({ children }) => {
 
         {/* <Box> */}
 
-        <Link to="/blogs">
+        <Link to="/">
           <Button as="a" variant="ghost" p={[1, 4]}>
             Blogs
           </Button>

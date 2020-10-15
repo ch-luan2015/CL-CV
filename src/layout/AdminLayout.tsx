@@ -50,14 +50,6 @@ function AdminLayout({ children }: Props) {
               </Button>
             </Link>
           </Flex>
-          {/* <Button
-            variant="ghost"
-            leftIcon="settings"
-            display="flex"
-            justifyContent="flex-start"
-          >
-            Cài đặt
-          </Button> */}
         </Flex>
       </Flex>
       <Flex
