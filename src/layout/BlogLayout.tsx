@@ -35,7 +35,7 @@ function BlogLayout({ children }) {
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="flex-start"
-          maxWidth="1000px"
+          maxWidth="700px"
           w="100%"
         >
           <Flex

@@ -4,7 +4,8 @@ import { postAPI } from "../../resources/api/post";
 import { RequestError } from "../../resources/api/helper";
 import CodeBlock from "../../components/Editors/CodeBlock";
 import Markdown from "react-markdown";
-import { Box } from "@chakra-ui/core";
+import { Box, Flex } from "@chakra-ui/core";
+import ImageBlock from "../../components/Editors/ImageBlock";
 
 const PostPage = ({ match }: any) => {
   const [currentPost, setCurrentPost] = useState<PostProps>();
@@ -12,7 +13,6 @@ const PostPage = ({ match }: any) => {
 
   const id = match.params.id;
 
-  console.log("result");
   useEffect(() => {
     postAPI
       .getPost(id)
@@ -24,19 +24,19 @@ const PostPage = ({ match }: any) => {
       });
   }, [id, setCurrentPost]);
 
-  console.log("current", currentPost);
+  // console.log("current", currentPost !== undefined ? currentPost.content : "");
   return (
-    <Box w="100%" backgroundColor="gray.100">
+    <Box w="100%">
       {currentPost !== undefined ? (
-        // <div
-        //   dangerouslySetInnerHTML={{ __html: `${currentPost.content}` }}
-        // />
-
-        // <ReactMarkDownView initialValue={currentPost.content} />
-        <Markdown
-          renderers={{ code: CodeBlock }}
-          source={currentPost.content}
-        />
+        <Box textAlign="justify">
+          <Markdown
+            renderers={{
+              code: CodeBlock,
+              image: ImageBlock,
+            }}
+            source={currentPost.content}
+          />
+        </Box>
       ) : (
         ""
       )}
