@@ -1,7 +1,6 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { Box } from "@chakra-ui/core";
 
 const CodeBlock = ({ value }) => {
   console.log("value", value);
@@ -14,7 +13,8 @@ const CodeBlock = ({ value }) => {
         width: "auto",
         backgroundColor: "#F7FAFC",
         border: "1px solid #E2E8F0",
-        padding: "4%",
+        padding: "4px",
+        margin: "2%",
       }}
     >
       {value}

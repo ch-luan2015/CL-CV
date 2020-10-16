@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { TagProps } from "../../resources/models/TagProps";
 import { TagSelect } from "../Tags/TagSelect";
 import * as Showdown from "showdown";
-import { Text, Input, Flex, Button, Box, Divider } from "@chakra-ui/core";
+import { Text, Input, Flex, Box, Divider } from "@chakra-ui/core";
 
 // Data
 import {
@@ -12,8 +12,7 @@ import {
 
 import QuillEditor from "../Editors/QuillEditor";
 import MdEditor from "../Editors/MdEditor";
-import Markdown from "react-markdown";
-import CodeBlock from "../Editors/CodeBlock";
+import MarkdownView from "../Editors/MarkdownView";
 
 //Post setting
 export interface PostSettingEditorProps {
@@ -129,7 +128,7 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
           borderWidth="4px"
         />
         <Box w="45%" backgroundColor="gray.200" pl={2}>
-          <Markdown source={content} renderers={{ code: CodeBlock }} />
+          <MarkdownView source={content} />
         </Box>
       </Flex>
     </Flex>

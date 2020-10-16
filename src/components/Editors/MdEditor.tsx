@@ -2,9 +2,7 @@ import * as React from "react";
 import ReactMde, { Suggestion, SaveImageHandler } from "react-mde";
 import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
-import Markdown from "react-markdown";
-
-import CodeBlock from "./CodeBlock";
+import MarkDownView from "./MarkdownView";
 
 const loadSuggestions = async (text: string) => {
   return new Promise<Suggestion[]>((accept, reject) => {
@@ -73,14 +71,14 @@ export const MdEditor = ({ onChange, initialValue }: MdEditor) => {
 
   return (
     <ReactMde
-      initialEditorHeight={600}
-      maxEditorHeight={600}
+      initialEditorHeight={400}
       value={initialValue}
       selectedTab={selectedTab}
       onTabChange={setSelectedTab}
       generateMarkdownPreview={(markdown) =>
         Promise.resolve(
-          <Markdown source={markdown} renderers={{ code: CodeBlock }} />
+          // <Markdown source={markdown} renderers={{ code: CodeBlock }} />
+          <MarkDownView source={markdown} />
         )
       }
       // disablePreview

@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Heading, Flex, Button, Image, Box } from "@chakra-ui/core";
+import React from "react";
+import { Flex, Button, Image, Box } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 interface Props {
   preview?: boolean;
@@ -8,67 +8,63 @@ interface Props {
 
 function AdminLayout({ children }: Props) {
   return (
-    <Flex height="90vh">
+    <Flex
+      direction="row"
+      wrap="wrap"
+      justify="flex-start"
+      alignItems="center"
+      h="100vh"
+    >
       <Flex
-        flexDirection="column"
-        maxWidth={150}
+        flexDirection="row"
+        w="100%"
+        justify="space-between"
         alignItems="center"
-        justifyContent="flex-start"
-        p={10}
+        h="10%"
       >
         <Image
           src="https://uploads-ssl.webflow.com/5f17f616781ada06eddd5171/5f1931b1f08060971ababbfb_NeverSpam-logo.png"
-          maxWidth="100px"
+          maxWidth="10%"
+          ml={8}
         />
-        <Flex
-          flexDirection="column"
-          height="100%"
-          p={10}
-          display="flex"
-          justifyContent="space-between"
-        >
-          <Flex flexDirection="column">
-            <Link to="/admin/post">
-              <Button
-                variant="ghost"
-                leftIcon="plus-square"
-                display="flex"
-                justifyContent="flex-start"
-              >
-                Viết Bài
-              </Button>
-            </Link>
 
-            <Link to="/admin/table">
-              <Button
-                variant="ghost"
-                leftIcon="edit"
-                display="flex"
-                justifyContent="flex-start"
-              >
-                Quản lý bài viết
-              </Button>
-            </Link>
-          </Flex>
+        <Flex w="100%" justify="flex-end">
+          <Link to="/admin/post">
+            <Button
+              variant="ghost"
+              leftIcon="plus-square"
+              display="flex"
+              justifyContent="flex-start"
+            >
+              Viết Bài
+            </Button>
+          </Link>
+
+          <Link to="/admin/table">
+            <Button
+              variant="ghost"
+              leftIcon="edit"
+              display="flex"
+              justifyContent="flex-start"
+            >
+              Quản lý bài viết
+            </Button>
+          </Link>
         </Flex>
       </Flex>
+
       <Flex
         width="100%"
-        flexDirection="row"
-        flexWrap="nowrap"
-        justifyContent="center"
-        p="30px"
+        h="90%"
+        direction="column"
+        wrap="wrap"
+        justify="flex-start"
+        align="center"
+        backgroundColor="gray.100"
+        borderRadius={8}
+        shadow="6xl"
       >
-        <Box
-          width="100%"
-          borderRadius={8}
-          backgroundColor="gray.100"
-          shadow="6xl"
-          maxWidth="100%"
-          height="auto"
-        >
-          {children}
-        </Box>
+        {children}
       </Flex>
     </Flex>
   );
