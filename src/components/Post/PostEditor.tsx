@@ -127,7 +127,7 @@ export const PostContentEditor = (props: PostContentEditorProps) => {
           borderColor="red.200"
           borderWidth="4px"
         />
-        <Box w="45%" backgroundColor="gray.200" pl={2}>
+        <Box w="45%" pl={2}>
           <MarkdownView source={content} />
         </Box>
       </Flex>

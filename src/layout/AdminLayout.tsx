@@ -60,7 +60,7 @@ function AdminLayout({ children }: Props) {
         wrap="wrap"
         justify="flex-start"
         align="center"
-        backgroundColor="gray.100"
+        // backgroundColor="gray.100"
         borderRadius={8}
         shadow="6xl"
       >
