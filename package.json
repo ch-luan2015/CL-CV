@@ -58,6 +58,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-syntax-highlighter": "^13.5.3",
+    "remark-toc": "^7.0.0",
     "showdown": "^1.9.1",
     "source-map-loader": "^1.0.2",
     "typescript": "~3.7.2",
