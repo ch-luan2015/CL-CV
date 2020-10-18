@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useColorMode, Button, Flex } from "@chakra-ui/core";
 import styled from "@emotion/styled";
+import ButtonLogin from "../LoginButton/ButtonLogin";
 
 const StickyNav = styled(Flex)`
   position: sticky;
@@ -64,11 +65,8 @@ const Container = ({ children }) => {
             Một số sản phẩm của Lựng
           </Button>
         </Link>
-        <Link to="/admin">
-          <Button as="a" variant="ghost" p={[1, 4]}>
-            Admin
-          </Button>
-        </Link>
+
+        <ButtonLogin />
       </StickyNav>
       <Flex
         as="main"

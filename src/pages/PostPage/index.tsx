@@ -22,7 +22,6 @@ const PostPage = ({ match }: any) => {
       });
   }, [id, setCurrentPost]);
 
-  // console.log("current", currentPost !== undefined ? currentPost.content : "");
   return (
     <Box w="100%">
       {currentPost !== undefined ? (
