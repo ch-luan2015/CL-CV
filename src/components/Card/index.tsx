@@ -64,10 +64,9 @@ const Card: React.FC<PostCardProps> = (props) => {
           {subTitle.length > 1 ? subTitle + "..." : "..."}
         </Text> */}
 
-        <Text fontSize="sm" color="gray.700" mt={2}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-          dolore amet praesentium cumque in eos, magni quibusdam perspiciatis
-        </Text>
+        {/* <Text fontSize="sm" color="gray.700" mt={2}>
+          {subTitle.length > 1 ? subTitle + "..." : "..."}
+        </Text> */}
         <Flex
           direction="row"
           justify="flex-start"

@@ -1,28 +1,111 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
   Button,
+  Box,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  ButtonGroup,
 } from "@chakra-ui/core";
 
 function ButtonLogin() {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
-  const cancelRef = React.useRef();
-
+  const initialFocusRef = React.useRef();
   return (
-    <>
-      {/* <Link to="/admin"> */}
-      <Button as="a" variant="ghost" p={[1, 4]} onClick={() => setIsOpen(true)}>
+    <Popover
+      initialFocusRef={initialFocusRef}
+      placement="bottom"
+      closeOnBlur={true}
+    >
+      {({ isOpen, onClose }) => (
+        <>
+          <PopoverTrigger>
+            <Button variant="ghost">Đăng bài</Button>
+          </PopoverTrigger>
+          <PopoverContent
+            zIndex={4}
+            color="white"
+            bg="blue.800"
+            borderColor="blue.800"
+          >
+            <PopoverHeader
+              pt={4}
+              fontWeight="bold"
+              border="0"
+              d="flex"
+              flexDirection="row"
+              justifyContent="flex-start"
+              alignItems="center"
+            >
+              Đăng bài
+              <Box w="4" h="4" color="red.500" borderColor="red.500" ml="2">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Box>
+            </PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverArrow />
+            <PopoverBody>
+              Mục đăng bài hiện nay chỉ dành cho Cộng tác viên, dần sẽ mở rộng.
+              Cảm ơn các bạn đã quan tâm, love you.
+            </PopoverBody>
+            <PopoverFooter
+              border="0"
+              d="flex"
+              alignItems="center"
+              justifyContent="flex-end"
+              pb={4}
+            >
+              <ButtonGroup size="sm">
+                <Button
+                  variantColor="blue"
+                  onClick={onClose}
+                  ref={initialFocusRef}
+                >
+                  Cancel
+                </Button>
+
+                <Button variantColor="green" ref={initialFocusRef}>
+                  <Link to="/admin">Login</Link>
+                </Button>
+              </ButtonGroup>
+            </PopoverFooter>
+          </PopoverContent>
+        </>
+      )}
+    </Popover>
+  );
+}
+
+export default ButtonLogin;
+
+{
+  /* <Link to="/admin"> */
+}
+{
+  /* <Button as="a" variant="ghost" p={[1, 4]} onClick={() => setIsOpen(true)}>
         Admin
-      </Button>
-      {/* </Link> */}
-      <AlertDialog
+      </Button> */
+}
+{
+  /* </Link> */
+}
+{
+  /* <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
@@ -34,20 +117,23 @@ function ButtonLogin() {
           </AlertDialogHeader>
 
           <AlertDialogBody>
-            Mục đăng bài hiện nay chỉ dành cho Cộng tác viên, dần sẽ mở rộng.
-            Cảm ơn các bạn đã quan tâm, love you
-            <svg
-              className="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Flex direction="row" justify="flex-start">
+              Mục đăng bài hiện nay chỉ dành cho Cộng tác viên, dần sẽ mở rộng.
+              Cảm ơn các bạn đã quan tâm, love you.
+              <div className="w-4 h-4 text-red-600">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </Flex>
           </AlertDialogBody>
 
           <AlertDialogFooter>
@@ -59,9 +145,5 @@ function ButtonLogin() {
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
-    </>
-  );
+      </AlertDialog> */
 }
-
-export default ButtonLogin;

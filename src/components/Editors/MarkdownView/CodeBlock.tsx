@@ -6,7 +6,7 @@ const CodeBlock = ({ value }) => {
   console.log("value", value);
   return (
     <SyntaxHighlighter
-      language="tsx"
+      language="jsx"
       style={githubGist}
       customStyle={{
         borderRadius: "4px",
