@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useColorMode, Button, Flex, Box, IconButton } from "@chakra-ui/core";
+import { useColorMode, Button, Flex } from "@chakra-ui/core";
 import styled from "@emotion/styled";
 
 const StickyNav = styled(Flex)`
@@ -48,8 +48,6 @@ const Container = ({ children }) => {
           onClick={toggleColorMode}
         /> */}
 
-        {/* <Box> */}
-
         <Link to="/">
           <Button as="a" variant="ghost" p={[1, 4]}>
             Blogs
@@ -71,7 +69,6 @@ const Container = ({ children }) => {
             Admin
           </Button>
         </Link>
-        {/* </Box> */}
       </StickyNav>
       <Flex
         as="main"

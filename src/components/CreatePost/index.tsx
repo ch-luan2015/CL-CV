@@ -61,7 +61,7 @@ function CreatePost() {
       flexDirection="column"
       justifyContent="flex-start"
       alignItems="center"
-      p="30px"
+      p={2}
       width="100%"
       wrap="nowrap"
       h="auto"

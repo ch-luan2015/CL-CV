@@ -1,34 +1,61 @@
 import React from "react";
-import { Flex, Button, Image, Box } from "@chakra-ui/core";
+import { useColorMode, Flex, Button, Image, Box } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+
 interface Props {
   preview?: boolean;
   children: React.ReactNode;
 }
 
-function AdminLayout({ children }: Props) {
-  return (
-    <Flex
-      direction="row"
-      wrap="wrap"
-      justify="flex-start"
-      alignItems="center"
-      h="100vh"
-    >
-      <Flex
-        flexDirection="row"
-        w="100%"
-        justify="space-between"
-        alignItems="center"
-        h="10%"
-      >
-        <Image
-          src="https://uploads-ssl.webflow.com/5f17f616781ada06eddd5171/5f1931b1f08060971ababbfb_NeverSpam-logo.png"
-          maxWidth="10%"
-          ml={8}
-        />
+const StickyNav = styled(Flex)`
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.1 ease-in-out;
+`;
 
-        <Flex w="100%" justify="flex-end">
+function AdminLayout({ children }: Props) {
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  const bgColor = {
+    light: "white",
+    dark: "gray.900",
+  };
+  const primarytextColor = {
+    light: "black",
+    dark: "white",
+  };
+  const navBgColor = {
+    light: "rgba(255, 255, 255, 0.8)",
+    dark: "rgba(23, 25, 35, 0.8)",
+  };
+  return (
+    <Flex direction="column" justify="center" align="center">
+      <StickyNav
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        maxWidth="1280px"
+        width="100%"
+        bg={navBgColor[colorMode]}
+        as="nav"
+        p={2}
+        mt={[0, 2]}
+        mb={2}
+        mx="auto"
+      >
+        <Link to="/">
+          <Image
+            src="https://uploads-ssl.webflow.com/5f17f616781ada06eddd5171/5f1931b1f08060971ababbfb_NeverSpam-logo.png"
+            width="280px"
+            height="auto"
+            ml={8}
+          />
+        </Link>
+
+        <Flex justify="center" align="center" direction="row">
           <Link to="/admin/post">
             <Button
               variant="ghost"
@@ -51,18 +78,19 @@ function AdminLayout({ children }: Props) {
             </Button>
           </Link>
         </Flex>
-      </Flex>
+      </StickyNav>
 
       <Flex
-        width="100%"
-        h="90%"
-        direction="column"
-        wrap="wrap"
+        direction="row"
         justify="flex-start"
-        align="center"
-        // backgroundColor="gray.100"
-        borderRadius={8}
+        align="center "
+        wrap="wrap"
+        bg={bgColor[colorMode]}
+        color={primarytextColor[colorMode]}
+        borderRadius={4}
         shadow="6xl"
+        maxWidth="1280px"
+        width="100%"
       >
         {children}
       </Flex>
