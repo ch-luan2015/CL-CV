@@ -20,8 +20,11 @@ const Card: React.FC<PostCardProps> = (props) => {
   const [subTitle, setSubtitle] = useState("");
   const [ImageP, setImageP] = useState();
 
-  var ImageRe = /https.*(png|jpg)/g;
+  var html = converter.makeHtml(props.content);
 
+  console.log("html", html);
+  var ImageRe = /https.*(png|jpg)/g;
+  var desRe = / /g;
   var resultImage = props.content.match(ImageRe);
   var firtsImage = resultImage != null ? resultImage[0] : "";
   return (

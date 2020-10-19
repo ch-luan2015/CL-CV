@@ -3,7 +3,6 @@ import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const CodeBlock = ({ value }) => {
-  console.log("value", value);
   return (
     <SyntaxHighlighter
       language="jsx"

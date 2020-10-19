@@ -19,6 +19,10 @@ import { UserManagerSettings } from "oidc-client";
 import { PrivatePage } from "./pages/PrivatePage/PrivatePage";
 import { useOidcSecure } from "@axa-fr/react-oidc-context/dist/reactServices/OidcSecure";
 import { Button } from "@chakra-ui/core";
+
+import { BLOG_LINK } from "../src/blog/Constants.utils";
+import Blog from "./pages/Blog";
+
 const configuration: UserManagerSettings = {
   client_id: "5f4f670c-0dfc-11eb-adc1-0242ac120002",
   redirect_uri: "https://localhost:3000/callback",
@@ -46,6 +50,13 @@ function App() {
     >
       <Router>
         <Switch>
+          <Route exact path={BLOG_LINK} component={Blog} />
+          <Route
+            exact
+            path={`${BLOG_LINK}:blogPostFileName`}
+            component={BlogPost}
+          />
+
           <Route path="/private" component={PrivatePage} />
           <Route path={["/blog", "/blog/:id"]}>
             <BlogLayout>
