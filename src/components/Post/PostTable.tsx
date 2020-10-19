@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Table, Tag, Radio, Space, Button, Tooltip } from "antd";
+import { Table, Tag, Radio, Button, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import { postAPI } from "../../resources/api/post";
 import { Link } from "react-router-dom";
+import { Box } from "@chakra-ui/core";
 interface IProps {}
 interface IState {
   top: any;
@@ -113,7 +114,7 @@ class PostTable extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <>
+      <Box w="100%">
         <Radio.Group
           style={{ marginBottom: 10 }}
           value={this.state.bottom}
@@ -126,7 +127,7 @@ class PostTable extends React.Component<IProps, IState> {
           pagination={{ position: [this.state.bottom] }}
           dataSource={this.state.data1}
         />
-      </>
+      </Box>
     );
   }
 }
