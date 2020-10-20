@@ -16,28 +16,28 @@ import {
   profilePicture,
   verticalCenter,
 } from "../stylesheets/Blog.module.sass";
-import { getInitialTheme } from "../utils/FileManager.utils";
-import BlogFooter from "../components/Footer/BlogFooter";
+// import { getInitialTheme } from "../utils/FileManager.utils";
+// import BlogFooter from "../components/Footer/BlogFooter";
 import HorizontalRuler from "../components/Util/HorizontalRuler";
-import BlogNavbar from "../components/Navbar/BlogNavbar";
-import { firebaseAnalytics } from "../firebaseConfig";
+// import BlogNavbar from "../components/Navbar/BlogNavbar";
+// import { firebaseAnalytics } from "../firebaseConfig";
 import MetaDecorator from "../components/Util/MetaDecorator";
-import metaThumbnail from "../data/images/meta/blog.png";
+// import metaThumbnail from "../data/images/meta/blog.png";
 
 import profilePictureImage from "../data/images/blog/PP.jpg";
 
 const blog = require("../data/blog");
-const footer = require("../data/footer");
-const blogNavbar = require("../data/blogNavbar");
+// const footer = require("../data/footer");
+// const blogNavbar = require("../data/blogNavbar");
 
 const Blog = () => {
   window.scrollTo(0, 0);
 
-  const [isDark, setIsDark] = useState(getInitialTheme());
+  const [isDark, setIsDark] = useState("");
 
-  useEffect(() => {
-    firebaseAnalytics.logEvent("blog_visited");
-  });
+  // useEffect(() => {
+  //   firebaseAnalytics.logEvent("blog_visited");
+  // });
 
   const noSSRContent = blog.blogItems.map((blogItem) => (
     <BlogItem
@@ -57,17 +57,17 @@ const Blog = () => {
       <MetaDecorator
         description={blog.pageDescription}
         title={blog.pageTitle}
-        imageUrl={metaThumbnail}
+        // imageUrl={metaThumbnail}
         imageAlt={blog.metaImageAlt}
       />
       <div className={`${blogStyle}`}>
-        <BlogNavbar
+        {/* <BlogNavbar
           headerText={blogNavbar.blogBranding}
           brandingLink={blogNavbar.homeLink}
           className={blogNavbarMargin}
           isDark={isDark}
           setIsDark={setIsDark}
-        />
+        /> */}
         <Row className={`${blogItemMargin} ${verticalCenter}`}>
           {/* Logo and circular moon */}
           <div>
@@ -98,9 +98,9 @@ const Blog = () => {
 
         <HorizontalRuler isDark={isDark} />
       </div>
-      <div className={footerStyle}>
+      {/* <div className={footerStyle}>
         <BlogFooter content={footer} isDark={isDark} />
-      </div>
+      </div> */}
     </div>
   );
 

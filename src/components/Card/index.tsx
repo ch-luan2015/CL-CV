@@ -38,8 +38,18 @@ const Card: React.FC<PostCardProps> = (props) => {
           objectFit="cover"
         />
       </Box>
+      <Text
+        mt={{ base: 4, md: 2 }}
+        fontWeight="bold"
+        textTransform="uppercase"
+        fontSize="sm"
+        letterSpacing="wide"
+        color="blue.400"
+      >
+        {props.subject}
+      </Text>
       <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }} w="70%">
-        <Box w="100%">
+        <Flex w="100%" justify="flex-end">
           {props.tags ? (
             <Stack spacing={4} isInline>
               {props.tags.map((tag) => (
@@ -51,17 +61,8 @@ const Card: React.FC<PostCardProps> = (props) => {
           ) : (
             ""
           )}
-        </Box>
-        <Text
-          mt={{ base: 4, md: 2 }}
-          fontWeight="bold"
-          textTransform="uppercase"
-          fontSize="sm"
-          letterSpacing="wide"
-          color="blue.400"
-        >
-          {props.subject}
-        </Text>
+        </Flex>
+
         {/* 
         <Text mt={2} color="gray.500">
           {subTitle.length > 1 ? subTitle + "..." : "..."}

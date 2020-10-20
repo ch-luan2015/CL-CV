@@ -22,6 +22,7 @@ import { Button } from "@chakra-ui/core";
 
 import { BLOG_LINK } from "../src/blog/Constants.utils";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const configuration: UserManagerSettings = {
   client_id: "5f4f670c-0dfc-11eb-adc1-0242ac120002",
