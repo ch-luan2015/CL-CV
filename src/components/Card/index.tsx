@@ -4,8 +4,19 @@ import { PostCardProps } from "../../resources/models/PostCardProps";
 import moment from "moment-timezone";
 import "moment/locale/vi";
 import * as Showdown from "showdown";
-import { Box, Image, Stack, Tag, Avatar, Text, Flex } from "@chakra-ui/core";
+import {
+  SimpleGrid,
+  Box,
+  Image,
+  Stack,
+  Tag,
+  Avatar,
+  Text,
+  Flex,
+  Divider,
+} from "@chakra-ui/core";
 
+import styles from "./card.module.scss";
 const htmlToText = require("html-to-text");
 
 const converter = new Showdown.Converter({
@@ -24,58 +35,47 @@ const Card: React.FC<PostCardProps> = (props) => {
 
   console.log("html", html);
   var ImageRe = /https.*(png|jpg)/g;
-  var desRe = / /g;
   var resultImage = props.content.match(ImageRe);
   var firtsImage = resultImage != null ? resultImage[0] : "";
   return (
-    <Box p={4} display={{ md: "flex" }} width="100%">
-      <Box>
+    <Box p={4} display={{ sm: "flex", md: "flex" }} width="100%">
+      <Box width={{ sm: 64, md: 64, lg: 56, xl: 56 }}>
         <Image
           rounded="lg"
-          width={{ sm: 64, md: 56, lg: 48, xl: 40 }}
+          width={{ sm: 64, md: 64, lg: 56, xl: 56 }}
           src={firtsImage != null ? firtsImage : ""}
           alt="Image Thumbnail"
           objectFit="cover"
         />
       </Box>
-      <Text
-        mt={{ base: 4, md: 2 }}
-        fontWeight="bold"
-        textTransform="uppercase"
-        fontSize="sm"
-        letterSpacing="wide"
-        color="blue.400"
+
+      <Box
+        ml={8}
+        mt={{ base: 4, md: 0 }}
+        width={{ sm: "100%", md: "100%", lg: "100%", xl: "100%" }}
+        d="flex"
+        flexDirection="column"
+        alignItems="flex-start"
+        justifyContent="space-between"
       >
-        {props.subject}
-      </Text>
-      <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }} w="70%">
-        <Flex w="100%" justify="flex-end">
-          {props.tags ? (
-            <Stack spacing={4} isInline>
-              {props.tags.map((tag) => (
-                <Tag size="md" variantColor="gray">
-                  {tag}
-                </Tag>
-              ))}
-            </Stack>
-          ) : (
-            ""
-          )}
-        </Flex>
+        <Text
+          mt={{ base: 4, md: 2 }}
+          fontWeight="bold"
+          textTransform="uppercase"
+          fontSize="sm"
+          letterSpacing="wide"
+          color="blue.400"
+          w="100%"
+        >
+          {props.subject}
+        </Text>
 
-        {/* 
-        <Text mt={2} color="gray.500">
-          {subTitle.length > 1 ? subTitle + "..." : "..."}
-        </Text> */}
-
-        {/* <Text fontSize="sm" color="gray.700" mt={2}>
-          {subTitle.length > 1 ? subTitle + "..." : "..."}
-        </Text> */}
         <Flex
           direction="row"
-          justify="flex-start"
-          align="flex-end"
-          alignContent="flex-end"
+          justify="space-around"
+          align="center"
+          wrap="nowrap"
+          mt={{ base: 4, md: 2 }}
         >
           <Avatar
             size="sm"
@@ -83,22 +83,58 @@ const Card: React.FC<PostCardProps> = (props) => {
             src={require("../../assets/images/paleKing.jpg")}
           />
 
-          <Text fontSize="md" color="gray.700" pl={2} flex="1 1 auto">
+          <Text
+            fontSize="md"
+            color="gray.700"
+            pl={2}
+            className={`${styles.author}`}
+          >
             <Link to="#">{props.createdBy}</Link>
           </Text>
 
-          <Text
+          <Box className={`${styles.hiddenText}`} pl={8}>
+            -
+          </Box>
+          <Box mx={4}>
+            {props.tags ? (
+              <div className={`${styles.tagItem}`}>
+                <Stack spacing={4} isInline>
+                  {props.tags.map((tag) => (
+                    <Tag size="sm" variantColor="gray">
+                      {tag}
+                    </Tag>
+                  ))}
+                </Stack>
+              </div>
+            ) : (
+              ""
+            )}
+          </Box>
+
+          <Box
             fontSize="sm"
             color="gray.600"
             borderRadius="lg"
             as="mark"
-            align-self="end"
+            textAlign="center"
           >
             {local}
-          </Text>
+          </Box>
         </Flex>
       </Box>
     </Box>
   );
 };
 export default Card;
+{
+  /* 
+        <Text mt={2} color="gray.500">
+          {subTitle.length > 1 ? subTitle + "..." : "..."}
+        </Text> */
+}
+
+{
+  /* <Text fontSize="sm" color="gray.700" mt={2}>
+          {subTitle.length > 1 ? subTitle + "..." : "..."}
+        </Text> */
+}

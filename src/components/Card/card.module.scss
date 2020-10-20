@@ -1,0 +1,19 @@
+.tagItem {
+  @media screen and (max-width: 426px) {
+    display: none;
+  }
+}
+
+// .author {
+//   @media screen and (max-width: 426px) {
+//     ::after {
+//       content: " - ";
+//     }
+//   }
+// }
+
+.hiddenText {
+  @media (min-width: 425px) {
+    display: none;
+  }
+}
