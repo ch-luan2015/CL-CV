@@ -51,12 +51,12 @@ function App() {
     >
       <Router>
         <Switch>
-          <Route exact path={BLOG_LINK} component={Blog} />
+          {/* <Route exact path={BLOG_LINK} component={Blog} />
           <Route
             exact
             path={`${BLOG_LINK}:blogPostFileName`}
             component={BlogPost}
-          />
+          /> */}
 
           <Route path="/private" component={PrivatePage} />
           <Route path={["/blog", "/blog/:id"]}>

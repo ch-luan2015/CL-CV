@@ -13,9 +13,14 @@ import {
   PopoverCloseButton,
   ButtonGroup,
 } from "@chakra-ui/core";
-
+import { useOidcSecure } from "@axa-fr/react-oidc-context/dist/reactServices/OidcSecure";
+import {
+  AuthenticationProvider,
+  useReactOidc,
+} from "@axa-fr/react-oidc-context";
 function ButtonLogin() {
   const initialFocusRef = React.useRef();
+  const { login } = useReactOidc();
   return (
     <Popover
       initialFocusRef={initialFocusRef}
@@ -79,8 +84,13 @@ function ButtonLogin() {
                   Cancel
                 </Button>
 
-                <Button variantColor="green" ref={initialFocusRef}>
-                  <Link to="/admin">Login</Link>
+                <Button
+                  variantColor="green"
+                  ref={initialFocusRef}
+                  onClick={() => login()}
+                >
+                  {/* <Link to="/admin">Login</Link> */}
+                  Login
                 </Button>
               </ButtonGroup>
             </PopoverFooter>

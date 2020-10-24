@@ -4,17 +4,7 @@ import { PostCardProps } from "../../resources/models/PostCardProps";
 import moment from "moment-timezone";
 import "moment/locale/vi";
 import * as Showdown from "showdown";
-import {
-  SimpleGrid,
-  Box,
-  Image,
-  Stack,
-  Tag,
-  Avatar,
-  Text,
-  Flex,
-  Divider,
-} from "@chakra-ui/core";
+import { Box, Image, Stack, Tag, Avatar, Text, Flex } from "@chakra-ui/core";
 
 import styles from "./card.module.scss";
 const htmlToText = require("html-to-text");
@@ -31,9 +21,17 @@ const Card: React.FC<PostCardProps> = (props) => {
   const [subTitle, setSubtitle] = useState("");
   const [ImageP, setImageP] = useState();
 
-  var html = converter.makeHtml(props.content);
+  // console.log("html", html);
+  console.log("props.content: ", props.content);
 
-  console.log("html", html);
+  //Firts Paragap
+  var ParaRe = /\*\**(.|\n)*\*\*\n/g;
+  var resultPara = props.content.match(ParaRe);
+  console.log("resultPara", resultPara);
+  var firtsPara =
+    resultPara != null ? resultPara[0].substr(2, resultPara[0].length - 4) : "";
+
+  //Firts Image
   var ImageRe = /https.*(png|jpg)/g;
   var resultImage = props.content.match(ImageRe);
   var firtsImage = resultImage != null ? resultImage[0] : "";
@@ -68,6 +66,9 @@ const Card: React.FC<PostCardProps> = (props) => {
           w="100%"
         >
           {props.subject}
+        </Text>
+        <Text fontSize="sm" color="gray.700" mt={2}>
+          {firtsPara !== null ? firtsPara + "..." : "..."}
         </Text>
 
         <Flex
