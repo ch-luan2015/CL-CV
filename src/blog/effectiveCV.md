@@ -11,9 +11,9 @@ I've had the opportunity to **work with** recruiters in my career. I've taken nu
 Long story short, I have some understanding of what recruiters want on a CV. Here are several tips to all beginners out there:
 
 #### 1. Spend Time on Your Formatting and Design
-
+<CodeBlock>
 Let's do a blind test. I've used my old and new CVs and applied a blur filter on top of them. The purpose of this is to view the CV's from the perspective of a recruiter. Initially they spend very little time looking at your CV and all they see is a blurry glimpse of the formatting.
-
+</CodeBlock>
 You receive these two CVs at the same time. You have 20 seconds to pick one. Which one would you pick based on the intitial look?
 
  <MediaCarousel folder="effectiveCV" images="old_cv_blur.jpg,new_cv_blur.jpg"/>

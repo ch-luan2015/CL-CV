@@ -33,6 +33,7 @@ const configuration: UserManagerSettings = {
   authority: "https://auth.my-shell.com",
   silent_redirect_uri: "https://localhost:3000/authentication/silent_callback",
 };
+
 const NotAuthenticatedPage = () => {
   const { login } = useReactOidc();
   return (
@@ -42,6 +43,7 @@ const NotAuthenticatedPage = () => {
     </div>
   );
 };
+
 function App() {
   return (
     <AuthenticationProvider
@@ -51,19 +53,19 @@ function App() {
     >
       <Router>
         <Switch>
-          {/* <Route exact path={BLOG_LINK} component={Blog} />
+          <Route exact path={BLOG_LINK} component={Blog} />
           <Route
             exact
             path={`${BLOG_LINK}:blogPostFileName`}
             component={BlogPost}
-          /> */}
+          />
 
-          <Route path="/private" component={PrivatePage} />
+          {/* <Route path="/private" component={PrivatePage} />
           <Route path={["/blog", "/blog/:id"]}>
             <BlogLayout>
               <Route path="/blog/:id" exact component={PostPage} />
             </BlogLayout>
-          </Route>
+          </Route> */}
 
           <Route exact path={["/"]}>
             <HomeLayout>

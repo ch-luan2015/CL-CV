@@ -5,7 +5,7 @@ import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 const CodeBlock = ({ value }) => {
   return (
     <SyntaxHighlighter
-      language="jsx"
+      language="tsx"
       style={githubGist}
       customStyle={{
         borderRadius: "4px",

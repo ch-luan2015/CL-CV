@@ -30,13 +30,18 @@ const BlogPost = () => {
 
   let redirect = false;
 
+
   let hashedBlogFileLink;
   try {
+    console.log("blogPostFileName",blogPostFileName);
+    console.log("folders.blogFiles",folders.blogFiles);
     hashedBlogFileLink = mapFileNameToId(blogPostFileName, folders.blogFiles);
+    console.log("hashedBlogFileLink",hashedBlogFileLink); // La 1 file md co tieu de tu file name
   } catch {
     redirect = true;
   }
 
+  //Fetch data dua vao hashedblogblink
   useEffect(() => {
     if (!redirect) {
       // firebaseAnalytics.logEvent(`${blogPostFileName}_visited`);

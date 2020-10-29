@@ -25,7 +25,7 @@ const Card: React.FC<PostCardProps> = (props) => {
   console.log("props.content: ", props.content);
 
   //Firts Paragap
-  var ParaRe = /\*\**(.|\n)*\*\*\n/g;
+  var ParaRe = /\*\*([^\*])*\n\*\*\n/g;
   var resultPara = props.content.match(ParaRe);
   console.log("resultPara", resultPara);
   var firtsPara =

@@ -7,6 +7,10 @@ export const folders = Object.freeze({
   heroImages: importAll(require.context("../data/images/hero", false, /\.jpg$/)),
   tinyHeroImages: importAll(require.context("../data/images/hero/tiny", false, /\.jpg$/)),
 });
+// console.log("folders",folders);
+// console.log("folders.blogFiles",folders.blogFiles);
+
+//Ma hash lay tu dau?
 
 export const mapFileNameToId = (fileName, fileArray) => {
   for (let i = 0; i < fileArray.length; i += 1) {
