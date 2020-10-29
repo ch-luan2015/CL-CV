@@ -8,7 +8,7 @@ export const folders = Object.freeze({
   tinyHeroImages: importAll(require.context("../data/images/hero/tiny", false, /\.jpg$/)),
 });
 // console.log("folders",folders);
-// console.log("folders.blogFiles",folders.blogFiles);
+console.log("folders.blogFiles",folders.blogFiles);
 
 //Ma hash lay tu dau?
 
@@ -17,6 +17,7 @@ export const mapFileNameToId = (fileName, fileArray) => {
     // match iOSvsAndroid from /static/media/iOSvsAndroid.79d56394.md
     const match = RegExp(/[a-zA-Z0-9]+(?=\.)/g).exec(fileArray[i])[0];
     // check if provided fileName exactly matches with the fileName
+    console.log("match",match);
     if (fileName === match) {
       return fileArray[i].substring(fileArray[i].lastIndexOf("/") + 1);
     }

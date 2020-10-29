@@ -39,7 +39,7 @@ const NotAuthenticatedPage = () => {
   return (
     <div>
       You must login to access this page.
-      <Button onClick={() => login()}>Lo gin</Button>
+      <Button onClick={() => login()}>Login</Button>
     </div>
   );
 };

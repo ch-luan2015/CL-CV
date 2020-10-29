@@ -2,10 +2,17 @@
   "imageAlt": "profile picture of the author",
   "title": "ÇELİK KÖSEOĞLU",
   "subtitle": "Software Engineer, Freerunner",
-  "pageTitle": "Çelik Köseoğlu - Blog",
+  "pageTitle": "CL-Blog",
   "pageDescription": "This is my personal blog where I share my opinions, success stories and tech in general. I also write about my projects sometimes.",
   "metaImageAlt": "The image contains the logo of this website. Next to that, it says blog with capital letters in Montserrat font.",
   "blogItems": [
+    {
+      "title": "Chap 1. Giới thiệu về Hook",
+      "date": "29.10.2020",
+      "minutes": "10 min",
+      "subtitle": "Như anh em cũng biết lập trình xưa giờ mọi người đều thích OOP, class và đa phần code cơ bản đều dạy về OOP đầu tiên. React cũng như thế!",
+      "blogPost": "chap1GioiThieuHook"
+    },
     {
       "title": "Tips on Effective CV Design and Writing",
       "date": "17.07.2020",
