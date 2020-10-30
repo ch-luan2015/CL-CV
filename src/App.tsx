@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import CreatePost from "./components/CreatePost";
@@ -23,7 +22,7 @@ import { Button } from "@chakra-ui/core";
 import { BLOG_LINK } from "../src/blog/Constants.utils";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-
+import "./App.sass";
 const configuration: UserManagerSettings = {
   client_id: "5f4f670c-0dfc-11eb-adc1-0242ac120002",
   redirect_uri: "https://localhost:3000/callback",
