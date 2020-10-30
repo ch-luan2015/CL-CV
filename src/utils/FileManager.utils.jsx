@@ -13,15 +13,15 @@ export const folders = Object.freeze({
 
 //Ma hash lay tu dau?
 export const mapFileNameToId = (fileName, fileArray) => {
-  // console.log("fileArray",fileArray);
+  console.log("fileArray",fileArray);
 
   for (let i = 0; i < fileArray.length; i += 1) {
     // match iOSvsAndroid from /static/media/iOSvsAndroid.79d56394.md
     const match = RegExp(/[a-zA-Z0-9]+(?=\.)/g).exec(fileArray[i])[0];
-    // console.log("match file",match);
+    console.log("match file",match);
     // check if provided fileName exactly matches with the fileName
     if (fileName === match) {
-      // console.log("fileArray[i]",fileArray[i]);
+      console.log("fileArray[i]",fileArray[i]);
       // console.log("return ",fileArray[i].substring(fileArray[i].lastIndexOf("/") + 1));
       // console.log("fileArray[i]",fileArray[i]);
 

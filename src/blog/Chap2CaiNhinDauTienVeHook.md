@@ -1,4 +1,4 @@
-<BlogMetaDecorator folder="Chap2CaiNhinDauTienVeHook" image="Chap2_react-hooksjpg" imageAlt="HookFirtLook" description="Hook mới được thêm ở phiên bản React 16.8 và tương thích với các phiên bản trước nên không có gì phải lo lắng." title="CL - Hooks" />
+<BlogMetaDecorator folder="chap2CaiNhinDauTienVeHook" image="allHeadphones.jpg" imageAlt="HookFirtLook" description="Hook mới được thêm ở phiên bản React 16.8 và tương thích với các phiên bản trước nên không có gì phải lo lắng." title="Chap 2. Cái nhìn đầu tiên về Hooks  " />
 
 ![hook](https://www.vtnetzwelt.com/wp-content/uploads/2019/08/react-hooks.jpg)
 
@@ -7,30 +7,30 @@
 ## 1. State Hook:
 
 <Code language="javascript">
-	function Example() {
-	  // Khai báo 1 biến số đếm, gọi là "count"
-	  const [count, setCount] = useState(0);
+    function Example() {
+      // Khai báo 1 biến số đếm, gọi là "count"
+      const [count, setCount] = useState(0);
 
       return (
-    	<div>
-    	  <p>Bạn đã bấm {count} lần</p>
-    	  <button onClick={() => setCount(count + 1)}>
-    		Bấm vào tôi
-    	  </button>
-    	</div>
+        <div>
+          <p>Bạn đã bấm {count} lần</p>
+          <button onClick={() => setCount(count + 1)}>
+            Bấm vào tôi
+          </button>
+        </div>
       );
     }
 
 </Code>
 
-<Code language="bash">useState</Code> là hook cho phép khai báo một state như <Code language="bash">this.state={}</Code> vậy.
+<!-- <Code language="bash">useState</Code> là hook cho phép khai báo một state như <Code language="bash">this.state={}</Code> vậy. -->
 
 Ví dụ trên thì chúng ta khai báo một state count và khi chúng ta muốn thay đổi giá trị của state count đó thì dùng biến setState (nó có chức năng giống hàm this.setState trong Class ). Đằng sau là useState(0) , 0 là giá trị ban đầu của biến count hay chính là initialState.
 Nó kiểu hiểu nôm na rằng hãy tạo cho tao 1 state có tên count có giá trị ban đầu là 0 và cho tao một biến setCount dùng để thay đổi giá trị của state count .
 
 Mọi người có thể thêm nhiều hook trong function:
 
-<Code language="javascript">
+<!-- <Code language="javascript">
 
 function ExampleWithManyStates() {
 // Khai báo nhiều biến trạng thái!
@@ -39,7 +39,7 @@ const [fruit, setFruit] = useState('chuối');
 const [todos, setTodos] = useState([{ text: 'Học Hooks' }]);
 // ...
 }
-</Code>
+</Code> -->
 
 ## 2. Effect Hook:
 
@@ -48,28 +48,28 @@ Anh em còn nhớ bộ ba quyền lực componentDidMount, componentDidUpdate, v
 
 Dùng lại ví dụ đếm ở trên :
 
-<Code language="javascript">
+<!-- <Code language="javascript">
+    function Example() {
+    const [count, setCount] = useState(0);
 
-function Example() {
-const [count, setCount] = useState(0);
+    // Giống componentDidMount và componentDidUpdate:
+    useEffect(() => {
+    // Cập nhật tiêu đề trang web sử dụng API trình duyệt
+    document.title = `Bạn đã bấm ${count} lần`;
+    });
 
-// Giống componentDidMount và componentDidUpdate:
-useEffect(() => {
-// Cập nhật tiêu đề trang web sử dụng API trình duyệt
-document.title = `Bạn đã bấm ${count} lần`;
-});
+    return (
 
-return (
+    <div>
+    <p>Bạn đã bấm {count} lần</p>
+    <button onClick={() => setCount(count + 1)}>
+    Bấm vào tôi
+    </button>
+    </div>
+    );
+    }
 
-<div>
-<p>Bạn đã bấm {count} lần</p>
-<button onClick={() => setCount(count + 1)}>
-Bấm vào tôi
-</button>
-</div>
-);
-}
-</Code>
+</Code> -->
 
 React chạy effect sau lần render đầu tiên , điều này làm useEffect là nơi fetch data từ api lý tưởng, phần này mình sẽ viết trong chap khác.
 Tóm lại là useEffect rất mạnh , nó có 3 chế độ chạy và kèm theo 1 cách để clear hàm nữa. Trong 1 component có thể có nhiều useEffect.
