@@ -1,9 +1,9 @@
 {
   "imageAlt": "profile picture of the author",
-  "title": "ÇELİK KÖSEOĞLU",
-  "subtitle": "Software Engineer, Freerunner",
+  "title": "NCL",
+  "subtitle": "Fresher ^^",
   "pageTitle": "CL-Blog",
-  "pageDescription": "This is my personal blog where I share my opinions, success stories and tech in general. I also write about my projects sometimes.",
+  "pageDescription": "This is my personal blog where I share my note when I learn React and some meme i like",
   "metaImageAlt": "The image contains the logo of this website. Next to that, it says blog with capital letters in Montserrat font.",
   "blogItems": [
     {
@@ -12,6 +12,13 @@
       "minutes": "10 min",
       "subtitle": "Như anh em cũng biết lập trình xưa giờ mọi người đều thích OOP, class và đa phần code cơ bản đều dạy về OOP đầu tiên. React cũng như thế!",
       "blogPost": "chap1GioiThieuHook"
+    },
+    {
+      "title": "Chap 2. Cái nhìn đầu tiên về Hooks",
+      "date": "30.10.2020",
+      "minutes": "20 min",
+      "subtitle": "Hook mới được thêm ở phiên bản React 16.8 và tương thích với các phiên bản trước nên không có gì phải lo lắng.",
+      "blogPost": "Chap2CaiNhinDauTienVeHook"
     },
     {
       "title": "Tips on Effective CV Design and Writing",
