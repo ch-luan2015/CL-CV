@@ -7,21 +7,48 @@
 ## 1. State Hook:
 
 <Code language="javascript">
-    function Example() {
-      // Khai báo 1 biến số đếm, gọi là "count"
-      const [count, setCount] = useState(0);
+import React from "react";
+import "font-awesome/css/font-awesome.min.css";
+const FaviconComponent = () => {
+  return &lt;p className="fa fa-twitter" />;
+};
+export default FaviconComponent;</Code>
 
-      return (
-        <div>
-          <p>Bạn đã bấm {count} lần</p>
-          <button onClick={() => setCount(count + 1)}>
-            Bấm vào tôi
-          </button>
-        </div>
-      );
-    }
+<Code language="css">
+  h1 {
+  background-color: green;
+  }
+  div {
+  background-color: lightblue;
+  }
+  p {
+  background-color: yellow;
+}</Code>
 
-</Code>
+```css
+h1 {
+  background-color: green;
+}
+
+div {
+  background-color: lightblue;
+}
+
+p {
+  background-color: yellow;
+}
+```
+
+<!-- <Code language="css">
+h1 {
+background-color: green;
+}
+div {
+background-color: lightblue;
+}
+p {
+background-color: yellow;
+}</Code> -->
 
 <!-- <Code language="bash">useState</Code> là hook cho phép khai báo một state như <Code language="bash">this.state={}</Code> vậy. -->
 
@@ -29,17 +56,6 @@ Ví dụ trên thì chúng ta khai báo một state count và khi chúng ta mu�
 Nó kiểu hiểu nôm na rằng hãy tạo cho tao 1 state có tên count có giá trị ban đầu là 0 và cho tao một biến setCount dùng để thay đổi giá trị của state count .
 
 Mọi người có thể thêm nhiều hook trong function:
-
-<!-- <Code language="javascript">
-
-function ExampleWithManyStates() {
-// Khai báo nhiều biến trạng thái!
-const [age, setAge] = useState(42);
-const [fruit, setFruit] = useState('chuối');
-const [todos, setTodos] = useState([{ text: 'Học Hooks' }]);
-// ...
-}
-</Code> -->
 
 ## 2. Effect Hook:
 
@@ -83,3 +99,7 @@ Tóm lại là useEffect rất mạnh , nó có 3 chế độ chạy và kèm th
 ## 4. Custom hooks : Tư xây dựng hook của mình
 
 Đây là một điều khiến hooks trở nên mạnh mẽ , chúng ta có thể tự tạo hook theo nhu cầu của mình , theo bất cứ thứ gì chúng ta muốn , tái sử dụng nó ở bất cứ nơi đâu.
+
+```
+
+```

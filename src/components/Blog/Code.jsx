@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 // import { github, prism } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
-
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FaRegCopy, FaRegClipboard } from "react-icons/fa";
 import {
@@ -15,7 +14,7 @@ import {
 
 const Code = ({ children, language, isDark }) => {
   const [isCopied, setIsCopied] = useState(false);
-
+  console.log("language",language)
   return (
     <div className={parentDiv}>
       <CopyToClipboard

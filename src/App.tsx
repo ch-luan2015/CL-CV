@@ -59,6 +59,9 @@ function App() {
             component={BlogPost}
           />
 
+          <Route exact path={["/"]}>
+            <Route path="/" exact component={Blog} />
+          </Route>
           {/* <Route path="/private" component={PrivatePage} />
           <Route path={["/blog", "/blog/:id"]}>
             <BlogLayout>
@@ -66,11 +69,11 @@ function App() {
             </BlogLayout>
           </Route> */}
 
-          <Route exact path={["/"]}>
+          {/* <Route exact path={["/"]}>
             <HomeLayout>
               <Route path="/" exact component={HomePage} />
             </HomeLayout>
-          </Route>
+          </Route> */}
 
           <Route path={["/admin"]}>
             <AdminLayout>

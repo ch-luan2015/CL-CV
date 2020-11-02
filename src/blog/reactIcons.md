@@ -8,13 +8,13 @@
 
 Technologies Used: `React`, `Favicon`, `React-Icons`
 
-After a certain point, reducing the size of your react website gets more and more challenging. You find yourself in the micro-optimization territory where each KB starts to matter. This is where 
+After a certain point, reducing the size of your react website gets more and more challenging. You find yourself in the micro-optimization territory where each KB starts to matter. This is where
 [React-Icons](https://www.npmjs.com/package/react-icons) comes into play. I was able to decrease my bundle
 size about 30KBs without doing any major work at all.
 
 Before React-Icons, we used to import the whole favicon css into our component as below:
 
-<Code language="javascript">
+<Code language="tsx">
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 const FaviconComponent = () => {
@@ -23,7 +23,7 @@ const FaviconComponent = () => {
 export default FaviconComponent;</Code>
 
 Instead of doing this, you can specify which icons to import using React-Icons. To install the package dependency,
- run the following command in your terminal:
+run the following command in your terminal:
 
 <Code language="bash">
 npm install react-icons --save</Code>
@@ -44,7 +44,7 @@ You will find a bunch of icons there with their respective names. Or there is a 
 
 Moral of the story is:
 
-####Efficiency and speed matter. 
+####Efficiency and speed matter.
 
-[People sent space probes to Pluto with a PS1 processor](https://www.theverge.com/2015/1/15/7551365/playstation-cpu-powers-new-horizons-pluto-probe). 
+[People sent space probes to Pluto with a PS1 processor](https://www.theverge.com/2015/1/15/7551365/playstation-cpu-powers-new-horizons-pluto-probe).
 You have access to multiples of times faster hardware now. Why would we need to wait more than 5 seconds for a website to load?
