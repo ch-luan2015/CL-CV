@@ -22,12 +22,12 @@ const Card: React.FC<PostCardProps> = (props) => {
   const [ImageP, setImageP] = useState();
 
   // console.log("html", html);
-  console.log("props.content: ", props.content);
+  // console.log("props.content: ", props.content);
 
   //Firts Paragap
   var ParaRe = /\*\*([^\*])*\n\*\*\n/g;
   var resultPara = props.content.match(ParaRe);
-  console.log("resultPara", resultPara);
+  // console.log("resultPara", resultPara);
   var firtsPara =
     resultPara != null ? resultPara[0].substr(2, resultPara[0].length - 4) : "";
 

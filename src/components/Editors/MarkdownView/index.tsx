@@ -3,7 +3,6 @@ import Markdown from "react-markdown";
 import ImageBlock from "./ImageBlock";
 import CodeBlock from "./CodeBlock";
 import HeadingBlock from "./HeadingBlock";
-const toc = require("remark-toc");
 
 interface Props {
   source?: string;
@@ -18,7 +17,6 @@ function MarkDownView({ source }: Props) {
         // heading: (source) => HeadingBlock(source.level),
       }}
       source={source}
-      plugins={[toc]}
     />
   );
 }
