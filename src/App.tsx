@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { mdx, importMDX } from "mdx.macro";
 
 import CreatePost from "./components/CreatePost";
 import PostPage from "./pages/PostPage";
@@ -19,10 +20,6 @@ import { PrivatePage } from "./pages/PrivatePage/PrivatePage";
 import { useOidcSecure } from "@axa-fr/react-oidc-context/dist/reactServices/OidcSecure";
 import { Button } from "@chakra-ui/core";
 
-import { BLOG_LINK } from "../src/blog/Constants.utils";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import "./App.sass";
 const configuration: UserManagerSettings = {
   client_id: "5f4f670c-0dfc-11eb-adc1-0242ac120002",
   redirect_uri: "https://localhost:3000/callback",
@@ -52,28 +49,18 @@ function App() {
     >
       <Router>
         <Switch>
-          <Route exact path={BLOG_LINK} component={Blog} />
-          <Route
-            exact
-            path={`${BLOG_LINK}:blogPostFileName`}
-            component={BlogPost}
-          />
-
-          <Route exact path={["/"]}>
-            <Route path="/" exact component={Blog} />
-          </Route>
-          {/* <Route path="/private" component={PrivatePage} />
+          <Route path="/private" component={PrivatePage} />
           <Route path={["/blog", "/blog/:id"]}>
             <BlogLayout>
               <Route path="/blog/:id" exact component={PostPage} />
             </BlogLayout>
-          </Route> */}
+          </Route>
 
-          {/* <Route exact path={["/"]}>
+          <Route exact path={["/"]}>
             <HomeLayout>
               <Route path="/" exact component={HomePage} />
             </HomeLayout>
-          </Route> */}
+          </Route>
 
           <Route path={["/admin"]}>
             <AdminLayout>
